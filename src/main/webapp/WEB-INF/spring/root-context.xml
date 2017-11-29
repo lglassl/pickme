@@ -21,12 +21,29 @@
 	<bean id="" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="driverManagerDataSource"></property>
 	</bean>
-	
+<!-- 메일발송 smtp서버 -->
+<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<!-- <property name="port" value="465" /> -->
+		<property name="port" value="587" />
+		<property name="username" value="dydxk3@gmail.com"></property> <!-- 구글메일 계정입력 -->
+		<property name="password" value="pcbvnk12"></property> <!-- 구글메일 비번입력 -->
+		<property name="defaultEncoding" value="utf-8" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+               	<prop key="mail.smtp.auth">true</prop>
+               	<prop key="mail.smtp.starttls.enable">true</prop>
+               	<!-- <prop key="mail.smtp.ssl.enable">true</prop> -->
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>	
 	<!-- Mybatis 설정하기 -->
 	<!-- config.xml에서 했던 작업을 factory에서 함 -->
 	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="driverManagerDataSource"></property>
-		<property name="mapperLocations" value="classpath*:mapper/*xml" />
+		<property name="mapperLocations" value="classpath*:mappers/*xml" />
 	</bean>
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactoryBean" />

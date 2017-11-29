@@ -13,5 +13,17 @@ public class UserComPpDTO {
 	private int comp_count;
 	private String comp_year;
 	private String comp_field;
+	public String getComp_pp_name() {
+		return comp_pp_name;
+	}
+	public void setComp_pp_name(String comp_pp_name) {
+		this.comp_pp_name = comp_pp_name;
+	}
+	public String getComp_name() {
+		return comp_name;
+	}
+	public void setComp_name(String comp_name) {
+		this.comp_name = comp_name;
+	}
 
 }

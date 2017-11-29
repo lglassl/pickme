@@ -1,0 +1,15 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</head>
+<body>
+<h5>
+		축하 합니다.
+		<b>아직 데이터가 디비에 없기 때문에
+		<b>'${name}' 님  당신은 합격입니다.
+		
+		'${cname}'으로부터
+</h5>
+</body>
+</html>

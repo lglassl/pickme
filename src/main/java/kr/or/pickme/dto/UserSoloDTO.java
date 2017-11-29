@@ -43,4 +43,20 @@ public class UserSoloDTO {
 	private String award_co;
 	private String award_year;
 	private String award_activity;
+
+
+	public String getSolo_name() {
+		return solo_name;
+	}
+	public void setSolo_name(String solo_name) {
+		this.solo_name = solo_name;
+	}
+	public String getSolo_email() {
+		return solo_email;
+	}
+	public void setSolo_email(String solo_email) {
+		this.solo_email = solo_email;
+	}
+	
+	
 }

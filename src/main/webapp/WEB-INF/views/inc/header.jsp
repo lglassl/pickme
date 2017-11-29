@@ -209,17 +209,39 @@
                 <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i>채용달력</a></li>
               </ul>
             </li>
-            <li class="treeview">
+            
+              <li class="treeview">
               <a href="#">
-                <i class="fa fa-laptop"></i>
-                <span>이력서 관리</span>
+                <i class="fa fa-pie-chart"></i>
+                <span>지원자 이력서 관리</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="../UI/general.html"><i class="fa fa-circle-o"></i>작성 중 이력서</a></li>
-                <li><a href="../UI/icons.html"><i class="fa fa-circle-o"></i>제출완료</a></li>
+                <li><a href="/compResume.htm"><i class="fa fa-circle-o"></i>지원자 이력서 리스트</a></li>
               </ul>
             </li>
+              <li class="treeview">
+              <a href="#">
+                <i class="fa fa-pie-chart"></i>
+                <span>개인용 자소서 관리</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="/userResume.htm"><i class="fa fa-circle-o"></i>이력서/자소서 리스트</a></li>
+                <li><a href="/userEditBoard.htm"><i class="fa fa-circle-o"></i>첨삭완료 게시판</a></li>
+              </ul>
+            </li>
+              <li class="treeview">
+              <a href="#">
+                <i class="fa fa-pie-chart"></i>
+                <span>전문가용 첨삭게시판</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="/adminEditBoard.htm"><i class="fa fa-circle-o"></i>첨삭게시판</a></li>
+              </ul>
+            </li>
+            
              <li>
               <a href="../widgets.html">
                 <i class="fa fa-th"></i> <span>첨삭완료</span> <small class="label pull-right bg-green">new</small>

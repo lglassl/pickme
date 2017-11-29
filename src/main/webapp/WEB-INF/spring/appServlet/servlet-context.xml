@@ -12,10 +12,26 @@
 
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
+	<context:annotation-config />
+	 <context:component-scan base-package="controller"/>
 	<context:component-scan base-package="kr.or.pickme.controller" />	
+	<context:component-scan base-package="kr.or.pickme.service" />	
+
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
+		
+	<!-- 메일발송 클래스 -->
+	<bean id="simpleNotifier" class="kr.or.pickme.controller.Comp_email" />
+	
+ 	<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="velocityProperties">
+			<value>
+				resource.loader=class
+				class.resource.loader.class=org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+			</value>
+		</property>
+	</bean>
 	<!-- Tiles 설정하기   -->
 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 	 <property name="definitions">
