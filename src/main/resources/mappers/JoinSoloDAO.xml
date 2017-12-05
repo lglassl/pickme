@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.pickme.dao.JoinSoloDAO">
+
+<!-- 
+@class : JoinSoloDAO
+@Date : 2017-11-30
+@Author : 강희창
+@Desc : 
+ -->
+
+	<!-- 회원가입 -->
+	<insert id="insertMember" parameterType="kr.or.pickme.dto.UserSoloDTO">
+		insert into user_solo(username, solo_name, password, solo_birth, solo_gender, solo_email, solo_cphone, solo_addr, enabled, solo_count)
+		values(#{username}, #{solo_name}, #{password}, #{solo_birth}, #{solo_gender}, #{solo_email}, #{solo_cphone}, #{solo_addr}, '1', '0')
+	</insert>
+	<!-- 회원가입시 부여되는 권한 -->
+	<insert id="rollInsert" parameterType="kr.or.pickme.dto.UserSoloDTO">
+		insert into user_roll_solo(seq, username, role_name)
+		values(SEQUENCE_ROLL_SOLO.nextval, #{username}, 'ROLE_JOIN')
+	</insert>
+	
+	<!-- 개인회원 메일인증 -->
+	<insert id="rollUpdate">		
+		insert into user_roll_solo(seq, username, role_name)
+		values(SEQUENCE_ROLL_SOLO.nextval, #{username}, 'ROLE_USER')
+	</insert>
+	
+	<select id="idCheckSolo" resultType="int">
+		select count(*) from user_solo where username = #{username}
+	</select>
+
+	<!-- 페이스북회원가입 -->
+	<insert id="insertFacebook" parameterType="kr.or.pickme.dto.UserSoloDTO">
+		insert into user_solo(username, solo_name, password, solo_gender, solo_email, enabled, solo_count)
+		values(#{username}, #{solo_name}, #{password}, #{solo_gender}, #{solo_email}, '1', '0')
+	</insert>
+	
+	<!--	
+	<select id="loginCheck" resultType="int">
+		select count(*) from member where userid = #{param1} and pwd = #{param2}
+	</select>
+	
+	<select id="getMember" resultType="kr.co.test.model.dto.Member">
+		select * from member where userid=#{userid}
+	</select>
+	
+	<update id="updateMember">
+		update member
+		set pwd = #{pwd}, name=#{name}, cphone=#{cphone}, email=#{email}
+		where userid = #{userid}
+	</update> -->
+	
+</mapper>

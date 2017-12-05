@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/security 
+						http://www.springframework.org/schema/security/spring-security.xsd">
+
+<security:http>
+	<security:csrf disabled="true" />
+	<security:form-login login-page="/login.htm" authentication-failure-url="/login.htm?error" />
+	<security:logout logout-success-url="/home.htm" />
+
+	<security:intercept-url pattern="/member_c**.htm" access="hasRole('ROLE_JOIN')" />
+	<security:intercept-url pattern="/member_u**.htm" access="hasRole('ROLE_JOIN')" />
+	<!-- <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" /> -->
+</security:http>
+<security:authentication-manager>
+	<security:authentication-provider>
+		<security:jdbc-user-service 
+			authorities-by-username-query="select * from(select ur.username, ur.role_name from user_solo us join user_roll_solo ur on us.username=ur.username
+              								union 
+						  					select uc.username, uc.role_name from user_comp_pp up join user_roll_comp uc on up.username=uc.username) where username=?"
+			users-by-username-query="select * from(select username, password, enabled from user_solo 
+									union 
+									select username, password, enabled from user_comp_pp) where username=?"
+			data-source-ref="driverManagerDataSource" 
+		/><!-- db연결 -->
+		
+		<!-- 암호화 -->
+		<security:password-encoder ref="bCryptPasswordEncoder" />
+	</security:authentication-provider>
+</security:authentication-manager>
+
+</beans>

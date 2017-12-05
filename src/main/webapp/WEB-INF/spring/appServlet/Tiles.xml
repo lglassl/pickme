@@ -3,15 +3,25 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
+<!-- =========== dao ============= -->
+<!-- 
+ @class : Tiles.xml
+ @Date : 2017-11-28
+ @Author : 강희창
+ @Desc : 서브페이지 tiles
+ -->
+ 
 <tiles-definitions>
 	<!-- 최종본 패턴을 사용 -->
 	<!-- return home.index -->
 	<definition name="home.*" template="/WEB-INF/views/inc/layout.jsp">
+		<put-attribute name="common" value="/WEB-INF/views/inc/common.jsp" />
 		<put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
 	</definition>
-	<definition name="*.*" template="/WEB-INF/views/{1}/inc/layout.jsp">
-		<put-attribute name="title" value="wecome to kosta" />
+	<definition name="*.*" template="/WEB-INF/views/inc/layout_sub.jsp">
+		<put-attribute name="title" value="wecome to PickMe" />
+		<put-attribute name="common" value="/WEB-INF/views/inc/common.jsp" />
 		<put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />

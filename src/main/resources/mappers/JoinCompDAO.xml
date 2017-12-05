@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.pickme.dao.JoinCompDAO">
+
+<!-- 
+@class : JoinCompDAO
+@Date : 2017-11-30
+@Author : 강희창
+@Desc : 
+ -->
+
+	<!-- 회원가입 -->
+	<insert id="insertComp1" parameterType="kr.or.pickme.dto.UserComPpDTO">
+		insert into user_comp_pp(username, comp_pp_name, comp_pp_job, password, comp_pp_phone, comp_pp_email, enabled)
+		values(#{username}, #{comp_pp_name}, #{comp_pp_job}, #{password}, #{comp_pp_phone}, #{comp_pp_email}, '1')
+	</insert>
+	<insert id="insertComp2" parameterType="kr.or.pickme.dto.UserComPpDTO">
+		insert into comp_info(username, comp_name, comp_num, comp_logo, comp_count, comp_year, comp_addr)
+		values(#{username}, #{comp_name}, #{comp_num}, #{comp_logo}, #{comp_count}, #{comp_year}, #{comp_addr})
+	</insert>
+	<!-- 회원가입시 부여되는 권한 -->
+	<insert id="rollInsert" parameterType="kr.or.pickme.dto.UserComPpDTO">
+		insert into user_roll_comp(seq, username, role_name)
+		values(SEQUENCE_ROLL_COMP.nextval, #{username}, 'ROLE_JOIN')
+	</insert>
+	<insert id="rollUpdate" parameterType="kr.or.pickme.dto.UserComPpDTO">
+		insert into user_roll_comp(seq, username, role_name)
+		values(SEQUENCE_ROLL_COMP.nextval, #{username}, 'ROLE_COMP')
+	</insert>
+	
+	<select id="idCheckComp" resultType="int">
+		select count(*) from user_comp_pp where username = #{username}
+	</select>
+	
+	<!-- <select id="idCheck" resultType="int">
+		select count(*) from member where userid = #{userid}
+	</select>
+	
+	<select id="loginCheck" resultType="int">
+		select count(*) from member where userid = #{param1} and pwd = #{param2}
+	</select>
+	
+	<select id="getMember" resultType="kr.co.test.model.dto.Member">
+		select * from member where userid=#{userid}
+	</select>
+	
+	<update id="updateMember">
+		update member
+		set pwd = #{pwd}, name=#{name}, cphone=#{cphone}, email=#{email}
+		where userid = #{userid}
+	</update> -->
+	
+</mapper>

@@ -1,37 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>AdminLTE 2 | Dashboard</title>
-    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-    <!-- Bootstrap 3.3.4 -->
-    <link href="./resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <!-- Font Awesome Icons -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <!-- Ionicons -->
-    <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-    <!-- Theme style -->
-    <link href="./resources/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-    <!-- AdminLTE Skins. Choose a skin from the css/skins 
-         folder instead of downloading all of them to reduce the load. -->
-    <link href="./resources/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    
-  </head>
-      <!-- jQuery 2.1.4 -->
-    <script src="./resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-  <body class="skin-blue sidebar-mini">
     <div class="wrapper">
-      
       <header class="main-header">
         <!-- Logo -->
         <a href="/home.htm" class="logo">
@@ -52,7 +23,6 @@
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
             
-            
               <!-- 쪽지 -->
               <li class="dropdown messages-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -68,7 +38,7 @@
                         <a href="#">
                           <div class="pull-left">
                           	<!-- 로고 이미지 -->
-                            <img src="./resources/dist/img/user7-128x128.jpg" class="img-circle" alt="User Image"/>
+                            <img src="/resources/dist/img/user7-128x128.jpg" class="img-circle" alt="User Image"/>
                           </div>
                           <h4>
                             	영진전자	
@@ -80,7 +50,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="./resources/dist/img/user3-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="/resources/dist/img/user3-128x128.jpg" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                             	건설회사
@@ -92,7 +62,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="./resources/dist/img/user4-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="/resources/dist/img/user4-128x128.jpg" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                            	 자동차회사
@@ -104,7 +74,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="./resources/dist/img/user3-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="/resources/dist/img/user3-128x128.jpg" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                             	건설회사
@@ -116,7 +86,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="./resources/dist/img/user4-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="/resources/dist/img/user4-128x128.jpg" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                             	영진전자	
@@ -131,18 +101,25 @@
                 </ul>
               </li>
               
-              <!-- User Account: style can be found in dropdown.less -->
+               <!-- 회원가입 -->
+              <se:authorize access="!hasRole('ROLE_JOIN')">
+              <li class="dropdown user user-menu">
+                <a href="/join_solo.htm" class="dropdown-toggle">회원가입</a>
+              </li>
+              </se:authorize>
+              
+              <se:authentication property="name" var="LoginUser" />
+              <!-- 일반회원 -->
+              <se:authorize access="hasAnyRole('ROLE_USER')">
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <span class="hidden-xs">사용자 이름</span>
+                  <span class="hidden-xs">회원정보</span>
                 </a>
                 <ul class="dropdown-menu">
-                  <!-- User image -->
                   <li class="user-header">
-                  	<!-- 우리 로고 -->
-                    <img src="./resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
-                    <p>오영진님의 채용 정보</p>
-                    <!-- 작성중과 제출완료 링크는 같은 곳의 링크(제출 이력서 리스트) -->
+                    <img src="/resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                    <p><a href="/member_confirm.htm" class="btn btn-default">회원정보수정</a></p>
+                    <p>${dto.solo_name}님의 채용 정보</p>
                     <div class="pull-left">
                       <a href="#" style="color:#fff">작성중 12</a>
                     </div>
@@ -152,14 +129,41 @@
                   </li>
                 </ul>
               </li>
+              </se:authorize>
+              
+              <!-- 기업회원 -->
+              <se:authorize access="hasAnyRole('ROLE_COMP')">
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <span class="hidden-xs">기업정보</span>
+                </a>
+                <ul class="dropdown-menu">
+                  User image
+                  <li class="user-header">
+                  	우리 로고
+                    <img src="/resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                    <p><a href="/member_confirm_comp.htm" class="btn btn-default">기업정보수정</a></p>
+                    <p>오영진님의 채용 정보</p>
+                    작성중과 제출완료 링크는 같은 곳의 링크(제출 이력서 리스트)
+                    <div class="pull-left">
+                      <a href="#" style="color:#fff">작성중 12</a>
+                    </div>
+                    <div class="pull-right">
+                     <a href="#" style="color:#fff">제출완료 4</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              </se:authorize>
             
               <li>
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <span class="hidden-xs">로그인</span>
-              </a>
-              <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <span class="hidden-xs">로그아웃</span>
-              </a> -->
+              <se:authorize access="!hasRole('ROLE_JOIN')">
+              	<a href="/login.htm" class="dropdown-toggle">로그인</a>
+              </se:authorize>
+              <se:authentication property="name" var="LoginUser" />
+              <se:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER', 'ROLE_JOIN')">	
+	          	<a href="/logout" class="dropdown-toggle">로그아웃</a>
+              </se:authorize>
               </li>
               <!-- Control Sidebar Toggle Button(웹 사이트 설정부분) -->
               <!-- 

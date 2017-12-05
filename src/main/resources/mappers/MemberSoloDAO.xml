@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.pickme.dao.MemberSoloDAO">
+
+<!-- 
+@class : MemberSoloDAO
+@Date : 2017-12-04
+@Author : 강희창
+@Desc : 
+ -->
+ 	
+	<!-- 
+	@class : MemberCompDAO
+	@Date : 2017-12-04
+	@Author : 강희창
+	@Desc : idFind
+	 -->
+	<!-- 개인회원 아이디찾기 -->
+	<select id="idFind" parameterType="kr.or.pickme.dto.UserSoloDTO" resultType="java.lang.String">
+		select username from user_solo 
+		where solo_name=#{solo_name} and solo_email=#{solo_email}
+	</select>
+	
+	<!-- 
+	@class : MemberCompDAO
+	@Date : 2017-12-04
+	@Author : 강희창
+	@Desc : pwdRe
+	 -->
+	<!-- 개인회원 비밀번호 설정-아이디,이메일확인 -->
+	<select id="pwdRe" parameterType="kr.or.pickme.dto.UserSoloDTO" resultType="int">
+		select count(*) from user_solo 
+		where username=#{username} and solo_email=#{solo_email}
+	</select>
+	
+	<!-- 
+	@class : MemberCompDAO
+	@Date : 2017-12-04
+	@Author : 강희창
+	@Desc : newPwdUpdate
+	 -->
+	<!-- 개인회원 비밀번호 설정-새 비번 -->
+	<update id="newPwdUpdate">
+		update user_solo
+		set password = #{password}
+		where username=#{username} and solo_email=#{solo_email}
+	</update>
+	
+	<!-- 
+	@class : MemberCompDAO
+	@Date : 2017-12-04
+	@Author : 강희창
+	@Desc : getSoloInfo
+	 -->
+	<!-- 회원정보 -->
+	<select id="getSoloInfo" resultType="kr.or.pickme.dto.UserSoloDTO">
+		select * from user_solo where username=#{username}
+	</select>
+	
+	<!-- 
+	@class : MemberCompDAO
+	@Date : 2017-12-04
+	@Author : 강희창
+	@Desc : soloUpdate
+	 -->
+	<!-- 회원정보수정 -->
+	<update id="soloUpdate">
+		update user_solo
+		set
+		password = #{password}, solo_name = #{solo_name}, solo_birth = #{solo_birth}, solo_gender = #{solo_gender}, 
+		solo_email = #{solo_email}, solo_cphone = #{solo_cphone}, solo_addr = #{solo_addr}
+		where username = #{username}
+		
+	</update>
+	
+	<!-- 
+	@class : MemberCompDAO
+	@Date : 2017-12-04
+	@Author : 강희창
+	@Desc : soloUpdateFb
+	 -->
+	<!-- 회원정보수정-페이스북 -->
+	<update id="soloUpdateFb">
+		update user_solo
+		set
+		solo_name = #{solo_name}, solo_birth = #{solo_birth}, solo_gender = #{solo_gender}, 
+		solo_email = #{solo_email}, solo_cphone = #{solo_cphone}, solo_addr = #{solo_addr}
+		where username = #{username}
+		
+	</update>
+		
+</mapper>

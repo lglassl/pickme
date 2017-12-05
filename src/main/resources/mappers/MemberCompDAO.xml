@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.pickme.dao.MemberCompDAO">
+
+<!-- 
+@class : MemberCompDAO
+@Date : 2017-12-04
+@Author : 강희창
+@Desc : 
+ -->
+	
+	<!-- 
+	@class : MemberCompDAO
+	@Date : 2017-12-04
+	@Author : 강희창
+	@Desc : idFindComp
+	 -->
+	<!-- 기업회원 아이디찾기 -->
+	<select id="idFindComp" parameterType="kr.or.pickme.dto.UserComPpDTO" resultType="java.lang.String">
+		select username from comp_info 
+		where comp_num=#{comp_num} and comp_name=#{comp_name}
+	</select>
+	
+	<!-- 
+	@class : MemberCompDAO
+	@Date : 2017-12-04
+	@Author : 강희창
+	@Desc : pwdReComp
+	 -->
+	<!-- 기업회원 비밀번호 설정-아이디,이메일확인 -->
+	<select id="pwdReComp" parameterType="kr.or.pickme.dto.UserComPpDTO" resultType="int">
+		select count(*) from user_comp_pp 
+		where username=#{username} and comp_pp_email=#{comp_pp_email}
+	</select>
+	
+	<!-- 
+	@class : MemberCompDAO
+	@Date : 2017-12-04
+	@Author : 강희창
+	@Desc : newPwdUpdateComp
+	 -->
+	<!-- 기업회원 비밀번호 설정-새 비번 -->
+	<update id="newPwdUpdateComp">
+		update user_comp_pp
+		set password = #{password}
+		where username=#{username} and comp_pp_email=#{comp_pp_email}
+	</update>
+	
+	<!-- 
+	@class : MemberCompDAO
+	@Date : 2017-12-04
+	@Author : 강희창
+	@Desc : getCompInfo
+	 -->
+	<!-- 기업회원정보 -->
+	<select id="getCompInfo" resultType="kr.or.pickme.dto.UserComPpDTO">
+		select * from user_comp_pp u join comp_info c on u.username=c.username
+		where u.username=#{username}
+	</select>
+	
+	<!-- 
+	@class : MemberCompDAO
+	@Date : 2017-12-04
+	@Author : 강희창
+	@Desc : compUpdate, compUpdate2
+	 -->
+	<!-- 기업정보수정-파일포함 -->
+	<update id="compUpdate">
+		update user_comp_pp
+		set
+		password = #{password}, comp_pp_name = #{comp_pp_name}, comp_pp_job = #{comp_pp_job}, 
+		comp_pp_phone = #{comp_pp_phone}, comp_pp_email = #{comp_pp_email}
+		where username = #{username}		
+	</update>
+	<update id="compUpdate2">
+		update comp_info
+		set
+		comp_name = #{comp_name}, comp_num = #{comp_num}, comp_logo = #{comp_logo}, 
+		comp_count = #{comp_count}, comp_year = #{comp_year}, comp_addr = #{comp_addr}
+		where username = #{username}		
+	</update>
+	
+	<!-- 
+	@class : MemberCompDAO
+	@Date : 2017-12-05
+	@Author : 강희창
+	@Desc : compUpdateNf, compUpdateNf2
+	 -->
+	<!-- 기업정보수정-파일없음 -->
+	<update id="compUpdateNf">
+		update user_comp_pp
+		set
+		password = #{password}, comp_pp_name = #{comp_pp_name}, comp_pp_job = #{comp_pp_job}, 
+		comp_pp_phone = #{comp_pp_phone}, comp_pp_email = #{comp_pp_email}
+		where username = #{username}		
+	</update>
+	<update id="compUpdateNf2">
+		update comp_info
+		set
+		comp_name = #{comp_name}, comp_num = #{comp_num}, comp_count = #{comp_count}, 
+		comp_year = #{comp_year}, comp_addr = #{comp_addr}
+		where username = #{username}		
+	</update>
+		
+</mapper>

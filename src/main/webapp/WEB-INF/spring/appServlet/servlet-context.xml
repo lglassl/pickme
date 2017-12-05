@@ -3,12 +3,15 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
 						http://www.springframework.org/schema/mvc/spring-mvc.xsd
 						http://www.springframework.org/schema/beans 
 						http://www.springframework.org/schema/beans/spring-beans.xsd
 						http://www.springframework.org/schema/context 
-						http://www.springframework.org/schema/context/spring-context.xsd">
+						http://www.springframework.org/schema/context/spring-context.xsd
+					    http://www.springframework.org/schema/tx
+					    http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
@@ -22,6 +25,7 @@
 
 		
 	<!-- 메일발송 클래스 -->
+	<bean id="emailSend" class="kr.or.pickme.email.emailSend" />
 	<bean id="simpleNotifier" class="kr.or.pickme.controller.Comp_email" />
 	
  	<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
@@ -52,5 +56,20 @@
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="2" />
 	</bean>
+	
+	<!-- fileupload -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10485760"/><!-- 10MB -->
+	</bean>
+	
+	<!-- fileupload 저장할 파일 경로 -->
+	<bean id="uploadPath" class="java.lang.String">
+		<constructor-arg value="C:\\kosta166\\upload"></constructor-arg>
+	</bean>
+	
+<bean name="jsonview" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+	 
+	<!-- @Transactional 이 적용된 곳에 commit과 rollback을 관리하겠다 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
 </beans>

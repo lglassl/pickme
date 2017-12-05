@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.pickme.dao.doingDAO">
+<!-- 진행중 게시판 -->
+<select id="doingList" resultType="kr.or.pickme.dto.ResumeDTO">
+select pick_code, resu_ctmt, paper_status from resume 
+	where paper_status= 0 or paper_status = 1 order by pick_code desc
+ </select>
+<!-- 진행중 게시판에서 수정 삭제 -->
+  <select id="doingDetail" parameterType="String" resultType="kr.or.pickme.dto.ResumeDTO">
+
+
+ </select>
+ 
+
+</mapper>
