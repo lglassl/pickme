@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -27,20 +27,13 @@
 			
 			"lengthMenu" : [ [ 10, 20, 35 ], [ 10, 20, 35 ] ],
 			"searching" : true,
-			"columnDefs" : [ //ÀÌ°Ç ¼öÁ¤ÀÌ¶û »èÁ¦¹öÆ°Àº Á¤·Ä¹öÆ° ¾ø¾Ö·Á°í ÇÑ°ÅÀÓ
+			"columnDefs" : [ //ì´ê±´ ìˆ˜ì •ì´ë‘ ì‚­ì œë²„íŠ¼ì€ ì •ë ¬ë²„íŠ¼ ì—†ì• ë ¤ê³  í•œê±°ì„
 			{
-				"targets" : [ -1 ], //¸¶Áö¸· ÄÃ·³
-				"orderable" : false, //Á¤·ÄÇÏ´Â°Å ¾ø¾Ú
+				"targets" : [ -1 ], //ë§ˆì§€ë§‰ ì»¬ëŸ¼
+				"orderable" : false, //ì •ë ¬í•˜ëŠ”ê±° ì—†ì•°
 			}, ]
 		});
 
-		$('td>button').click(function() {
-
-			alert("ÇÕºÒ ¸ŞÀÏ°ú ÂÊÁö ¹ß¼Û");
-			$('#aa').modal('show');
-		
-		});
-		
 		
 
 	});
@@ -51,10 +44,10 @@
 		<thead>
 			<tr>
 
-				<td width=60%>¹øÈ£</td>
-				<td width=10%>Áö¿øÀÚ ÀÌ¸§</td>
-				<td width=20%>Á¦¸ñ</td>
-				<td width=10%>ÇÕ°İ¿©ºÎ</td>
+				<td width=60%>ë²ˆí˜¸</td>
+				<td width=10%>ì§€ì›ì ì´ë¦„</td>
+				<td width=20%>ì œëª©</td>
+				<td width=10%>í•©ê²©ì—¬ë¶€</td>
 
 			</tr>
 		</thead>
@@ -63,9 +56,13 @@
 				<tr>
 
 					<td width=25%>${i}</td>
-					<td width=25%>¿À¿µÁø${i}</td>
-					<td width=25%><a href="compResumeDetail.htm">³ª¸¦ »Ì¾ÆÁà¶û${i}</a></td>
-					<td width=25%><button id="b${i}">ÇÕºÒ°áÁ¤${i}</button></td>
+					<td width=25%>ì˜¤ì˜ì§„${i}</td>
+					<td width=25%><a href="compResumeDetail.htm">ë‚˜ë¥¼ ë½‘ì•„ì¤˜ë‘${i}</a></td>
+									
+					<td width=25%>
+					<form id="hapbul" action="/MailSend.htm">
+					<button type="submit">í•©ë¶ˆê²°ì •${i}</button>
+					</form></td>
 				</tr>
 			</c:forEach>
 
@@ -80,10 +77,10 @@
 							<td id="genre">${d_selectgenrelist.d_genre}</td>
 							<td id="director">${d_selectgenrelist.d_director}</td>
 							<td id="playdate">${d_selectgenrelist.d_playDate.substring(0,10)}</td>
-							<td id="price">${d_selectgenrelist.d_price} ¿ø</td>
+							<td id="price">${d_selectgenrelist.d_price} ì›</td>
 									
 							<td>
-								<button class="snip1535" onclick="/MailSend.htm" id="mail" >ÇÕ°İºÒÇÕ°İ</button>
+								<button class="snip1535" onclick="/MailSend.htm" id="mail" >í•©ê²©ë¶ˆí•©ê²©</button>
 							</td>
 						</tr>
 					</c:forEach>
@@ -101,17 +98,17 @@
 				<form name="paymentform" action="#" method="post">
 					<div class="modal-header" style="text-align:center;">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-         				<h4 class="modal-title" id="mtitle">¤¤¾Æ¤Ã·Ğ¾Æ¤Ã·Ğ¾Æ¤Ã¤©</h4>
+         				<h4 class="modal-title" id="mtitle">ã„´ì•„ã…“ë¡ ì•„ã…“ë¡ ì•„ã…“ã„¹</h4>
        				</div>
 					<div class="modal-body"> 
-						<label id="label_1">¿À¿µÁø</label>
+						<label id="label_1">ì˜¤ì˜ì§„</label>
 						<input type="text" name="" id="" class="form-control">
 						<br>
-						<label id="label_2">¹Ù¿À¹Ù¤¿¤²</label>
+						<label id="label_2">ë°”ì˜¤ë°”ã…ã…‚</label>
 						<input type="text" name="" id="" class="form-control">
 						<br>
 						<input type="button" class="btn btn-default" id="50jin" name="50bt">
-						¿À¿µÁø¹Ùº¸
+						ì˜¤ì˜ì§„ë°”ë³´
 					</div>
 					</form>
 					</div>

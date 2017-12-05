@@ -82,3 +82,13 @@ div.dataTables_paginate {
 	text-align: center;
 
 }
+
+#userResume > thead{
+	font-weight:bold;
+	font-size:20px;
+	
+}
+#userResume_filter, #userResume_wrapper > div.bottom{
+	text-align: center;
+
+}

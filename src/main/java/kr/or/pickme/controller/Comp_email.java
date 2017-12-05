@@ -33,7 +33,7 @@ public class Comp_email {
 			//messageHelper.setSubject(user.getSolo_name() + "님께");
 			messageHelper.setSubject("오영진님께");
 			messageHelper.setFrom("50JIN");
-			messageHelper.setTo("lglassl@daum.net");
+			messageHelper.setTo("dydxk3@gmail.com");
 			//아직 DB에 데이터가 없기 때문에
 			//messageHelper.setTo(user.getSolo_email());
 			System.out.println("여긴오니?2");
@@ -42,7 +42,7 @@ public class Comp_email {
 			model.put("cname", "cname");
 			
 			String text = VelocityEngineUtils.mergeTemplateIntoString(
-					ve, "src/main/webapp/WEB-INF/template/email.vm", "UTF-8", model);
+					ve, "kr/or/pickme/controller/email.vm", "UTF-8", model);
 			
 			messageHelper.setText(text, true);
 			mailSender.send(message);

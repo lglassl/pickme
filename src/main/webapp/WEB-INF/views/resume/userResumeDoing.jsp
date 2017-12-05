@@ -16,19 +16,14 @@
 	rel="stylesheet" type="text/css">
 <link href="/resources/bootstrap/css/resumelist.css" rel="stylesheet"
 	type="text/css">
-<style>
-h3{
-text-align:center;
 
-}
-</style>
 <script>
 	$(document).ready(function() {
-		$('#userResume').DataTable({
-			"sPaginationType" : "full_numbers",
-			"sDom" : '<"top">rt<"bottom"flp><"clear">',
-
-			"lengthMenu" : [ [ 10, 20, 30 ], [ 10, 20, 30 ] ],
+		$('#doinglist').DataTable({
+			"responsive" : true,
+			 "sPaginationType": "full_numbers",
+			"sDom": '<"top">rt<"bottom"flp><"clear">',
+			"lengthMenu" : [ [ 10, 20, 35 ], [ 10, 20, 35 ] ],
 			"searching" : true,
 			"columnDefs" : [ //이건 수정이랑 삭제버튼은 정렬버튼 없애려고 한거임
 			{
@@ -37,41 +32,42 @@ text-align:center;
 			}, ]
 		});
 	});
-	
 </script>
 <div id="content">
-<h3 >첨삭완료 게시판</h3>
-		<table class="table table-hover dt-responsive"
-		style="text-align: center; background-color: white; color: black;" id="userResume">
+<div class="col-sm-12">
+	<table class="table table-hover dt-responsive" style="text-align: center; background-color: white; color: black;"
+		id="doinglist">
 		<thead>
 			<tr>
-				<td >번호</td>
-				<td >작성자</td>
-				<td>자소서항목</td>
-				<td>첨삭내용</td>
-				<td >첨삭상태</td>
+				<td >채용 공고 번호</td>
+				<td >제목</td>
+				<td >제출상태</td>
+
 			</tr>
 		</thead>
-		<tbody>
-			<c:forEach var="elist" items="${elist}">
+			<tbody>
+			<c:forEach var="doinglist" items="${doinglist}">
 					<tr>
-						<td style="text-align: center;">${elist.resu_code}</td>
-						<td style="text-align: center;">${elist.username}</td>
-						<td style="text-align: center;">${elist.resu_ctmt}</td>
-						<td style="text-align: center;">${elist.resu_edit}</td>
+					
+						<td style="text-align: center;">${doinglist.pick_code}</td>
+						<td style="text-align: center;"><a href="#">${doinglist.resu_ctmt}</a></td>
 						<td style="text-align: center;">
-						<c:set var="es" value="${elist.edit_status}" />
-						<c:if test = "${es eq 3}">
-						<button type="button" class="btn btn-info">첨삭완료</button>
-						</c:if>
+								<c:set var="ps" value="${doinglist.paper_status}" />
+								<c:choose>
+								<c:when test ="${ps eq 0}">
+       							<span id="doing0" class="label label-default">작성 중</span>
+    							</c:when>
+    							<c:when test ="${ps eq 1}">
+    							<span id="doing1" class="label label-default">작성 중</span>
+    							</c:when>
+    							</c:choose>
 						</td>
 					</tr>
 			</c:forEach>
 			</tbody>
-			</table>
 			
-	</div>
-	
+			</table>
+			</div>
+			</div>
 			
 
-	
