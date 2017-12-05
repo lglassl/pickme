@@ -252,7 +252,7 @@
               </a>
             </li>
              <li>
-              <a href="../widgets.html">
+              <a href="entity_list.htm">
                 <i class="fa fa-th"></i> <span>소통 게시판</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>
