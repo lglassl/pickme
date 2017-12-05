@@ -1,5 +1,6 @@
 package kr.or.pickme.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -60,22 +61,22 @@ public class ResumeController {
 	return "resume.userResumeDoing";
 }
 
-	@RequestMapping("/esUpdate.htm")
-	public String esUpdate(String username, HttpServletRequest request) {
-		username = request.getParameter("username");
-		String url = resumeservice.esUpdate(username);
-		return url;
+	@RequestMapping(value="/esUpdate.htm", method = RequestMethod.POST)
+	public String esUpdate(HttpServletRequest request , ResumeDTO dto) {
+		resumeservice.esUpdate(dto);
+		System.out.println(dto.getUsername());
+		return "redirect:userResume.htm";
 	}
 	
-	@RequestMapping("/psUpdate.htm")
-	public String psUpdate(String username, HttpServletRequest request) {
-		System.out.println("1");
-		username = request.getParameter("username");
-		System.out.println("2");
-		String url = resumeservice.psUpdate(username);
-		System.out.println("3");
-		return url;
+	
+	@RequestMapping(value="/psUpdate.htm", method = RequestMethod.POST)
+	public String psUpdate(HttpServletRequest request , ResumeDTO dto) {
+		resumeservice.psUpdate(dto);
+		System.out.println(dto.getUsername());
+		return "redirect:userResume.htm";
 	}
+	
+	
 
 	@RequestMapping("/compResume.htm")
 	public String compResumeList() {

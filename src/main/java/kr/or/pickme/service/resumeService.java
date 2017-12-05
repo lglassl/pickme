@@ -39,24 +39,28 @@ public class resumeService {
 		return resumedto;
 	}
 	
-	public String esUpdate(String username) {
-
-		resumeDAO resumeDao = sqlsession.getMapper(resumeDAO.class);
-		resumeDao.esUpdate(username);
+	public void esUpdate(ResumeDTO dto) {
+		System.out.println("service진입" + dto.toString());
+		resumeDAO resumedao = sqlsession.getMapper(resumeDAO.class);
+		System.out.println("service진입2");
+		resumedao.esUpdate(dto);
 		
-		System.out.println("리다이렉트 직전 es");
-		String view = "redirect:userResume.htm";
-		return view;
+		System.out.println("서비스" + dto);
+		
 	}
 	
-	public String psUpdate(String username) {
-
-		resumeDAO resumeDao = sqlsession.getMapper(resumeDAO.class);
-		System.out.println("resumeDAO=" + resumeDao);
-		resumeDao.psUpdate(username);
-		System.out.println("username=" + username );
-		String view = "redirect:userResume.htm";
-		return view;
-	}
 	
+	public int psUpdate(ResumeDTO dto) {
+		System.out.println("service진입" + dto.toString());
+		resumeDAO resumedao = sqlsession.getMapper(resumeDAO.class);
+		System.out.println("service진입2");
+		try {
+		resumedao.psUpdate(dto);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		System.out.println("서비스" + dto);
+		return 0;
+		
+	}
 }

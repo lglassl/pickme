@@ -10,7 +10,7 @@ public interface resumeDAO {
 	
 	public ResumeDTO resumeDetail(ResumeDTO ResumeDTO);
 	
-	public ResumeDTO psUpdate(String username);
+	public ResumeDTO psUpdate(ResumeDTO ResumeDTO);
 
-	public ResumeDTO esUpdate(String username);
+	public ResumeDTO esUpdate(ResumeDTO ResumeDTO);
 }

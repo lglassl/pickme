@@ -28,7 +28,7 @@
 			"columnDefs" : [ //이건 수정이랑 삭제버튼은 정렬버튼 없애려고 한거임
 			{
 				"targets" : [ -1 ], //마지막 컬럼
-				"orderable" : false, //정렬하는거 없앰
+				"orderable" : true, //정렬하는거 없앰
 			}, ]
 		});
 	 });
@@ -110,7 +110,7 @@ border:0.1px;
 			
 		</div>
 </div>
-
+			<form action="psUpdate.htm" method="post" name="n" >
 	<table class="table table-hover dt-responsive"
 		style="text-align: center; background-color: white; color: black;" id="userResume">
 		<thead>
@@ -128,41 +128,30 @@ border:0.1px;
 		<tbody>
 			<c:forEach var="list" items="${list}">
 					<tr>
-					
 						<td style="text-align: center;">${list.resu_code}</td>
-						<td style="text-align: center;">${list.username}
-						</td>
+						<td style="text-align: center;">${list.username}</td>
 						
 						<td style="text-align: center;">${list.pick_code}</td>
 						<td style="text-align: center;">${list.resu_ctmt}</td>
-   						 <td style="text-align: center;">
+   						<td style="text-align: center;">
 							<c:set var="ps" value="${list.paper_status}" />
 							<c:choose>
-    						
     						<c:when test ="${ps eq 0}">
        						<span class="label label-default">작성 중</span>
     						</c:when>
-    						
-    						<c:when test ="${ps eq 1}">		
-        					<button id="paper1" type="button" class="btn btn-warning">
-        					<form action="/psUpdate.htm">
-     				<!-- 넘어갈때 그 버튼의 유저네임 값을 어떻게 가져가는가? -->
         					
-        					<input type="submit" value="제출하기">
-        					</form>
-							</button>
+    						<c:when test ="${ps eq 1}">		
+        					<input type="submit" id="pssub" name="pssub" >
     						</c:when>
+        					
     						
     						<c:when test ="${ps eq 2}">
        						<span class="label label-success">제출완료</span>
         					</c:when>
-        
-    						<c:otherwise>
-       						오류코드
-    						</c:otherwise>
 							</c:choose>
+					
 						</td>
-	
+				
 						<td style="text-align: center;">
 						<c:set var="es" value="${list.edit_status}" />
 						<c:choose>
@@ -185,9 +174,9 @@ border:0.1px;
 						</c:choose>
 				</td>
 			</tr>
-			</c:forEach>
-
+		</c:forEach>
 		</tbody>
 
 	</table>
 
+		</form>
