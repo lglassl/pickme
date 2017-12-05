@@ -5,7 +5,7 @@
 
 <script src="/resources/bootstrap/js/member/facebook.js"></script>
 
-<div style="width:80%;margin:0 auto;padding-top:30px">
+<div class="main_area">
 	<h2>로그인</h2>
 	<c:if test="${param.error != null}">
 		<div>
@@ -18,14 +18,14 @@
 	
 	<c:url value="/login" var="loginurl"></c:url>
 	<form class="form-horizontal" action="${pageContext.request.contextPath}/login" method="post">
-		<ul style="height:100px;padding:0px">
-			<li style="float:left;width:70%">
+		<ul class="login_form">
+			<li class="lft">
 				<p><input type="text" class="form-control" name="username" id="username" placeholder="아이디 입력"></p>
 				<p><input type="password" class="form-control" name="password" id="password" placeholder="비밀번호 입력"></p>
 			</li>
-			<li style="float:left;width:29%;margin-left:1%">
+			<li class="rgt">
 				<div>
-					<button type="submit" class="btn btn-info" style="height:78px">로그인</button>
+					<button type="submit" class="btn btn-info">로그인</button>
 				</div>
 			</li>
 		</ul>

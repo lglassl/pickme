@@ -108,7 +108,7 @@
 .ui-dialog .ui-dialog-titlebar-close { display: none; position: absolute; right: .3em; top: 50%; width: 19px; margin: -10px 0 0 0; padding: 1px; height: 18px; }
 </style>
 
-<div style="width:80%;margin:0 auto;padding-top:30px">
+<div class="main_area">
 	<h2>개인정보확인</h2>
 	<form>
 	<table class="table table-striped" style="margin-top:20px">

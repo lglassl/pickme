@@ -147,7 +147,7 @@
 	}
 </script>
 
-<div style="width:80%;margin:0 auto;padding-top:30px">
+<div class="main_area">
 	<h2>기업회원가입</h2>
 	<ul class="nav nav-pills nav-justified" role="tablist">
 		<li><a href="/join_solo.htm">개인회원가입</a></li>

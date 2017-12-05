@@ -26,8 +26,8 @@
 		<property name="host" value="smtp.gmail.com" />
 		<!-- <property name="port" value="465" /> -->
 		<property name="port" value="587" />
-		<property name="username" value="dydxk3@gmail.com"></property> <!-- 구글메일 계정입력 -->
-		<property name="password" value="pcbvnk12"></property> <!-- 구글메일 비번입력 -->
+		<property name="username" value=""></property> <!-- 구글메일 계정입력 -->
+		<property name="password" value=""></property> <!-- 구글메일 비번입력 -->
 		<property name="defaultEncoding" value="utf-8" />
 		<property name="javaMailProperties">
 			<props>

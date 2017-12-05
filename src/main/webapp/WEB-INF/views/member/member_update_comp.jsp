@@ -115,7 +115,7 @@
 	}
 </script>
 
-<div style="width:80%;margin:0 auto;padding-top:30px">
+<div class="main_area">
 	<h2>기업정보확인</h2>
 	<form action="" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="username" id="username" value="${dto.username}">

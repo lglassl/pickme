@@ -71,7 +71,7 @@
 	}
 </script>
 
-<div style="width:80%;margin:0 auto;padding-top:30px">
+<div class="main_area">
 	<h2>비밀번호재설정</h2>
 	<ul class="nav nav-pills nav-justified" role="tablist">
 		<li><a href="/member_solo_find.htm">아이디찾기</a></li>
@@ -80,34 +80,34 @@
 	
 	<h4 style="margin-top:20px">아이디와 이메일을 입력하시면 임시 비밀번호가 전송됩니다</h4>
 	
-	<p style="margin:20px 0 10px 0">
+	<p class="check_area">
 		<input type="radio" value="solo" name="mode" onclick="mode()" checked >개인
 		<input type="radio" value="comp" name="mode" onclick="mode()" >기업
 	</p>
 	
 	<form id="formtag">
-		<ul style="height:100px;padding:0px">
-			<li style="float:left;width:70%">
+		<ul class="login_form">
+			<li class="lft">
 				<p><input type="text" class="form-control" name="username" id="username" placeholder="아이디 입력"></p>
 				<p><input type="text" class="form-control" name="solo_email" id="solo_email" placeholder="이메일입력 ex)email@gmail.com"></p>
 			</li>
-			<li style="float:left;width:29%;margin-left:1%">
+			<li class="rgt">
 				<div>
-					<input type="button" value="확인" class="btn btn-info" style="height:78px" onclick="check()">
+					<input type="button" value="확인" class="btn btn-info" onclick="check()">
 				</div>
 			</li>
 		</ul>
 	</form>
 	
 	<form style="display:none" id="formtag_comp">
-		<ul style="height:100px;padding:0px">
-			<li style="float:left;width:70%">
+		<ul class="login_form">
+			<li class="lft">
 				<p><input type="text" class="form-control" name="username" id="usernameComp" placeholder="아이디 입력"></p>
 				<p><input type="text" class="form-control" name="solo_email" id="comp_pp_email" placeholder="이메일입력 ex)email@gmail.com"></p>
 			</li>
-			<li style="float:left;width:29%;margin-left:1%">
+			<li class="rgt">
 				<div>
-					<input type="button" value="확인" class="btn btn-info" style="height:78px" onclick="check_comp()">
+					<input type="button" value="확인" class="btn btn-info" onclick="check_comp()">
 				</div>
 			</li>
 		</ul>
