@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.main_area{width:80%;margin:0 auto;padding-top:30px}
+ul.login_form{height:100px;padding:0px}
+ul.login_form li.lft{float:left;width:70%}
+ul.login_form li.rgt{float:left;width:29%;margin-left:1%}
+ul.login_form li.rgt button{height:78px}
+
+ul.login_form_con{height:90px;padding:30px 0 0 0}
+ul.login_form_con li.lft{float:left;width:70%}
+ul.login_form_con li.rgt{float:left;width:29%;margin-left:1%}
+ul.login_form_con li.rgt button{height:40px}
+
+.check_area{margin:20px 0 10px 0}
