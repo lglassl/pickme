@@ -11,13 +11,22 @@
 	<tiles:insertAttribute name="common" />
     
   </head>
-  <body class="skin-blue sidebar-mini">
+  <body class="skin-black-light sidebar-mini">
   
     <!-- header -->
 	<tiles:insertAttribute name="header" />
 		<!-- content -->
 		<div class="content-wrapper">
+			
+			<div><a href="<%=request.getContextPath() %>/resume/update.htm">초기이력서 수정 버튼 click</a></div>
+	        
+	   		<div><a href="<%=request.getContextPath() %>/apply.htm?pick_code=1111111">공고 지원 버튼 click</a></div>
+		
 			<tiles:insertAttribute name="content" />
+			
+			
+			
+			
        	</div> 
 	<!-- footer -->
 	<tiles:insertAttribute name="footer" />
