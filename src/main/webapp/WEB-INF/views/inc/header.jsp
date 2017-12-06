@@ -119,7 +119,7 @@
                   <li class="user-header">
                     <img src="/resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
                     <p><a href="/member_confirm.htm" class="btn btn-default">회원정보수정</a></p>
-                    <p>${dto.solo_name}님의 채용 정보</p>
+                    <p>${sname}님의 채용 정보</p>
                     <div class="pull-left">
                       <a href="#" style="color:#fff">작성중 12</a>
                     </div>
@@ -141,9 +141,9 @@
                   User image
                   <li class="user-header">
                   	우리 로고
-                    <img src="/resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                    <img src="/resources/bootstrap/upload/images/${clogo}" class="img-circle" alt="User Image" />
                     <p><a href="/member_confirm_comp.htm" class="btn btn-default">기업정보수정</a></p>
-                    <p>오영진님의 채용 정보</p>
+                    <p>${cname}님의 채용 정보</p>
                     작성중과 제출완료 링크는 같은 곳의 링크(제출 이력서 리스트)
                     <div class="pull-left">
                       <a href="#" style="color:#fff">작성중 12</a>
@@ -184,21 +184,37 @@
         <section class="sidebar">
           <!-- Sidebar user panel -->
           <div class="user-panel">
+             
+             <!-- 일반회원 -->
+            <se:authorize access="hasAnyRole('ROLE_USER')">
             <div class="pull-left image">
             	<!-- 우리 로고 -->
-              <img src="./resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+              <img src="/resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-              <p><b>오영진</b>님 환영합니다</p>
+              <p><b>${sname}</b>님 환영합니다</p>
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
+            </se:authorize>
+            
+             <!-- 기업회원 -->
+            <se:authorize access="hasAnyRole('ROLE_COMP')">
+            <div class="pull-left image">
+            	<!-- 우리 로고 -->
+              <img src="/resources/bootstrap/upload/images/${clogo}" class="img-circle" alt="User Image" />
+            </div>
+            <div class="pull-left info">
+              <p><b>${cname}</b>님 환영합니다</p>
+              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+            </se:authorize>
           </div>
           
           <!-- 개인회원 aside -->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
-              <a href="../widgets.html">
+              <a href="<%=request.getContextPath() %>/resume.htm">
                 <i class="fa fa-th"></i> <span>이력서 등록</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>

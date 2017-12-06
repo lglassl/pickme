@@ -18,6 +18,7 @@
 		<put-attribute name="common" value="/WEB-INF/views/inc/common.jsp" />
 		<put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/inc/main.jsp" />
 	</definition>
 	<definition name="*.*" template="/WEB-INF/views/inc/layout_sub.jsp">
 		<put-attribute name="title" value="wecome to PickMe" />

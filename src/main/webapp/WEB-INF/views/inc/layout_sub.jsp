@@ -13,7 +13,7 @@
 	<tiles:insertAttribute name="common" />
     
   </head>
-  <body class="skin-blue sidebar-mini">
+  <body class="skin-black-light sidebar-mini">
   
     <!-- header -->
 	<tiles:insertAttribute name="header" />
