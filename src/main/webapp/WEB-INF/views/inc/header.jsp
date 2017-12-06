@@ -283,32 +283,52 @@
           
           
           <!-- 기업회원 aside -->
-          <!-- 
+           
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             
-            //공고 등록
+             <li>
+              <a href="employmentlist.htm">
+                <i class="fa fa-th"></i> <span>개인 공고 리스트</span> <small class="label pull-right bg-green">new</small>
+              </a>
+            </li>
+            
+            <!-- 공고등록 -->
+            <li>
+              <a href="employmentinsert.htm">
+                <i class="fa fa-th"></i> <span>공고 등록</span> <small class="label pull-right bg-green">new</small>
+              </a>
+            </li>
+         
+            <!-- 공고 상세보기 -->
+            <li>
+              <a href="employmentdetail.htm">
+                <i class="fa fa-th"></i> <span>상세 요강</span> <small class="label pull-right bg-green">new</small>
+              </a>
+            </li>
+            
+            <!--  공고 등록 -->
             <li>
               <a href="../widgets.html">
                 <i class="fa fa-th"></i> <span>공고 등록</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>
             
-            //이력서 리스트
+            <!-- 이력서 리스트 -->
             <li>
               <a href="../widgets.html">
                 <i class="fa fa-th"></i> <span>이력서 리스트</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>
             
-            //나의 공고 리스트
+            <!-- 나의 공고 리스트 -->
             <li>
               <a href="../widgets.html">
                 <i class="fa fa-th-list"></i> <span>나의 공고 리스트</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>
             
-            //공고 리스트
+            <!-- 공고 리스트 -->
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-pie-chart"></i>
@@ -321,13 +341,13 @@
               </ul>
             </li>
             
-            //Q&A게시판
+            <!--  Q&A게시판  -->
              <li>
               <a href="../widgets.html">
                 <i class="fa fa-th"></i> <span>Q&A 게시판</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>
-             -->
+           </ul>
           
           <!-- 관리자 -->
           <!-- 
