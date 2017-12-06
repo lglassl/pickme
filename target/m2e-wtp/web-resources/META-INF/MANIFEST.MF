@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-<<<<<<< HEAD
-Built-By: adm
-=======
-Built-By: HYUN
->>>>>>> 2b0fbc6a5c869dd4654571508c604bf4ce5e9e28
-Build-Jdk: 1.8.0_131
-Created-By: Maven Integration for Eclipse
-
