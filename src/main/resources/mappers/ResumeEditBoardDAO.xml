@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.pickme.dao.editDAO">
+<mapper namespace="kr.or.pickme.dao.ResumeEditBoardDAO">
  <select id="editlist" resultType="kr.or.pickme.dto.ResumeDTO">
  select resu_code, username, pick_code, resu_ctmt, paper_status, edit_status from resume where 
  edit_status=3 order by resu_code desc

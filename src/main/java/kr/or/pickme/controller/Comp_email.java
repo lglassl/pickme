@@ -14,7 +14,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
-
+/*
+@class : Comp_email
+@Date : 2017-12-02
+@Author : 정수민
+*/
+/*합격불합격에 따라 지원자에게 이메일 발송하는 처리*/
 public class Comp_email {
 
 	@Autowired

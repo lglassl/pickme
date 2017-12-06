@@ -1,6 +1,20 @@
 package kr.or.pickme.dto;
 
 public class ResumeDTO {
+	@Override
+	public String toString() {
+		return "ResumeDTO [resu_code=" + resu_code + ", username=" + username + ", pick_code=" + pick_code
+				+ ", resu_ctmt=" + resu_ctmt + ", resu_edit=" + resu_edit + ", portpoilo_no=" + portpoilo_no
+				+ ", portpolio_file=" + portpolio_file + ", resu_pick_job=" + resu_pick_job + ", paper_status="
+				+ paper_status + ", paper_status_name=" + paper_status_name + ", edit_status=" + edit_status
+				+ ", edit_status_name=" + edit_status_name + ", stat_male=" + stat_male + ", stat_fem=" + stat_fem
+				+ ", stat_edu1=" + stat_edu1 + ", stat_edu2=" + stat_edu2 + ", stat_edu3=" + stat_edu3 + ", stat_edu4="
+				+ stat_edu4 + ", stat_edu5=" + stat_edu5 + ", stat_edu6=" + stat_edu6 + ", stat_toeic1=" + stat_toeic1
+				+ ", stat_toeic2=" + stat_toeic2 + ", stat_toeic3=" + stat_toeic3 + ", stat_toeic4=" + stat_toeic4
+				+ ", stat_toeic5=" + stat_toeic5 + ", stat_tos1=" + stat_tos1 + ", stat_tos2=" + stat_tos2
+				+ ", stat_tos3=" + stat_tos3 + ", stat_opic1=" + stat_opic1 + ", stat_opic2=" + stat_opic2
+				+ ", stat_opic3=" + stat_opic3 + ", stat_opic4=" + stat_opic4 + "]";
+	}
 	private int resu_code;
 	private String username;
 	private int pick_code;

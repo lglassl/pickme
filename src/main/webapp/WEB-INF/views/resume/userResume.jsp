@@ -31,7 +31,26 @@
 				"orderable" : true, //정렬하는거 없앰
 			}, ]
 		});
-	 });
+	});	
+		
+		
+	function go(sc){
+	 	$.ajax({
+			type: "post",
+			url:  "psUpdate.htm",
+			cache: false,				
+			data:'username=' + $('#'+sc).val(),
+			 success:function(data){
+  		    	location.href = "userResume.htm"; 
+  		     },
+  			error: function(){						
+  				alert('Error while request..');
+  			}
+  		});
+     };
+	
+
+	
 </script>
 <style>
 
@@ -110,7 +129,6 @@ border:0.1px;
 			
 		</div>
 </div>
-			<form action="psUpdate.htm" method="post" name="n" >
 	<table class="table table-hover dt-responsive"
 		style="text-align: center; background-color: white; color: black;" id="userResume">
 		<thead>
@@ -126,10 +144,14 @@ border:0.1px;
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="list" items="${list}">
+	
+			<c:forEach var="list" items="${list}" varStatus="status">
 					<tr>
 						<td style="text-align: center;">${list.resu_code}</td>
-						<td style="text-align: center;">${list.username}</td>
+						
+						<td style="text-align: center;">${list.username}
+        				<input type="hidden" id="${status.count}" value="${list.username}">
+						</td>
 						
 						<td style="text-align: center;">${list.pick_code}</td>
 						<td style="text-align: center;">${list.resu_ctmt}</td>
@@ -141,7 +163,8 @@ border:0.1px;
     						</c:when>
         					
     						<c:when test ="${ps eq 1}">		
-        					<input type="submit" id="pssub" name="pssub" >
+        					<button type="button" id="pssub" onclick="go(${status.count})">제출하기
+        					</button>
     						</c:when>
         					
     						
@@ -175,8 +198,7 @@ border:0.1px;
 				</td>
 			</tr>
 		</c:forEach>
+		
 		</tbody>
 
 	</table>
-
-		</form>

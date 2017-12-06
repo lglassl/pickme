@@ -10,15 +10,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.pickme.dto.ResumeDTO;
-import kr.or.pickme.service.editService;
+import kr.or.pickme.service.EditBoardService;
 
 @Controller
-public class EditController {
+public class EditBoardController {
 
 	@Autowired
-	private editService editservice;
+	private EditBoardService editservice;
 	
-	//첨삭완료 게시판
+	
+	/*
+	@class : EditBoardController 
+	@Date : 2017-12-02
+	@Author : 정수민
+	*/
+	/*개인회원이 첨삭요청하면 이동하는 페이지*/
 	@RequestMapping("/userEditBoard.htm")
 	public String userEditBoard(String ps, String cp, Model model, HttpServletRequest request) {
 		List<ResumeDTO> elist = editservice.editlist(ps, cp);
@@ -27,7 +33,12 @@ public class EditController {
 		return "edit.userEditBoard";
 	}
 	
-	//관리자 첨삭관리게시판
+	/*
+	@class : EditBoardController 
+	@Date : 2017-12-02
+	@Author : 정수민
+	*/
+	/*첨삭전문가가  첨삭작업하는 페이지*/
 	@RequestMapping("/adminEditBoard.htm")
 	public String adminEditBoard() {
 		return "edit.adminEditBoard";

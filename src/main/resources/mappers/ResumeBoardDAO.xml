@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.pickme.dao.resumeDAO">
+<mapper namespace="kr.or.pickme.dao.ResumeBoardDAO">
 
 <select id="resumeList" resultType="kr.or.pickme.dto.ResumeDTO">
 	select resu_code, username, pick_code, resu_ctmt, paper_status, edit_status from resume order by resu_code desc
@@ -14,15 +14,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- ps 1 누르면 2로 바뀜 제출완료--> 
 
 <update id="psUpdate" parameterType="kr.or.pickme.dto.ResumeDTO">
-update resume 
-set paper_status=2 
-where username=#{username}
-</update>
+    update resume
+    <set>
+        <if test="paper_status != null">paper_status=2</if>
+    </set>
+    where username=#{username}
+  </update>
 
 <!-- es 1 누르면 2로 바뀜 완료 첨삭진행중--> 
 
 <update id="esUpdate" parameterType="kr.or.pickme.dto.ResumeDTO">
-	update resume set edit_status=2 where username=#{list.username}
-	
+	update resume set edit_status=2 where username=#{username}
 </update>
 </mapper>
