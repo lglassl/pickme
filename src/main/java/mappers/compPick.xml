@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.pickme.dao.CompPickInfoDAO">
+
+	<select id="compList" resultType="kr.or.pickme.dto.CompPickInfoDTO">
+		select comp.HIRE_CODE, comp.JOB_CODE, comp.PICK_APPLY_NUM, comp.PICK_CODE, comp.PICK_CTMT, comp.PICK_START, comp.PICK_END, comp.PICK_NUM, comp.PICK_QULIFY, comp.USERNAME,
+		intro.INTRO_LIM, intro.INTRO_NO, hire.HIRE_FIELD, job.JOB_FIELD
+		from comp_pick_info comp join pick_intro intro
+		on comp.pick_code = intro.pick_code
+		join hire_data hire 
+		on comp.HIRE_CODE = hire.hire_code
+		join job_data job
+		on comp.job_CODE = job.JOB_CODE
+	</select>
+
+	<select id="userCompList" resultType="kr.or.pickme.dto.UserComPpDTO">
+		select ucp.COMP_PP_EMAIL, ucp.COMP_PP_ENABLED, ucp.COMP_PP_JOB, ucp.COMP_PP_NAME, ucp.COMP_PP_PHONE, ucp.COMP_PP_PWD, ucp.USERNAME,
+		ci.COMP_COUNT, ci.COMP_LOGO, ci.COMP_NAME, ci.COMP_NUM, ci.COMP_YEAR
+		from user_comp_pp ucp join comp_info ci
+		on ucp.username = ci.username
+	</select>
+	
+	<select id="likeList" resultType="kr.or.pickme.dto.LikeCartDTO">
+		select * from like_cart where username = #{username}
+	</select>
+	
+	<select id="filterCompList" resultType="kr.or.pickme.dto.CompPickInfoDTO">
+	select comp.HIRE_CODE, comp.JOB_CODE, comp.PICK_APPLY_NUM, comp.PICK_CODE, comp.PICK_CTMT, comp.PICK_START, comp.PICK_END, comp.PICK_NUM, comp.PICK_QULIFY, comp.USERNAME,
+	intro.INTRO_LIM, intro.INTRO_NO, hire.HIRE_FIELD, job.JOB_FIELD
+	from comp_pick_info comp join pick_intro intro
+	on comp.pick_code = intro.pick_code
+	join hire_data hire 
+	on comp.HIRE_CODE = hire.hire_code
+	join job_data job
+	on comp.job_CODE = job.JOB_CODE
+	where job.job_field = #{job_field}
+	</select>
+	
+	<select id="userCompNameList" resultType="kr.or.pickme.dto.UserComPpDTO">
+		select ucp.COMP_PP_EMAIL, ucp.COMP_PP_ENABLED, ucp.COMP_PP_JOB, ucp.COMP_PP_NAME, ucp.COMP_PP_PHONE, ucp.COMP_PP_PWD, ucp.USERNAME,
+		ci.COMP_COUNT, ci.COMP_LOGO, ci.COMP_NAME, ci.COMP_NUM, ci.COMP_YEAR
+		from user_comp_pp ucp join comp_info ci
+		on ucp.username = ci.username
+		where ci.comp_name like '%'||#{comp_name}||'%'
+	</select>
+<!-- 
+	<select id="boardList" resultType="kr.or.kosta.dto.BoardDTO">
+		select * from board
+	</select>
+	
+	<insert id="boardInsert" parameterType="kr.or.kosta.dto.BoardDTO">
+		insert into board
+		values(board_seq.nextval, #{title}, #{name}, #{content})
+	</insert>
+	
+	<select id="boardContent" resultType="kr.or.kosta.dto.BoardDTO">
+		select * from board where boardNum = #{boardNum}
+	</select>
+	
+	<update id="boardUpdate">
+		update board set title=#{title}, name=#{name}, content=#{content}
+		where boardNum = #{boardNum}
+	</update>
+	
+	<delete id="boardDelete">
+		delete from board where boardNum = #{boardNum}
+	</delete>
+	
+	<select id="boardSearch" resultType="kr.or.kosta.dto.BoardDTO">
+		select * from board where name like '%' ||#{name}|| '%'
+	</select> -->
+</mapper>

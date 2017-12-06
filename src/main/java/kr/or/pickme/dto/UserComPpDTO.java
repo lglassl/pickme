@@ -3,17 +3,18 @@ package kr.or.pickme.dto;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class UserComPpDTO {
-	private String username;
-	private String comp_pp_name;
-	private String comp_pp_job;
-	private String password;
-	private String comp_pp_phone;
-	private String comp_pp_email;
-	private String comp_name;
-	private String comp_num;
-	private String comp_logo;
-	private int comp_count;
-	private String comp_year;
+	private String username;		//기업아이디
+	private String comp_pp_name;	//담당자이름
+	private String comp_pp_job;		//담당자직책
+	private String password;		//비밀번호
+	private String comp_pp_phone;	//전화번호
+	private String comp_pp_email;	//이메일
+	private String comp_name;		//기업명
+	private String comp_num;		//사업자등록번호
+	private String comp_logo;		//기업로고이미지
+	private int comp_count;			//사원수
+	private String comp_year;		//설립연도
+	
 	private String comp_field;
 	private String comp_addr;
 	//단일파일
