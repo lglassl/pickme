@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+ <!--
+@Mapper : ResumeMapper.xml
+@Namespace : ResumeDAO.java
+@Date : 2017-12-04
+@Author : 박현지
+@Desc : 초채용 공고에 지원하는 자기소개서/이력서 CRUD
+ -->
+
+<mapper namespace="kr.or.pickme.dao.ResumeDAO">
+
+<!-- 채용 공고에 지원// resume table에 resu_code 생기면서 insert -->
+	<insert id="insertResumeTable" parameterType="kr.or.pickme.dto.ResumeDTO">
+		insert into resume (resu_code, username, paper_status, edit_status, pick_code)
+		values((select nvl(max(resu_code),1000) +1 from resume), #{username}, #{paper_status}, #{edit_status}, #{pick_code})	
+	</insert>
+
+<!-- 채용 공고에 지원//resu_code 얻어와서  각 이력서 항목2 table에   insert -->	
+ 	<insert id="insertResumeCoverletter_edu" parameterType="kr.or.pickme.dto.SoloEduDTO2">
+		insert into edu2(resu_code, username, edu_no, edu_institute, edu_start, edu_end, edu_category, edu_major, edu_grade)
+		values ((select resu_code from resume where username=#{username}), #{username}, (select nvl(max(edu_no),100000)+1 from edu2), #{edu_institute}, #{edu_start}, #{edu_end}, #{edu_category}, #{edu_major}, #{edu_grade} ); 
+	</insert>
+	
+
+</mapper>
+
+
