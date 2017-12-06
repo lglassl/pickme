@@ -214,7 +214,7 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
-              <a href="../widgets.html">
+              <a href="<%=request.getContextPath() %>/resume.htm">
                 <i class="fa fa-th"></i> <span>이력서 등록</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>

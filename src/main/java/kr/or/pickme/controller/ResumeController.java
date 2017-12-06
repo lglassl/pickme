@@ -94,5 +94,8 @@ public class ResumeController {
 		System.out.println("ce 직후입니다");
 	return "redirect:compResume.htm";
 	}
+	
+	
+	
 }
 
