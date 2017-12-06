@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.pickme.dao.MemberCompDAO;
+import kr.or.pickme.dao.MemberDAO;
 import kr.or.pickme.dao.MemberSoloDAO;
 import kr.or.pickme.dto.UserComPpDTO;
 import kr.or.pickme.dto.UserSoloDTO;
@@ -265,6 +266,24 @@ public class MemberService {
 			System.out.println("트랜잭션 예외발생 : " + e.getMessage());
 			throw e; //예외발생 시 : 자동 rollback
 		}
+		
+		return result;
+		
+	}
+
+	/*
+	@class : MemberService
+	@Date : 2017-12-05
+	@Author : 강희창
+	@Desc : String checkAuth(String username)
+	*/
+	/*회원 권한 체크*/
+	public String checkAuth(String username) {
+		
+		String result;
+		
+		MemberDAO dao = sqlsession.getMapper(MemberDAO.class);
+		result = dao.checkAuth(username);
 		
 		return result;
 		

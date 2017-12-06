@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.pickme.dao.MemberDAO">
+
+<!-- 
+@class : MemberDAO
+@Date : 2017-12-05
+@Author : 강희창
+@Desc : 
+ -->
+ 	
+	<!-- 
+	@class : MemberDAO
+	@Date : 2017-12-05
+	@Author : 강희창
+	@Desc : checkAuth
+	 -->
+	<!-- 회원 권한체크 -->
+	<select id="checkAuth" resultType="java.lang.String">
+		select role_name from(select ur.username, ur.role_name from user_solo us join user_roll_solo ur on us.username=ur.username
+              					union 
+								select uc.username, uc.role_name from user_comp_pp up join user_roll_comp uc on up.username=uc.username) 
+		where username=#{param1} and not role_name='ROLE_JOIN'
+	</select>
+		
+</mapper>
