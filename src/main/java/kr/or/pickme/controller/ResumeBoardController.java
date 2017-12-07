@@ -46,7 +46,7 @@ public class ResumeBoardController {
 	public String userResumeList(String ps, String cp, Model model, HttpServletRequest request) {
 		System.out.println("1");
 		List<ResumeDTO> list = resumeservice.resumeList(ps, cp);
-		System.out.println("2 "  +  list.toString());
+		System.out.println("2 "  +  list);
 		
 		model.addAttribute("list", list);
 		System.out.println("3");

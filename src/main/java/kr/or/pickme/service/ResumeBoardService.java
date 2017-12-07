@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.pickme.dao.ResumeBoardDAO;
-import kr.or.pickme.dto.BoardEntityDTO;
 import kr.or.pickme.dto.ResumeDTO;
 @Service
 public class ResumeBoardService {
