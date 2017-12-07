@@ -24,7 +24,7 @@
 						  					select uc.username, uc.role_name from user_comp_pp up join user_roll_comp uc on up.username=uc.username) where username=?"
 			users-by-username-query="select * from(select username, password, enabled from user_solo 
 									union 
-									select username, password, enabled from user_comp_pp) where username=?"
+									select username, password, enabled from user_comp_pp) where username=? and enabled='1'"
 			data-source-ref="driverManagerDataSource" 
 		/><!-- db연결 -->
 		
