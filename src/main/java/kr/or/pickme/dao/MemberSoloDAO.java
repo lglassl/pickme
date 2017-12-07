@@ -28,4 +28,7 @@ public interface MemberSoloDAO {
 	/*개인회원 정보수정-페이스북*/
 	public int soloUpdateFb(UserSoloDTO dto);
 
+	/*개인회원 탈퇴*/
+	public int memberDel(String username);
+
 }
