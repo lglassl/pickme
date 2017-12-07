@@ -92,7 +92,6 @@ public class ResumeBoardController {
 	@RequestMapping(value="/esUpdate.htm", method = RequestMethod.POST)
 	public String esUpdate(HttpServletRequest request , ResumeDTO dto) {
 		resumeservice.esUpdate(dto);
-		System.out.println(dto.getUsername());
 		return "redirect:userResume.htm";
 	}
 	
@@ -105,9 +104,7 @@ public class ResumeBoardController {
 	/*제출하기를 통해 제출상태 변경*/
 	@RequestMapping(value="/psUpdate.htm", method = RequestMethod.POST)
 	public String psUpdate(HttpServletRequest request , ResumeDTO dto) {
-		System.out.println("여기는 컨트롤러" + dto.toString());
 		resumeservice.psUpdate(dto);
-		System.out.println(dto.getUsername());
 		return "redirect:userResume.htm";
 	}
 	

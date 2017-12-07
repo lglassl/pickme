@@ -129,7 +129,7 @@
 		}
 		$.ajax({
 			type : "post",
-			url : "join_sole.htm",
+			url : "join_solo.htm",
 			data : 'solo_name='+$('#solo_name').val() + 
 					'&username='+$('#username').val() + 
 					'&password='+$('#password').val() +  

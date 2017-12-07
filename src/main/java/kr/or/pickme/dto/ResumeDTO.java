@@ -23,6 +23,7 @@ public class ResumeDTO {
 	private int portpoilo_no ;
 	private String portpolio_file;
 	private String resu_pick_job;
+	private int pick_no;
 	private int paper_status;
 	private String paper_status_name;
 	private int edit_status;
@@ -89,5 +90,12 @@ public class ResumeDTO {
 	public void setResu_edit(String resu_edit) {
 		this.resu_edit = resu_edit;
 	}
+	public int getPick_no() {
+		return pick_no;
+	}
+	public void setPick_no(int pick_no) {
+		this.pick_no = pick_no;
+	}
 
+	
 }

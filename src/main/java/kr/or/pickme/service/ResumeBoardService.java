@@ -45,9 +45,7 @@ public class ResumeBoardService {
 	}
 	//이력서 자소서 첨삭상태
 	public void esUpdate(ResumeDTO dto) {
-		System.out.println("service진입" + dto.toString());
 		ResumeBoardDAO resumeboarddao = sqlsession.getMapper(ResumeBoardDAO.class);
-		System.out.println("service진입2");
 		resumeboarddao.esUpdate(dto);
 		
 		System.out.println("서비스" + dto);
@@ -56,14 +54,11 @@ public class ResumeBoardService {
 	
 	//이력서 자소서 제출상태
 	public void psUpdate(ResumeDTO dto) {
-		System.out.println("service진입" + dto.toString());
 		ResumeBoardDAO resumeboarddao = sqlsession.getMapper(ResumeBoardDAO.class);
-		System.out.println("service진입2  " +  resumeboarddao);
 		
 		ResumeDTO result = resumeboarddao.psUpdate(dto);
 		System.out.println(result);
 		
-		System.out.println("서비스" + dto);
 		
 	}
 }

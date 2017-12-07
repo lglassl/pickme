@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.pickme.dto.ResumeDTO;
+import kr.or.pickme.service.AdminEditBoardService;
 import kr.or.pickme.service.EditBoardService;
 
 @Controller
@@ -17,6 +18,9 @@ public class EditBoardController {
 
 	@Autowired
 	private EditBoardService editservice;
+	
+	@Autowired
+	private AdminEditBoardService aeservice;
 	
 	
 	/*
@@ -35,12 +39,15 @@ public class EditBoardController {
 	
 	/*
 	@class : EditBoardController 
-	@Date : 2017-12-02
+	@Date : 2017-12-06
 	@Author : 정수민
 	*/
 	/*첨삭전문가가  첨삭작업하는 페이지*/
 	@RequestMapping("/adminEditBoard.htm")
-	public String adminEditBoard() {
+	public String adminEditBoard(String ps, String cp, Model model, HttpServletRequest request) {
+		List<ResumeDTO> aelist = aeservice.aelist(ps, cp);
+		
+		model.addAttribute("aelist", aelist);
 		return "edit.adminEditBoard";
 	}
 }
