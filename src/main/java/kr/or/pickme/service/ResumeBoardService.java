@@ -32,7 +32,9 @@ public class ResumeBoardService {
 		}
 		
 		ResumeBoardDAO resumeboarddao = sqlsession.getMapper(ResumeBoardDAO.class);
+		System.out.println(resumeboarddao + " / " + resumeboarddao.toString());
 		List<ResumeDTO> list = resumeboarddao.resumeList(page, cpage);
+		System.out.println(list.toString());
 		return list;
 	}
 	//개인회원 이력서 자소서 상세보기

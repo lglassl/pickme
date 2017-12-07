@@ -44,9 +44,12 @@ public class ResumeBoardController {
 	/*개인회원 이력서와 자소서 상태 게시판형태로 보는 페이지*/
 	@RequestMapping("/userResume.htm")
 	public String userResumeList(String ps, String cp, Model model, HttpServletRequest request) {
+		System.out.println("1");
 		List<ResumeDTO> list = resumeservice.resumeList(ps, cp);
+		System.out.println("2 "  +  list.toString());
 		
 		model.addAttribute("list", list);
+		System.out.println("3");
 		return "resume.userResume";
 	}
 	

@@ -44,7 +44,6 @@
 
 				<td >번호</td>
 				<td >작성자</td>
-				<td>자소서항목 갯수</td>
 				<td >첨삭상태</td>
 
 			</tr>
@@ -56,8 +55,6 @@
 						<td style="text-align: center;">${status.count}</td>
 						
 						<td style="text-align: center;">${ae.username}</td>
-						
-						<td style="text-align: center;">${ae.pick_no}</td>
 						
 						<td style="text-align: center;">${ae.edit_status}</td>
 					</tr>

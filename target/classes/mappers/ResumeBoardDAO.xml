@@ -5,18 +5,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kr.or.pickme.dao.ResumeBoardDAO">
 
 <select id="resumeList" resultType="kr.or.pickme.dto.ResumeDTO">
-	select resu_code, username, pick_code, resu_ctmt, paper_status, edit_status from resume order by resu_code desc
+	select resu_code, username, pick_code, paper_status, edit_status from resume order by resu_code desc
 </select>
 
 <select id="resumeDetail" parameterType="String" resultType="kr.or.pickme.dto.ResumeDTO">
   select * from resume where username=#{username}
 </select>
-<!-- ps 1 누르면 2로 바뀜 제출완료--> 
+<!-- ps 0 누르면 1로 바뀜 제출완료--> 
 
 <update id="psUpdate" parameterType="kr.or.pickme.dto.ResumeDTO">
     update resume
     <set>
-        <if test="paper_status != null">paper_status=2</if>
+        <if test="paper_status != null">paper_status=0</if>
     </set>
     where username=#{username}
   </update>

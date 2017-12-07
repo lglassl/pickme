@@ -108,7 +108,6 @@
 				<td >번호</td>
 				<td >작성자</td>
 				<td>채용공고 번호</td>
-				<td>자소서내용</td>
 				<td >제출상태</td>
 				<td >첨삭상태</td>
 
@@ -125,7 +124,6 @@
 						</td>
 						
 						<td style="text-align: center;">${list.pick_code}</td>
-						<td style="text-align: center;">${list.resu_ctmt}</td>
    						<td style="text-align: center;">
 							<c:set var="ps" value="${list.paper_status}" />
 							<c:choose>
@@ -133,13 +131,13 @@
        						<span class="label label-default">작성 중</span>
     						</c:when>
         					
-    						<c:when test ="${ps eq 1}">		
+    					<%--제출 페이지는 수정에서?!
+    					    <c:when test ="${ps eq 1}">		
         					<button type="button" id="pssub" onclick="goPaper(${status.count})">제출하기
         					</button>
-    						</c:when>
+    						</c:when> --%>
         					
-    						
-    						<c:when test ="${ps eq 2}">
+    						<c:when test ="${ps eq 1}">
        						<span class="label label-success">제출완료</span>
         					</c:when>
 							</c:choose>
@@ -159,7 +157,11 @@
     					</c:when>
     					
     					<c:when test ="${es eq 3}">
-        				<span class="label label-primary">첨삭완료</span>
+        				<span class="label label-primary">첨삭O(제출완료)</span>
+        				</c:when>
+        				
+        				<c:when test ="${es eq 4}">
+        				<span class="label label-primary">첨삭X(제출완료)</span>
         				</c:when>
     					
     					<c:otherwise>
