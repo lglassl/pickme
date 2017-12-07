@@ -31,3 +31,9 @@
 	
 	<!-- 현지 resumeCSS -->
     <link href="<%=request.getContextPath() %>/resources/bootstrap/css/resumeCSS.css" rel="stylesheet" type="text/css">
+    
+    
+    <!-- 혜성 datatable -->
+	<link href="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
+	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>

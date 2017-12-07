@@ -19,37 +19,13 @@ public class CompanyPickBoardController {
 	private CompanyPickBoardService companyPickBoardService;
 	
 	@RequestMapping("/comp_pick_list.htm")
-	public String compList(@RequestParam(value="ps", required=false, defaultValue="5") String ps,
-						@RequestParam(value="cp", required=false, defaultValue="1") String cp, 
-						Model model, HttpServletRequest request) {
-		
-		int page = Integer.parseInt(ps);
-		int cpage = Integer.parseInt(cp);
-		
-		//List<Emp_DTO> list = empservice.empList(page, cpage);
-		//model.addAttribute("list", list);
-		model.addAttribute("page", page);
-		model.addAttribute("cpage", cpage);
-		
-		int cnt = 10;
-		//int cnt = empservice.getCount();
-		model.addAttribute("cnt", cnt);
-		
-		int pagecount = 0;	//전체 페이지
-		if(cnt % page == 0) {
-			pagecount = cnt / page;
-		}else {
-			pagecount = (cnt / page) + 1;
-		}
-
-		model.addAttribute("pagecount", pagecount);
-		
-		return "comp_pick.comp_pick_list";
+	public String compList(Model model) {
+		return companyPickBoardService.compList(model);
 	}
 	
 	@RequestMapping("/comp_pick_cal.htm")
-	public String companyPickCalList() {
-		return "comp_pick.comp_pick_cal";
+	public String companyPickCalList(Model model) {
+		return companyPickBoardService.compListCal(model);
 	}
 	
 	@RequestMapping(value = "filterSearch.htm", method=RequestMethod.POST)

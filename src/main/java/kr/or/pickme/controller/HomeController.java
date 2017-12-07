@@ -73,12 +73,10 @@ public class HomeController {
 	
 	
 	@RequestMapping("home.htm")
-	public String empList(@RequestParam(value="ps", required=false, defaultValue="5") String ps,
-						@RequestParam(value="cp", required=false, defaultValue="1") String cp, 
-						Model model, Locale locale, HttpServletRequest request) {
+	public String empList(Model model, Locale locale, HttpServletRequest request) {
 		//아이디 받아오기
 		String username = "jung";
-		return homeService.compList(ps, cp, model, locale, request, username);
+		return homeService.compList(model, locale, request, username);
 	}
 	
 }
