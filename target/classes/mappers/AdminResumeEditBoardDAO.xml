@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.pickme.dao.AdminResumeEditBoardDAO">
  <select id="aelist" resultType="kr.or.pickme.dto.ResumeDTO">
- select username, pick_no, edit_status from resume where 
- edit_status=2 
+ select resu_code, username,  edit_status from resume where
+ paper_status=0 and edit_status=2 
  </select>
  </mapper>

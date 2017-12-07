@@ -128,7 +128,7 @@
 							<c:set var="ps" value="${list.paper_status}" />
 							<c:choose>
     						<c:when test ="${ps eq 0}">
-       						<span class="label label-default">작성 중</span>
+       						<span class="label label-default">작성 중(임시저장)</span>
     						</c:when>
         					
     					<%--제출 페이지는 수정에서?!

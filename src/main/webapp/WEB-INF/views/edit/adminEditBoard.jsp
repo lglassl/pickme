@@ -42,7 +42,8 @@
 		<thead>
 			<tr>
 
-				<td >번호</td>
+				<td >첨삭번호</td>
+				<td >이력서번호</td>
 				<td >작성자</td>
 				<td >첨삭상태</td>
 
@@ -52,11 +53,15 @@
 	
 			<c:forEach var="ae" items="${aelist}" varStatus="status">
 					<tr>
+						
 						<td style="text-align: center;">${status.count}</td>
-						
-						<td style="text-align: center;">${ae.username}</td>
-						
-						<td style="text-align: center;">${ae.edit_status}</td>
+						<td style="text-align: center;">${ae.resu_code}</td>
+						<td style="text-align: center;">
+						<a id ="detail" href="adminEditDetail.htm?username=${ae.username}">
+						${ae.username}</a></td>
+						<td style="text-align: center;">
+        				<span id="${ae.edit_status}" class="label label-default">진행 중</span>
+        				</td>
 					</tr>
 			</c:forEach>
 		</tbody>

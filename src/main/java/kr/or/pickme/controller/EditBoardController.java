@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.or.pickme.dto.BoardEntityDTO;
+import kr.or.pickme.dto.CoverletterDTO2;
 import kr.or.pickme.dto.ResumeDTO;
 import kr.or.pickme.service.AdminEditBoardService;
 import kr.or.pickme.service.EditBoardService;
@@ -49,5 +52,15 @@ public class EditBoardController {
 		
 		model.addAttribute("aelist", aelist);
 		return "edit.adminEditBoard";
+	}
+	
+	@RequestMapping(value = "/adminEditDetail.htm" , method= RequestMethod.GET)
+	public String adminEditDetail(String username, Model model) {
+		
+		CoverletterDTO2 cover2 = aeservice.editDetail(username);
+		
+		model.addAttribute("Cover2", cover2);
+		
+		return "edit.adminEditDetail";
 	}
 }

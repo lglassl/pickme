@@ -12,7 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.pickme.dao.AdminResumeEditBoardDAO;
+import kr.or.pickme.dao.EntityBoardDAO;
 import kr.or.pickme.dao.ResumeEditBoardDAO;
+import kr.or.pickme.dto.BoardEntityDTO;
+import kr.or.pickme.dto.CoverletterDTO2;
 import kr.or.pickme.dto.ResumeDTO;
 
 @Service
@@ -35,6 +38,14 @@ public class AdminEditBoardService {
 		AdminResumeEditBoardDAO editdao = sqlsession.getMapper(AdminResumeEditBoardDAO.class);
 		List<ResumeDTO> aelist = editdao.aelist(page, cpage);
 		return aelist;
+	}
+	//첨삭 상세 게시판
+	public CoverletterDTO2 editDetail(String username) {
+		
+		AdminResumeEditBoardDAO edDAO= sqlsession.getMapper(AdminResumeEditBoardDAO.class);
+		CoverletterDTO2 eddto = edDAO.editDetail(username);
+		
+		return eddto;
 	}
 	
 }
