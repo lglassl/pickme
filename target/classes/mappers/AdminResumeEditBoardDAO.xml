@@ -4,7 +4,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.pickme.dao.AdminResumeEditBoardDAO">
  <select id="aelist" resultType="kr.or.pickme.dto.ResumeDTO">
- select resu_code, username,  edit_status from resume where
+ select resu_code, username, pick_code, edit_status from resume where
  paper_status=0 and edit_status=2 
+ </select>
+ 
+ 
+ <!-- 첨삭게시판에서 상세보기 들어가는 화면 -->
+ <select id="editDetail" resultType="kr.or.pickme.dto.CoverletterDTO2">
+ select username, pick_code, pick_no, intro_no, resu_ctmt, resu_edit from coverletter2
+ where username=#{username} and pick_code=#{pick_code}
  </select>
  </mapper>

@@ -55,9 +55,9 @@ public class EditBoardController {
 	}
 	
 	@RequestMapping(value = "/adminEditDetail.htm" , method= RequestMethod.GET)
-	public String adminEditDetail(String username, Model model) {
+	public String adminEditDetail(String username, int pick_code, Model model) {
 		
-		CoverletterDTO2 cover2 = aeservice.editDetail(username);
+		CoverletterDTO2 cover2 = aeservice.editDetail(username, pick_code);
 		
 		model.addAttribute("Cover2", cover2);
 		

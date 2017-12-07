@@ -40,10 +40,10 @@ public class AdminEditBoardService {
 		return aelist;
 	}
 	//첨삭 상세 게시판
-	public CoverletterDTO2 editDetail(String username) {
+	public CoverletterDTO2 editDetail(String username, int pick_code) {
 		
 		AdminResumeEditBoardDAO edDAO= sqlsession.getMapper(AdminResumeEditBoardDAO.class);
-		CoverletterDTO2 eddto = edDAO.editDetail(username);
+		CoverletterDTO2 eddto = edDAO.editDetail(username, pick_code);
 		
 		return eddto;
 	}

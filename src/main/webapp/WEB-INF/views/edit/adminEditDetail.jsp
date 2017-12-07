@@ -12,20 +12,18 @@
 		<label class="formprofile_name" for="formprofile">자기소개서</label>
 				<div class="formprofile question_formcontainer" id="editDetail" class="col-lg-12">
 				
-			<c:forEach items="${cover2}" var="co" varStatus="status">	
-					<div class="question_formcontainer[${status.index}]">
+			<c:forEach items="${Cover2}" var="co" varStatus="status">	
+			<span id="${co.username}">유저네임</span><br>
+			
 					<input type="hidden" id="question_index" value="${status.index }">
 						<div class="row formprofile_row">
 							<div class="col-md-10 form-group formprofile_detail input">
-								<label class="control-label profile_label" for="questionList[${status.index }].intro_no"> 항목 ${status.index +1} </label>
-								<div id="questionList[${status.index }].intro_no">${co.intro_no }</div>
+								<label class="control-label profile_label" for="Cover2[${status.index }].intro_no"> 항목 ${status.index +1} </label>
+								<div id="Cover2[${status.index }].intro_no">${co.intro_no }</div>
 							</div>
 							<div class="col-md-2 form-group formprofile_detail input">
-								<label class="control-label profile_label" for="questionList[${status.index }].intro_lim">글자 수</label>
-								<div id="questionList[${status.index }].intro_lim">${co.intro_lim }</div>
-							</div>
 							<div class="form-group formprofile_detail input">
-								<textarea id="questionList[${status.index }].resu_ctmt" name="questionList[${status.index }].resu_ctmt" rows="10" cols="92%" placeholder="기업에게 자신을 소개해주세요!"></textarea>		
+								<textarea id="Cover2[${status.index }].resu_ctmt" name="Cover2[${status.index }].resu_ctmt" rows="10" cols="92%"></textarea>		
 							</div>
 						</div>
 					</div>
