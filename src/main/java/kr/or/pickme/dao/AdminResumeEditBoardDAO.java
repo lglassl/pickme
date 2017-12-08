@@ -14,6 +14,7 @@ public interface AdminResumeEditBoardDAO {
 
 	public List<ResumeDTO> aelist(int ps, int cp);
 
-	public CoverletterDTO2 editDetail(String username, int pick_code);
+	/*username, pick_code로 자기소개서 list를 select해오기*/
+	public List<CoverletterDTO2> editDetail(String username, int pick_code);
 
 }
