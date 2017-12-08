@@ -23,5 +23,7 @@ public interface CompPickInfoDAO {
 	//필터링 채용공고 리스트
 	public List<CompPickInfoDTO> filterCompList(String job_field);
 	
+	//회원 좋아요 채용공고 리스트
+	public List<CompPickInfoDTO> compLikeList(String username);
 	
 }

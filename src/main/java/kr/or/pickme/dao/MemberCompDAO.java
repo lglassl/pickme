@@ -31,4 +31,7 @@ public interface MemberCompDAO {
 	public int compUpdateNf(UserComPpDTO dto);
 	public int compUpdateNf2(UserComPpDTO dto);
 
+	/*기업회원 탈퇴*/
+	public int memberDelComp(String username);
+
 }

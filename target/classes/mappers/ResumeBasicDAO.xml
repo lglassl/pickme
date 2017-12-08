@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+@Mapper : ResumeMapper.xml
+@Date : 2017-11-29
+@Author : 박현지
+@Desc : 초기 이력서 등록  CRUD
+ -->
+
+ 
+ <mapper namespace="kr.or.pickme.dao.ResumeBasicDAO">
+
+<!-- 초기이력서 입력!!!! -->
+	<insert id="insertBasicResume_edu" parameterType="kr.or.pickme.dto.SoloEduDTO">
+		insert into edu
+		values(#{username}, (select nvl(max(edu_no),100000)+1 from edu), #{edu_institute}, #{edu_start}, #{edu_end}, #{edu_category}, #{edu_major}, #{edu_grade} )
+	</insert>
+	
+	<insert id="insertBasicResume_career" parameterType="kr.or.pickme.dto.SoloCareerDTO">
+		insert into career
+		values(#{username}, (select nvl(max(career_no),600000)+1 from career), #{career_start} ,#{career_end}, #{career_institute},#{career_task},#{career_activity})
+	</insert>
+	
+	<insert id="insertBasicResume_lang" parameterType="kr.or.pickme.dto.SoloLangDTO">
+		insert into lang
+		values(#{username}, (select nvl(max(lang_no),500000)+1 from lang), #{lang_field} ,#{lang_testname}, #{lang_grade}, #{lang_getdate})
+	</insert>
+	
+	<insert id="insertBasicResume_license" parameterType="kr.or.pickme.dto.SoloLicenseDTO">
+		insert into license
+		values(#{username}, (select nvl(max(license_no), 400000)+1 from license), #{license_name}, #{license_co}, #{license_getdate})
+	</insert>
+	
+	<insert id="insertBasicResume_portpolio">
+		insert into portpolio
+		values (#{username}, (select nvl(max(portpolio_no),200000)+1 from portpolio), #{portpolio_file} )
+	</insert>
+	
+	<insert id="insertBasicResume_skill" parameterType="kr.or.pickme.dto.SoloSkillDTO">
+		insert into skill
+		values (#{username}, (select nvl(max(skill_no),700000)+1 from skill), #{skill_name})
+	</insert>
+	
+	<insert id="insertBasicResume_award" parameterType="kr.or.pickme.dto.SoloAwardDTO">
+		insert into award
+		values(#{username}, (select nvl(max(award_no),300000)+1 from award), #{award_name}, #{award_co}, #{award_year}, #{award_activity})
+	</insert>
+	
+	
+<!-- 초기이력서 정보 불러오기 -->	
+	<select id="getUserSoloInfo" parameterType="String" resultType="kr.or.pickme.dto.UserSoloDTO">
+		select solo_name, solo_birth, solo_gender, solo_email, solo_cphone, solo_addr 
+		from user_solo
+		where username=#{username}
+	</select>
+
+	<select id="getBasicResume_edu" resultType="kr.or.pickme.dto.SoloEduDTO">
+		select username, edu_no, edu_institute, edu_start, edu_end, edu_category, edu_major, edu_grade 
+		from edu 
+		where username=#{username} 
+		order by edu_no asc
+	</select>
+	
+	<select id="getBasicResume_career" resultType="kr.or.pickme.dto.SoloCareerDTO">
+		select username, career_no, career_start, career_end, career_institute, career_task, career_activity 
+		from career 
+		where username=#{username}
+		order by career_no asc
+	</select>
+	
+	<select id="getBasicResume_lang" resultType="kr.or.pickme.dto.SoloLangDTO">
+		select username, lang_no, lang_field, lang_testname, lang_grade, lang_getdate 
+		from lang 
+		where username=#{username} 
+		order by lang_no asc
+	</select>
+	
+	<select id="getBasicResume_license" resultType="kr.or.pickme.dto.SoloLicenseDTO">
+		select username, license_no, license_name, license_co, license_getdate 
+		from license 
+		where username=#{username} 
+		order by license_no asc
+	</select>
+	
+	<select id="getBasicResume_portpolio" resultType="kr.or.pickme.dto.UserSoloDTO">
+		select username, portpolio_no, portpolio_file 
+		from portpolio 
+		where username=#{username}
+	</select>
+	
+	<select id="getBasicResume_skill" resultType="kr.or.pickme.dto.SoloSkillDTO">
+		select username, skill_no, skill_name 
+		from skill 
+		where username=#{username}
+	</select>
+	
+	<select id="getBasicResume_award" resultType="kr.or.pickme.dto.SoloAwardDTO">
+		select username, award_no, award_name, award_co, award_year, award_activity 
+		from award 
+		where username=#{username}
+		order by award_no asc
+	</select>
+
+<!-- 채용공고코드의 자소서 항목 정보 불러오기 -->	
+	<select id="getCompQuestion" resultType="kr.or.pickme.dto.CompPickInfoDTO">
+		select pick_no, pick_code, intro_no, intro_lim 
+		from pick_intro 
+		where pick_code=#{pick_code}
+		order by pick_no
+	</select>
+
+</mapper>
+
+

@@ -15,6 +15,7 @@ public class CompPickInfoDTO {
 	private String pick_num;	//채용인원
 	private String pick_qulify;	//지원자격
 	private int pick_apply_num;	//지원자수
+	private int pick_no; 		//자소서 질문 번호
 	private String intro_no;	//항목
 	private int intro_lim;		//글자수
 	
@@ -110,14 +111,22 @@ public class CompPickInfoDTO {
 	public void setIntro_lim(int intro_lim) {
 		this.intro_lim = intro_lim;
 	}
+	public int getPick_no() {
+		return pick_no;
+	}
+	public void setPick_no(int pick_no) {
+		this.pick_no = pick_no;
+	}
 	@Override
 	public String toString() {
 		return "CompPickInfoDTO [username=" + username + ", pick_code=" + pick_code + ", pick_start=" + pick_start
 				+ ", pick_end=" + pick_end + ", hire_code=" + hire_code + ", hire_field=" + hire_field + ", job_code="
 				+ job_code + ", job_field=" + job_field + ", pick_ctmt=" + pick_ctmt + ", pick_num=" + pick_num
-				+ ", pick_qulify=" + pick_qulify + ", pick_apply_num=" + pick_apply_num + ", intro_no=" + intro_no
-				+ ", intro_lim=" + intro_lim + ", list=" + list + "]";
+				+ ", pick_qulify=" + pick_qulify + ", pick_apply_num=" + pick_apply_num + ", pick_no=" + pick_no
+				+ ", intro_no=" + intro_no + ", intro_lim=" + intro_lim + ", list=" + list + "]";
 	}
+	
+	
 
 	
 	

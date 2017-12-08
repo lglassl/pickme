@@ -289,4 +289,40 @@ public class MemberService {
 		
 	}
 
+	/*
+	@class : MemberController
+	@Date : 2017-12-06
+	@Author : 강희창
+	@Desc : int memberDel(String username)
+	*/
+	/*개인회원탈퇴*/
+	public int memberDel(String username) {
+		
+		int result = 0;
+		
+		MemberSoloDAO dao = sqlsession.getMapper(MemberSoloDAO.class);
+		result = dao.memberDel(username);
+		
+		return result;
+		
+	}
+
+	/*
+	@class : MemberSerive
+	@Date : 2017-12-06
+	@Author : 강희창
+	@Desc : int memberDelComp(String username)
+	*/
+	/*기업회원탈퇴*/
+	public int memberDelComp(String username) {
+		
+		int result = 0;
+		
+		MemberCompDAO dao = sqlsession.getMapper(MemberCompDAO.class);
+		result = dao.memberDelComp(username);
+		
+		return result;
+		
+	}
+
 }

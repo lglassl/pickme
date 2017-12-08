@@ -44,9 +44,12 @@ public class ResumeBoardController {
 	/*개인회원 이력서와 자소서 상태 게시판형태로 보는 페이지*/
 	@RequestMapping("/userResume.htm")
 	public String userResumeList(String ps, String cp, Model model, HttpServletRequest request) {
+		System.out.println("1");
 		List<ResumeDTO> list = resumeservice.resumeList(ps, cp);
+		System.out.println("2 "  +  list);
 		
 		model.addAttribute("list", list);
+		System.out.println("3");
 		return "resume.userResume";
 	}
 	
@@ -92,7 +95,6 @@ public class ResumeBoardController {
 	@RequestMapping(value="/esUpdate.htm", method = RequestMethod.POST)
 	public String esUpdate(HttpServletRequest request , ResumeDTO dto) {
 		resumeservice.esUpdate(dto);
-		System.out.println(dto.getUsername());
 		return "redirect:userResume.htm";
 	}
 	
@@ -105,9 +107,7 @@ public class ResumeBoardController {
 	/*제출하기를 통해 제출상태 변경*/
 	@RequestMapping(value="/psUpdate.htm", method = RequestMethod.POST)
 	public String psUpdate(HttpServletRequest request , ResumeDTO dto) {
-		System.out.println("여기는 컨트롤러" + dto.toString());
 		resumeservice.psUpdate(dto);
-		System.out.println(dto.getUsername());
 		return "redirect:userResume.htm";
 	}
 	

@@ -1,19 +1,27 @@
 package kr.or.pickme.controller;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.or.pickme.dto.UserComPpDTO;
+import kr.or.pickme.dto.UserSoloDTO;
 import kr.or.pickme.service.HomeService;
 import kr.or.pickme.service.MemberService;
 
@@ -35,7 +43,7 @@ public class HomeController {
 	@Autowired
 	private HomeService homeService;
 	
-	/*@RequestMapping(value = "home.htm")
+	@RequestMapping(value = "home.htm")
 	public String home(Locale locale, Model model, HttpServletRequest request) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		Date date = new Date();
@@ -44,7 +52,7 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		
-		security로 로그인한 아이디 정보 - 2017-12-05
+		/*security로 로그인한 아이디 정보 - 2017-12-05*/
 		Authentication id = SecurityContextHolder.getContext().getAuthentication();
 		String username = id.getName();
 		
@@ -67,18 +75,8 @@ public class HomeController {
 				
 			}
 		}
-		
-		return "home.index";
-	}*/
-	
-	
-	@RequestMapping("home.htm")
-	public String empList(@RequestParam(value="ps", required=false, defaultValue="5") String ps,
-						@RequestParam(value="cp", required=false, defaultValue="1") String cp, 
-						Model model, Locale locale, HttpServletRequest request) {
 		//아이디 받아오기
-		String username = "jung";
-		return homeService.compList(ps, cp, model, locale, request, username);
+		return homeService.compList(model, locale, request, username);
 	}
 	
 }

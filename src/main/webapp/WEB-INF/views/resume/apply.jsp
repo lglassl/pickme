@@ -69,20 +69,20 @@ $(document).ready(function(){
 							<input type="hidden" id="edu_index" value="${status.index }">
 								<div class="row formprofile_row">
 									<div class="col-md-3 form-group formprofile_detail input">
-										<label class="control-label profile_label" for="eduList[${status.index}].edu_institute">학교명</label>
-										<input type="text" id="eduList[${status.index}].edu_institute" name="eduList[${status.index}].edu_institute" value="${eduList.edu_institute}">
+										<label class="control-label profile_label" for="eduList2[${status.index}].edu_institute">학교명</label>
+										<input type="text" id="eduList2[${status.index}].edu_institute" name="eduList2[${status.index}].edu_institute" value="${eduList.edu_institute}">
 									</div>
 									<div class="col-md-3 form-group formprofile_detail input">
-										<label class="control-label profile_label" for="eduList[${status.index}].edu_start">입학년월</label>
-										<input type="text" id="eduList[${status.index}].edu_start" name="eduList[${status.index}].edu_start" placeholder="예) 2015.05" value="${eduList.edu_start}">
+										<label class="control-label profile_label" for="eduList2[${status.index}].edu_start">입학년월</label>
+										<input type="text" id="eduList2[${status.index}].edu_start" name="eduList2[${status.index}].edu_start" placeholder="예) 2015.05" value="${eduList.edu_start}">
 									</div>
 									<div class="col-md-3 form-group formprofile_detail input">
-										<label class="control-label profile_label" for="eduList[${status.index}].edu_end">졸업년월</label>
-										<input type="text" id="eduList[${status.index}].edu_end" name="eduList[${status.index}].edu_end" placeholder="예) 2015.05" value="${eduList.edu_end}">
+										<label class="control-label profile_label" for="eduList2[${status.index}].edu_end">졸업년월</label>
+										<input type="text" id="eduList2[${status.index}].edu_end" name="eduList2[${status.index}].edu_end" placeholder="예) 2015.05" value="${eduList.edu_end}">
 									</div>
 									<div class="col-md-3 form-group formprofile_detail input">
-										<label class="control-label profile_label" for="eduList[${status.index}].edu_category">구분</label>
-										<div><select id="eduList[${status.index}].edu_category" name="eduList[${status.index}].edu_category" value="${eduList.edu_category}">
+										<label class="control-label profile_label" for="eduList2[${status.index}].edu_category">구분</label>
+										<div><select id="eduList2[${status.index}].edu_category" name="eduList2[${status.index}].edu_category" value="${eduList.edu_category}">
 											<option value="재학중">재학중</option>
 											<option value="졸업예정">졸업예정</option>
 											<option value="졸업">졸업</option>
@@ -91,12 +91,12 @@ $(document).ready(function(){
 								</div>
 								<div class="row formprofile_row">
 									<div class="col-md-4 form-group formprofile_detail input">
-										<label class="control-label profile_label" for="eduList[${status.index}].edu_major">전공</label>
-										<input type="text" id="eduList[${status.index}].edu_major" name="eduList[${status.index}].edu_major" value="${eduList.edu_major}">
+										<label class="control-label profile_label" for="eduList2[${status.index}].edu_major">전공</label>
+										<input type="text" id="eduList2[${status.index}].edu_major" name="eduList2[${status.index}].edu_major" value="${eduList.edu_major}">
 									</div>
 									<div class="col-md-4 form-group formprofile_detail input">
-										<label class="control-label profile_label" for="eduList[${status.index}].edu_grade">학점</label>
-										<input type="text" id="eduList[${status.index}].edu_grade" name="eduList[${status.index}].edu_grade" placeholder="평점/총점"value="${eduList.edu_grade}">
+										<label class="control-label profile_label" for="eduList2[${status.index}].edu_grade">학점</label>
+										<input type="text" id="eduList2[${status.index}].edu_grade" name="eduList2[${status.index}].edu_grade" placeholder="평점/총점"value="${eduList.edu_grade}">
 									</div>
 								</div>
 							</div>
@@ -124,20 +124,20 @@ $(document).ready(function(){
 							+	'<input type="hidden" id="edu_index" value="'+edu_containerIndex+'">'
 							+		'<div class="row formprofile_row">'
 							+			'<div class="col-md-3 form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="eduList['+edu_containerIndex+'].edu_institute">학교명</label>'
-							+				'<input type="text" id="eduList['+edu_containerIndex+'].edu_institute" name="eduList['+edu_containerIndex+'].edu_institute">'
+							+				'<label class="control-label profile_label" for="eduList2['+edu_containerIndex+'].edu_institute">학교명</label>'
+							+				'<input type="text" id="eduList2['+edu_containerIndex+'].edu_institute" name="eduList2['+edu_containerIndex+'].edu_institute">'
 							+			'</div>'
 							+			'<div class="col-md-3 form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="eduList['+edu_containerIndex+'].edu_start">입학년월</label>'
-							+				'<input type="text" id="eduList['+edu_containerIndex+'].edu_start" name="eduList['+edu_containerIndex+'].edu_start" placeholder="예) 2015.05">'    
+							+				'<label class="control-label profile_label" for="eduList2['+edu_containerIndex+'].edu_start">입학년월</label>'
+							+				'<input type="text" id="eduList2['+edu_containerIndex+'].edu_start" name="eduList2['+edu_containerIndex+'].edu_start" placeholder="예) 2015.05">'    
 							+			'</div>'
 							+			'<div class="col-md-3 form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="eduList['+edu_containerIndex+'].edu_end">졸업년월</label>'
-							+				'<input type="text" id="eduList['+edu_containerIndex+'].edu_end" name="eduList['+edu_containerIndex+'].edu_end" placeholder="예) 2015.05">'
+							+				'<label class="control-label profile_label" for="eduList2['+edu_containerIndex+'].edu_end">졸업년월</label>'
+							+				'<input type="text" id="eduList2['+edu_containerIndex+'].edu_end" name="eduList2['+edu_containerIndex+'].edu_end" placeholder="예) 2015.05">'
 							+			'</div>'
 							+			'<div class="col-md-3 form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="eduList['+edu_containerIndex+'].edu_category">구분</label>'
-							+				'<div><select id="eduList['+edu_containerIndex+'].edu_category" name="eduList['+edu_containerIndex+'].edu_category">'
+							+				'<label class="control-label profile_label" for="eduList2['+edu_containerIndex+'].edu_category">구분</label>'
+							+				'<div><select id="eduList2['+edu_containerIndex+'].edu_category" name="eduList2['+edu_containerIndex+'].edu_category">'
 							+					'<option value="재학중">재학중</option>'
 							+					'<option value="졸업예정">졸업예정</option>'
 							+					'<option value="졸업">졸업</option>'
@@ -146,12 +146,12 @@ $(document).ready(function(){
 							+		'</div>'
 							+		'<div class="row formprofile_row">'
 							+			'<div class="col-md-4 form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="eduList['+edu_containerIndex+'].edu_major">전공</label>'
-							+				'<input type="text" id="eduList['+edu_containerIndex+'].edu_major" name="eduList['+edu_containerIndex+'].edu_major">'
+							+				'<label class="control-label profile_label" for="eduList2['+edu_containerIndex+'].edu_major">전공</label>'
+							+				'<input type="text" id="eduList2['+edu_containerIndex+'].edu_major" name="eduList2['+edu_containerIndex+'].edu_major">'
 							+			'</div>'
 							+			'<div class="col-md-4 form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="eduList['+edu_containerIndex+'].edu_grade">학점</label>'
-							+				'<input type="text" id="eduList['+edu_containerIndex+'].edu_grade" name="eduList['+edu_containerIndex+'].edu_grade" placeholder="평점/총점">'
+							+				'<label class="control-label profile_label" for="eduList2['+edu_containerIndex+'].edu_grade">학점</label>'
+							+				'<input type="text" id="eduList2['+edu_containerIndex+'].edu_grade" name="eduList2['+edu_containerIndex+'].edu_grade" placeholder="평점/총점">'
 							+			'</div>'
 							+		'</div>'
 							+	'</div>'
@@ -604,35 +604,35 @@ $(document).ready(function(){
 					
 <!-- ////////////////////////////////////////   자기소개서       /////////////////////////////////////////////////////////////////////// -->					
 					
-		<label class="formprofile_name" for="formprofile">자기소개서</label>
-				<div class="formprofile question_formcontainer" id="formprofile" class="col-lg-12">
-				
-			<c:forEach items="${questionList }" var="questionList" varStatus="status">	
-					<div class="question_formcontainer[${status.index }]">
-					<input type="hidden" id="question_index" value="${status.index }">
-						<div class="row formprofile_row">
-							<div class="col-md-10 form-group formprofile_detail input">
-								<label class="control-label profile_label" for="questionList[${status.index }].intro_no"> 항목 ${status.index +1} </label>
-								<div id="questionList[${status.index }].intro_no">${questionList.intro_no }</div>
-							</div>
-							<div class="col-md-2 form-group formprofile_detail input">
-								<label class="control-label profile_label" for="questionList[${status.index }].intro_lim">글자 수</label>
-								<div id="questionList[${status.index }].intro_lim">${questionList.intro_lim }</div>
-							</div>
-							<div class="form-group formprofile_detail input">
-								<textarea id="questionList[${status.index }].resu_ctmt" name="questionList[${status.index }].resu_ctmt" rows="10" cols="92%" placeholder="기업에게 자신을 소개해주세요!"></textarea>		
-							</div>
-						</div>
-					</div>
-					<hr color="#808080">
-					<input type="hidden" id="pick_no" name="pick_no" value="${questionList.pick_no }">
-					<input type="hidden" id="pick_code" name="pick_code" value="${questionList.pick_code }">
-			</c:forEach>		
-				</div>
-			
-<!-- //////////////////////////////////////////자기소개서 끝 ////////////////////////////////////////////////////////////////////////// -->					
-					
-				
+               
+      <label class="formprofile_name" for="formprofile">자기소개서</label>
+            <div class="formprofile question_formcontainer" id="formprofile" class="col-lg-12">
+            
+         <c:forEach items="${questionList }" var="questionList" varStatus="status">   
+               <div class="question_formcontainer${status.index }">
+                  <input type="hidden" id="question_index" value="${status.index }">
+                  <div class="row formprofile_row">
+                     <div class="col-md-10 form-group formprofile_detail input">
+                        <label class="control-label profile_label" for="coverletterList2.intro_no"> 항목 ${status.index +1} </label>
+                        <input id="coverletterList2.intro_no" name="coverletterList2[${status.index }].intro_no" value="${questionList.intro_no }" readonly style="background-color: transparent;">
+                     </div>
+                     <div class="col-md-2 form-group formprofile_detail input">
+                        <label class="control-label profile_label" for="coverletterList2.intro_lim">글자 수</label>
+                        <input id="coverletterList2.intro_lim" name="coverletterList2[${status.index }].intro_lim" value="${questionList.intro_lim }" readonly style="background-color: transparent;">
+                     </div>
+                     <div class="form-group formprofile_detail input">
+                        <textarea id="coverletterList2_resu_ctmt${status.index }" name="coverletterList2[${status.index }].resu_ctmt" rows="10" cols="92%" placeholder="기업에게 자신을 소개해주세요!"></textarea>      
+                     </div>
+                  </div>
+               </div>
+               <hr color="#808080">
+               <input type="hidden" id="pick_no" name="coverletterList2[${status.index }].pick_no" value="${questionList.pick_no }">
+               <input type="hidden" id="pick_code" name="coverletterList2[${status.index }].pick_code" value="${questionList.pick_code }">
+         </c:forEach>      
+            </div>
+         
+<!-- //////////////////////////////////////////자기소개서 끝 ////////////////////////////////////////////////////////////////////////// -->               
+               
 					<!-- 이력서/자기소개서 등록시 버튼!! -->	
 					<div style="text-align: center; margin-bottom: 40px;">
 						<input type="hidden" id="paper_status" name="paper_status" value="">

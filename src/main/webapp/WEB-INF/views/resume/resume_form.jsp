@@ -24,29 +24,29 @@
 						<div class="row formprofile_row">
 							<div class="col-md-3 formprofile_detail">
 								<label class="control-label profile_label" for="solo_name">이름</label>
-								<div id="solo_name">박현지</div>
+								<div id="solo_name">${user.solo_name}</div>
 							</div>
 							<div class="col-md-3 formprofile_detail">
 								<label class="control-label profile_label" for="solo_birth">생년월일</label>
-								<div id="solo_birth">1992.12.07</div>
+								<div id="solo_birth">${user.solo_birth}</div>
 							</div>
 							<div class="col-md-2 formprofile_detail">
 								<label class="control-label profile_label" for="solo_gender">성별</label>
-								<div id="solo_gender">여자</div>
+								<div id="solo_gender">${user.solo_gender }</div>
 							</div>
 							<div class="col-md-4 formprofile_detail">
 								<label class="control-label profile_label" for="solo_cphone">휴대폰번호</label>
-								<div id="solo_cphone">010-6866-8522</div>
+								<div id="solo_cphone">${user.solo_cphone }</div>
 							</div>
 						</div>
 						<div class="row formprofile_row">
 							<div class="col-md-6 formprofile_detail">
 								<label class="control-label profile_label" for="solo_cphone">이메일</label>
-								<div id="solo_cphone">file951@naver.com</div>
+								<div id="solo_cphone">${user.solo_email }</div>
 							</div>
 							<div class="col-md-6 formprofile_detail">
 								<label class="control-label profile_label" for="solo_addr">주소</label>
-								<div id="solo_addr">경기도 용인시 수지구 정평로 73</div>
+								<div id="solo_addr">${user.solo_addr }</div>
 							</div>
 						</div>
 						
