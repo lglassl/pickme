@@ -51,7 +51,7 @@ public class UserSoloDTO {
 		this.password = password;
 	}
 	public String getSolo_birth() {
-		return solo_birth;
+		return solo_birth.substring(0, 10);
 	}
 	public void setSolo_birth(String solo_birth) {
 		this.solo_birth = solo_birth;
