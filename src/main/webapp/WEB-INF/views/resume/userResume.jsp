@@ -33,8 +33,8 @@
 		});
 	});	
 		
-		
-	function go(sc){
+	//제출하기 버튼 온클릭	
+	function goPaper(sc){
 	 	$.ajax({
 			type: "post",
 			url:  "psUpdate.htm",
@@ -49,54 +49,25 @@
   		});
      };
 	
+     //요청하기 버튼 온클릭
+ 	function goEdit(sc){
+	 	$.ajax({
+			type: "post",
+			url:  "esUpdate.htm",
+			cache: false,				
+			data:'username=' + $('#'+sc).val(),
+			 success:function(data){
+  		    	location.href = "userResume.htm"; 
+  		     },
+  			error: function(){						
+  				alert('Error while request..');
+  			}
+  		});
+     };
 
 	
 </script>
-<style>
 
-img{
-width:19.5%;
-height:120px;
-border:0.1px;
-}
-
-#edit1{
- display: inline-block;
-  vertical-align: top;
-  height: 30px;
-  line-height: 30px;
-  padding: 0 15px;
-  font-family: inherit;
-  font-size: 12px;
-  color: #bbb;
-  text-align: center;
-  text-decoration: none;
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
-  background-color: #b42f32;
-  background-clip: padding-box;
-  border: 1px solid;
-  border-color: #202020 #1a1a1a #111;
-  border-radius: 25px;
-  -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.09), 0 1px 3px rgba(0, 0, 0, 0.3);
-  box-shadow: inset 0 1px rgba(255, 255, 255, 0.09), 0 1px 3px rgba(0, 0, 0, 0.3);
-
-
-}
-
-#paper1{
-
-  color: #bbb;
-  text-shadow: 0 0 2px rgba(0, 0, 0, .7);
-  background-color: #303030;
-  border-color: #1c1c1c #202020 #222;
-  background-image: -webkit-linear-gradient(top, #8e8e8e, #434343);
-  background-image: -moz-linear-gradient(top, #8e8e8e, #434343);
-  background-image: -o-linear-gradient(top, #8e8e8e, #434343);
-  background-image: linear-gradient(to bottom, #8e8e8e, #434343);
-}
-
-}
-</style>
 <div id="content">
 	<div class="col-sm-12">
 			
@@ -137,7 +108,6 @@ border:0.1px;
 				<td >번호</td>
 				<td >작성자</td>
 				<td>채용공고 번호</td>
-				<td>자소서내용</td>
 				<td >제출상태</td>
 				<td >첨삭상태</td>
 
@@ -154,21 +124,20 @@ border:0.1px;
 						</td>
 						
 						<td style="text-align: center;">${list.pick_code}</td>
-						<td style="text-align: center;">${list.resu_ctmt}</td>
    						<td style="text-align: center;">
 							<c:set var="ps" value="${list.paper_status}" />
 							<c:choose>
     						<c:when test ="${ps eq 0}">
-       						<span class="label label-default">작성 중</span>
+       						<span class="label label-default">작성 중(임시저장)</span>
     						</c:when>
         					
-    						<c:when test ="${ps eq 1}">		
-        					<button type="button" id="pssub" onclick="go(${status.count})">제출하기
+    					<%--제출 페이지는 수정에서?!
+    					    <c:when test ="${ps eq 1}">		
+        					<button type="button" id="pssub" onclick="goPaper(${status.count})">제출하기
         					</button>
-    						</c:when>
+    						</c:when> --%>
         					
-    						
-    						<c:when test ="${ps eq 2}">
+    						<c:when test ="${ps eq 1}">
        						<span class="label label-success">제출완료</span>
         					</c:when>
 							</c:choose>
@@ -180,7 +149,7 @@ border:0.1px;
 						<c:choose>
     					
     					<c:when test ="${es eq 1}">
-        				<button id="edit1" type="button" class="btn btn-danger">요청가능</button>
+        				<button id="edit1" type="button" class="btn btn-danger" onclick="goEdit(${status.count})">요청하기</button>
     					</c:when>
     					
     					<c:when test ="${es eq 2}">
@@ -188,7 +157,11 @@ border:0.1px;
     					</c:when>
     					
     					<c:when test ="${es eq 3}">
-        				<span class="label label-primary">첨삭완료</span>
+        				<span class="label label-primary">첨삭O(제출완료)</span>
+        				</c:when>
+        				
+        				<c:when test ="${es eq 4}">
+        				<span class="label label-primary">첨삭X(제출완료)</span>
         				</c:when>
     					
     					<c:otherwise>
@@ -202,3 +175,4 @@ border:0.1px;
 		</tbody>
 
 	</table>
+	

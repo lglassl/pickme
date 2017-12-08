@@ -57,12 +57,10 @@ $(document).ready(function() {
                "orderable" : false, //정렬하는거 없앰
             }, ]
       }); 
-    $('#insertModal').click(function(){
-    	$('#aa').modal('show');
-    });  
+
 }); 
 
-<!-- 
+
  
  function check(){
 		var check = false;
@@ -90,10 +88,9 @@ $(document).ready(function() {
 
 
 
-</script> -->
+</script> 
 
 <div id="content">
-
 	<div>
 		<table class="table table-hover"
 			style="text-align: center; background-color: white; color: black;"
