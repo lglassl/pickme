@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="userCompList" resultType="kr.or.pickme.dto.UserComPpDTO">
-		select ucp.COMP_PP_EMAIL, ucp.COMP_PP_ENABLED, ucp.COMP_PP_JOB, ucp.COMP_PP_NAME, ucp.COMP_PP_PHONE, ucp.COMP_PP_PWD, ucp.USERNAME,
+		select ucp.COMP_PP_EMAIL, ucp.ENABLED, ucp.COMP_PP_JOB, ucp.COMP_PP_NAME, ucp.COMP_PP_PHONE, ucp.USERNAME,
 		ci.COMP_COUNT, ci.COMP_LOGO, ci.COMP_NAME, ci.COMP_NUM, ci.COMP_YEAR
 		from user_comp_pp ucp join comp_info ci
 		on ucp.username = ci.username
