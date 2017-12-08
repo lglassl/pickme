@@ -55,23 +55,23 @@
 					<!-- 학력 : 필수 -->
 					<label class="formprofile_name" for="formprofile">학력</label>
 						<div class="formprofile" id="formprofile" class="col-lg-12">
-							<div id="edu_formcontainer[0]">
+							<div id="edu_formcontainer0">
 								<div class="row formprofile_row">
 									<div class="col-md-3 formprofile_detail input">
-										<label class="control-label profile_label" for="eduList[0].edu_institute">학교명</label>
-										<input type="text" id="eduList[0].edu_institute" name="eduList[0].edu_institute">
+										<label class="control-label profile_label" for="eduList0_edu_institute">학교명</label>
+										<input type="text" id="eduList0_edu_institute" name="eduList[0].edu_institute">
 									</div>
 									<div class="col-md-3 formprofile_detail input">
-										<label class="control-label profile_label" for="eduList[0].edu_start">입학년월</label>
-										<input type="text" id="eduList[0].edu_start" name="eduList[0].edu_start" placeholder="예) 2015.05">
+										<label class="control-label profile_label" for="eduList0_edu_start">입학년월</label>
+										<input type="text" id="eduList0_edu_start" name="eduList[0].edu_start" placeholder="예) 2015.05">
 									</div>
 									<div class="col-md-3 formprofile_detail input">
-										<label class="control-label profile_label" for="eduList[0].edu_end">졸업년월</label>
-										<input type="text" id="eduList[0].edu_end" name="eduList[0].edu_end" placeholder="예) 2015.05">
+										<label class="control-label profile_label" for="eduList0_edu_end">졸업년월</label>
+										<input type="text" id="eduList0_edu_end" name="eduList[0].edu_end" placeholder="예) 2015.05">
 									</div>
 									<div class="col-md-3 formprofile_detail input">
-										<label class="control-label profile_label" for="eduList[0].edu_category">구분</label>
-										<div><select id="eduList[0].edu_category" name="eduList[0].edu_category">
+										<label class="control-label profile_label" for="eduList0_edu_category">구분</label>
+										<div><select id="eduList0_edu_category" name="eduList[0].edu_category">
 											<option value="재학중">재학중</option>
 											<option value="졸업예정">졸업예정</option>
 											<option value="졸업">졸업</option>
@@ -80,20 +80,22 @@
 								</div>
 								<div class="row formprofile_row">
 									<div class="col-md-4 formprofile_detail input">
-										<label class="control-label profile_label" for="eduList[0].edu_major">전공</label>
-										<input type="text" id="eduList[0].edu_major" name="eduList[0].edu_major">
+										<label class="control-label profile_label" for="eduList0_edu_major">전공</label>
+										<input type="text" id="eduList0_edu_major" name="eduList[0].edu_major">
 									</div>
 									<div class="col-md-4 formprofile_detail input">
-										<label class="control-label profile_label" for="eduList[0].edu_grade">학점</label>
-										<input type="text" id="eduList[0].edu_grade" name="eduList[0].edu_grade" placeholder="평점/총점">
+										<label class="control-label profile_label" for="eduList0_edu_grade">학점</label>
+										<input type="text" id="eduList0_edu_grade" name="eduList[0].edu_grade" placeholder="평점/총점">
 									</div>
 								</div>
 							</div>
 							<hr color="#808080">
 							<div id="space_edu_addForm"></div>
 							<div class="row formprofile_row" style="text-align: center">
-									<button type="button" class="btn" id="edu_addbtn">
+									<button type="button" class="btn" id="edu_addbtn" style="background-color: transparent;">
 									<img id="addimg_btn" src="<%=request.getContextPath()%>/resources/resume/plus.PNG"><span><b> 학력 추가</b></span></button>
+									<button type="button" class="btn remove_btn" style="background-color: transparent;">
+									<img id="rmvimg_btn" src="<%=request.getContextPath()%>/resources/resume/minus.PNG"><span><b> 삭제</b></span></button>
 									<div><span id="edu_addbtn_alert_span"></span></div>
 							</div>
 						</div>
@@ -102,27 +104,30 @@
 				<script type="text/javascript">
 					$(document).ready(function(){
 						
-						var edu_containerIndex=1;
-						
+						var containerIndex;
+					
 						$('#edu_addbtn').click(function(){
+							containerIndex =$(this).parents('div .formprofile').find('.remove_flag_div').length +1;
+							console.log('현재 remove_flag_div 갯수 : ' +containerIndex);
+							
 							var eduStr=
-								'<div id="edu_formcontainer['+edu_containerIndex +']">'
+								'<div class="remove_flag_div" id="edu_formcontainer'+containerIndex +'">'
 							+		'<div class="row formprofile_row">'
 							+			'<div class="col-md-3 formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="eduList['+edu_containerIndex+'].edu_institute">학교명</label>'
-							+				'<input type="text" id="eduList['+edu_containerIndex+'].edu_institute" name="eduList['+edu_containerIndex+'].edu_institute">'
+							+				'<label class="control-label profile_label" for="eduList'+containerIndex+'_edu_institute">학교명</label>'
+							+				'<input type="text" id="eduList'+containerIndex+'_edu_institute" name="eduList['+containerIndex+'].edu_institute">'
 							+			'</div>'
 							+			'<div class="col-md-3 formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="eduList['+edu_containerIndex+'].edu_start">입학년월</label>'
-							+				'<input type="text" id="eduList['+edu_containerIndex+'].edu_start" name="eduList['+edu_containerIndex+'].edu_start" placeholder="예) 2015.05">'    
+							+				'<label class="control-label profile_label" for="eduList'+containerIndex+'_edu_start">입학년월</label>'
+							+				'<input type="text" id="eduList'+containerIndex+'_edu_start" name="eduList['+containerIndex+'].edu_start" placeholder="예) 2015.05">'    
 							+			'</div>'
 							+			'<div class="col-md-3 formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="eduList['+edu_containerIndex+'].edu_end">졸업년월</label>'
-							+				'<input type="text" id="eduList['+edu_containerIndex+'].edu_end" name="eduList['+edu_containerIndex+'].edu_end" placeholder="예) 2015.05">'
+							+				'<label class="control-label profile_label" for="eduList'+containerIndex+'_edu_end">졸업년월</label>'
+							+				'<input type="text" id="eduList'+containerIndex+'_edu_end" name="eduList['+containerIndex+'].edu_end" placeholder="예) 2015.05">'
 							+			'</div>'
 							+			'<div class="col-md-3 formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="eduList['+edu_containerIndex+'].edu_category">구분</label>'
-							+				'<div><select id="eduList['+edu_containerIndex+'].edu_category" name="eduList['+edu_containerIndex+'].edu_category">'
+							+				'<label class="control-label profile_label" for="eduList'+containerIndex+'_edu_category">구분</label>'
+							+				'<div><select id="eduList['+containerIndex+']_edu_category" name="eduList['+containerIndex+'].edu_category">'
 							+					'<option value="재학중">재학중</option>'
 							+					'<option value="졸업예정">졸업예정</option>'
 							+					'<option value="졸업">졸업</option>'
@@ -131,25 +136,46 @@
 							+		'</div>'
 							+		'<div class="row formprofile_row">'
 							+			'<div class="col-md-4 formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="eduList['+edu_containerIndex+'].edu_major">전공</label>'
-							+				'<input type="text" id="eduList['+edu_containerIndex+'].edu_major" name="eduList['+edu_containerIndex+'].edu_major">'
+							+				'<label class="control-label profile_label" for="eduList'+containerIndex+'_edu_major">전공</label>'
+							+				'<input type="text" id="eduList'+containerIndex+'_edu_major" name="eduList['+containerIndex+'].edu_major">'
 							+			'</div>'
 							+			'<div class="col-md-4 formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="eduList['+edu_containerIndex+'].edu_grade">학점</label>'
-							+				'<input type="text" id="eduList['+edu_containerIndex+'].edu_grade" name="eduList['+edu_containerIndex+'].edu_grade" placeholder="평점/총점">'
+							+				'<label class="control-label profile_label" for="eduList'+containerIndex+'_edu_grade">학점</label>'
+							+				'<input type="text" id="eduList'+containerIndex+'_edu_grade" name="eduList['+containerIndex+'].edu_grade" placeholder="평점/총점">'
 							+			'</div>'
 							+		'</div>'
 							+	'</div>'
 							+   '<hr color="#808080">';
+							
 							console.log('edu_addbtn 클릭');
 							$('#space_edu_addForm').append(eduStr);
-							edu_containerIndex++;
-							console.log(edu_containerIndex);
-							if(edu_containerIndex == "5"){
+							console.log(containerIndex);
+							if(containerIndex >= 4 ){
 								$('#edu_addbtn').prop("disabled", true);
 								$('#edu_addbtn_alert_span').html('학력 항목은 5개까지 입력 가능합니다!')
 							}
+							
+							if( $(this).parents('div .formprofile').find('.remove_flag_div').length > 0 ){
+								$(this).next().prop("disabled", false);   // 1번째 div 초과면 '삭제'버튼 '활성화'
+							}
 						});
+						
+						
+						$('.remove_btn').click(function(){
+							console.log($(this));
+							var targetDiv = $(this).parents('div .formprofile').find('.remove_flag_div').last();
+							targetDiv.next().remove();   //hr지우기
+							targetDiv.remove();	  		// 마지막 remove_flag_div 지우기
+							$(this).prop("disabled", false);  
+							$(this).prev().prop("disabled", false);    // 추가 버튼 활성화
+							$(this).next('div').empty();
+							
+							if( $(this).parents('div .formprofile').find('.remove_flag_div').length ==0 ){
+								$(this).prop("disabled", true);   // 1번째 div남으면 '삭제'버튼 '비활성화'
+							}
+						});
+					
+						
 						
 					});
 				</script>
@@ -158,37 +184,39 @@
 						<!-- 경력 :필수-->
 						<label class="formprofile_name" for="formprofile">경력 /인턴/대외활동</label>
 							<div class="formprofile" id="formprofile" class="col-lg-12">
-								<div class="career_formcontainer[0]">
+								<div class="career_formcontainer0">
 									<div class="row formprofile_row">
 										<div class="col-md-4 formprofile_detail input">
-											<label class="control-label profile_label" for="careerList[0].career_institute">회사/단체명</label>
-											<input type="text" id="careerList[0].career_institute" name="careerList[0].career_institute">
+											<label class="control-label profile_label" for="careerList0_career_institute">회사/단체명</label>
+											<input type="text" id="careerList0_career_institute" name="careerList[0].career_institute">
 										</div>
 										<div class="col-md-4 formprofile_detail input">
-											<label class="control-label profile_label" for="careerList[0].career_start">활동시작</label>
-											<input type="text" id="careerList[0].career_start" name="careerList[0].career_start" placeholder="예) 2015.05">
+											<label class="control-label profile_label" for="careerList0_career_start">활동시작</label>
+											<input type="text" id="careerList0_career_start" name="careerList[0].career_start" placeholder="예) 2015.05">
 										</div>
 										<div class="col-md-4 formprofile_detail input">
-											<label class="control-label profile_label" for="careerList[0].career_end">활동종료</label>
-											<input type="text" id="careerList[0].career_end" name="careerList[0].career_end" placeholder="예) 2015.05">
+											<label class="control-label profile_label" for="careerList0_career_end">활동종료</label>
+											<input type="text" id="careerList0_career_end" name="careerList[0].career_end" placeholder="예) 2015.05">
 										</div>
 									</div>
 									<div class="row formprofile_row">
 										<div class="form-group formprofile_detail input">
-											<label class="control-label profile_label" for="careerList[0].career_task">담당직책/지위</label>
-											<input type="text" id="careerList[0].career_task" name="careerList[0].career_task">
+											<label class="control-label profile_label" for="careerList0_career_task">담당직책/지위</label>
+											<input type="text" id="careerList0_career_task" name="careerList[0].career_task">
 										</div>
 										<div class="form-group formprofile_detail input">
-											<label class="control-label profile_label" for="careerList[0].career_activity">담당업무</label>
-											<input type="text" id="careerList[0].career_activity" name="careerList[0].career_activity" placeholder="담당하신 업무의 성과에 대해 간단 명료하게 작성해주세요.">
+											<label class="control-label profile_label" for="careerList0_career_activity">담당업무</label>
+											<input type="text" id="careerList0_career_activity" name="careerList[0].career_activity" placeholder="담당하신 업무의 성과에 대해 간단 명료하게 작성해주세요.">
 										</div>
 									</div>
 								</div>
 								<hr color="#808080">
 								<div id="space_career_addForm"></div>
 								<div class="row formprofile_row" style="text-align: center">
-									<button type="button" class="btn" id="career_addbtn">
+									<button type="button" class="btn" id="career_addbtn" style="background-color: transparent;">
 									<img id="addimg_btn" src="<%=request.getContextPath()%>/resources/resume/plus.PNG"><span><b> 경력 추가</b></span></button>
+									<button type="button" class="btn remove_btn" style="background-color: transparent;">
+									<img id="rmvimg_btn" src="<%=request.getContextPath()%>/resources/resume/minus.PNG"><span><b> 삭제</b></span></button>
 									<div><span id="career_addbtn_alert_span"></span></div>
 								</div>
 							</div>
@@ -196,43 +224,51 @@
 				<!-- 경력form추가 script// 7개까지만 생성가능 -->					
 				<script type="text/javascript">
 					$(document).ready(function(){
-						var career_containerIndex=1;
+						
+						var containerIndex;
 						
 						$('#career_addbtn').click(function(){
+							containerIndex =$(this).parents('div .formprofile').find('.remove_flag_div').length +1;
+							console.log('현재 remove_flag_div 갯수 : ' +containerIndex);
+							
 							var careerStr =
-								'<div class="career_formcontainer['+career_containerIndex+']">'
+								'<div class="remove_flag_div" id="career_formcontainer'+containerIndex+'">'
 							+		'<div class="row formprofile_row">'
 							+			'<div class="col-md-4 formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="careerList['+career_containerIndex+'].career_institute">회사/단체명</label>'
-							+				'<input type="text" id="careerList['+career_containerIndex+'].career_institute" name="careerList['+career_containerIndex+'].career_institute">'
+							+				'<label class="control-label profile_label" for="careerList'+containerIndex+'_career_institute">회사/단체명</label>'
+							+				'<input type="text" id="careerList'+containerIndex+'_career_institute" name="careerList['+containerIndex+'].career_institute">'
 							+			'</div>'
 							+			'<div class="col-md-4 formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="careerList['+career_containerIndex+'].career_start">활동시작</label>'
-							+				'<input type="text" id="careerList['+career_containerIndex+'].career_start" name="careerList['+career_containerIndex+'].career_start" placeholder="예) 2015.05">'
+							+				'<label class="control-label profile_label" for="careerList'+containerIndex+'_career_start">활동시작</label>'
+							+				'<input type="text" id="careerList'+containerIndex+'_career_start" name="careerList['+containerIndex+'].career_start" placeholder="예) 2015.05">'
 							+			'</div>'
 							+			'<div class="col-md-4 formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="careerList['+career_containerIndex+'].career_end">활동종료</label>'
-							+				'<input type="text" id="careerList['+career_containerIndex+'].career_end" name="careerList['+career_containerIndex+'].career_end" placeholder="예) 2015.05">'
+							+				'<label class="control-label profile_label" for="careerList'+containerIndex+'_career_end">활동종료</label>'
+							+				'<input type="text" id="careerList'+containerIndex+'_career_end" name="careerList['+containerIndex+'].career_end" placeholder="예) 2015.05">'
 							+			'</div>'
 							+		'</div>'
 							+		'<div class="row formprofile_row">'
 							+			'<div class="form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="careerList['+career_containerIndex+'].career_task">담당직책/지위</label>'
-							+				'<input type="text" id="careerList['+career_containerIndex+'].career_task" name="careerList['+career_containerIndex+'].career_task">'
+							+				'<label class="control-label profile_label" for="careerList'+containerIndex+'_career_task">담당직책/지위</label>'
+							+				'<input type="text" id="careerList'+containerIndex+'_career_task" name="careerList['+containerIndex+'].career_task">'
 							+			'</div>'
 							+			'<div class="form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="careerList['+career_containerIndex+'].career_activity">담당업무</label>'
-							+				'<input type="text" id="careerList['+career_containerIndex+'].career_activity" name="careerList['+career_containerIndex+'].career_activity" placeholder="담당하신 업무의 성과에 대해 간단 명료하게 작성해주세요.">'
+							+				'<label class="control-label profile_label" for="careerList'+containerIndex+'_career_activity">담당업무</label>'
+							+				'<input type="text" id="careerList'+containerIndex+'_career_activity" name="careerList['+containerIndex+'].career_activity" placeholder="담당하신 업무의 성과에 대해 간단 명료하게 작성해주세요.">'
 							+			'</div>'
 							+		'</div>'
 							+	'</div>'
 							+	'<hr color="#808080">';
 							console.log('경력추가 버튼 누름');
 							$('#space_career_addForm').append(careerStr);
-							career_containerIndex++;
-							if(career_containerIndex =="7"){
+							
+							if(containerIndex >=6){
 								$('#career_addbtn').prop("disabled", true);
 								$('#career_addbtn_alert_span').html('경력항목은 7개까지 입력가능합니다!');
+							}
+							
+							if( $(this).parents('div .formprofile').find('.remove_flag_div').length > 0 ){
+								$(this).next().prop("disabled", false);   // 1번째 div 초과면 '삭제'버튼 '활성화'
 							}
 						});
 					});
@@ -274,7 +310,7 @@
 									<hr color="#808080">
 									<div id="space_lang_addForm"></div>
 									<div class="row formprofile_row" style="text-align: center">
-										<button type="button" class="btn" id="language_addbtn">
+										<button type="button" class="btn" id="language_addbtn" style="background-color: transparent;">
 										<img id="addimg_btn" src="<%=request.getContextPath()%>/resources/resume/plus.PNG"><span><b> 어학 추가</b></span></button>
 										<div><span id="language_addbtn_alert_span"></span></div>
 									</div>
@@ -353,7 +389,7 @@
 									<hr color="#808080">
 									<div id="space_license_addForm"></div>
 									<div class="row formprofile_row" style="text-align: center">
-										<button type="button" class="btn" id="license_addbtn">
+										<button type="button" class="btn" id="license_addbtn" style="background-color: transparent;">
 										<img id="addimg_btn" src="<%=request.getContextPath()%>/resources/resume/plus.PNG"><span><b> 자격증 추가</b></span></button>
 										<div><span id="license_addbtn_alert_span"></span></div>
 									</div>
@@ -428,7 +464,7 @@
 									<hr color="#808080">
 									<div id="space_skill_addForm"></div>
 									<div class="row formprofile_row" style="text-align: center">
-										<button type="button" class="btn" id="skill_addbtn">
+										<button type="button" class="btn" id="skill_addbtn" style="background-color: transparent;">
 										<img id="addimg_btn" src="<%=request.getContextPath()%>/resources/resume/plus.PNG"><span><b> 보유기술 추가</b></span></button>
 										<div><span id="skill_addbtn_alert_span"></span></div>
 									</div>
@@ -493,7 +529,7 @@
 									<hr color="#808080">
 									<div id="space_award_addForm"></div>
 									<div class="row formprofile_row" style="text-align: center">
-										<button type="button" class="btn" id="award_addbtn">
+										<button type="button" class="btn" id="award_addbtn" style="background-color: transparent;">
 										<img id="addimg_btn" src="<%=request.getContextPath()%>/resources/resume/plus.PNG"><span><b> 수상항목 추가</b></span></button>
 										<div><span id="award_addbtn_alert_span"></span></div>
 									</div>

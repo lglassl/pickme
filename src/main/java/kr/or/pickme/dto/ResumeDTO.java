@@ -31,9 +31,20 @@ public class ResumeDTO {
 		this.portpolio_file = portpolio_file;
 	}
 	
+	private String portpolio_update;
+	
+	public String getPortpolio_update() {
+		return portpolio_update;
+	}
+	public void setPortpolio_update(String portpolio_update) {
+		this.portpolio_update = portpolio_update;
+	}
+
+	
 ////////////////////////////////////////////////////////
 	
 	
+
 	public int getResu_code() {
 		return resu_code;
 	}

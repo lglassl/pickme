@@ -65,7 +65,7 @@ $(document).ready(function(){
 						<div class="formprofile edu_formcontainer" id="formprofile" class="col-lg-12">
 						
 						<c:forEach items="${eduList}" var="eduList" varStatus="status">
-							<div id="edu_formcontainer[${status.index}]">
+							<div id="edu_formcontainer${status.index}">
 							<input type="hidden" id="edu_index" value="${status.index }">
 								<div class="row formprofile_row">
 									<div class="col-md-3 form-group formprofile_detail input">
@@ -120,7 +120,7 @@ $(document).ready(function(){
 						
 						$('#edu_addbtn').click(function(){
 							var eduStr=
-								'<div id="edu_formcontainer['+edu_containerIndex +']">'
+								'<div id="edu_formcontainer'+edu_containerIndex +'">'
 							+	'<input type="hidden" id="edu_index" value="'+edu_containerIndex+'">'
 							+		'<div class="row formprofile_row">'
 							+			'<div class="col-md-3 form-group formprofile_detail input">'
@@ -177,30 +177,30 @@ $(document).ready(function(){
 							<div class="formprofile career_formcontainer" id="formprofile" class="col-lg-12">
 							
 							<c:forEach items="${careerList}" var="careerList" varStatus="status">
-								<div class="career_formcontainer[${status.index }]">
+								<div class="career_formcontainer${status.index }">
 								<input type="hidden" id="career_index" value="${status.index }">
 									<div class="row formprofile_row">
 										<div class="col-md-4 form-group formprofile_detail input">
-											<label class="control-label profile_label" for="careerList[${status.index }].career_institute">회사/단체명</label>
-											<input type="text" id="careerList[${status.index }].career_institute" name="careerList[${status.index }].career_institute" value="${careerList.career_institute }">
+											<label class="control-label profile_label" for="careerList2[${status.index }].career_institute">회사/단체명</label>
+											<input type="text" id="careerList2[${status.index }].career_institute" name="careerList2[${status.index }].career_institute" value="${careerList.career_institute }">
 										</div>
 										<div class="col-md-4 form-group formprofile_detail input">
-											<label class="control-label profile_label" for="careerList[${status.index }].career_start">활동시작</label>
-											<input type="text" id="careerList[${status.index }].career_start" name="careerList[${status.index }].career_start" placeholder="예) 2015.05" value="${careerList.career_start }">
+											<label class="control-label profile_label" for="careerList2[${status.index }].career_start">활동시작</label>
+											<input type="text" id="careerList2[${status.index }].career_start" name="careerList2[${status.index }].career_start" placeholder="예) 2015.05" value="${careerList.career_start }">
 										</div>
 										<div class="col-md-4 form-group formprofile_detail input">
-											<label class="control-label profile_label" for="careerList[${status.index }].career_end">활동종료</label>
-											<input type="text" id="careerList[${status.index }].career_end" name="careerList[${status.index }].career_end" placeholder="예) 2015.05" value="${careerList.career_end }">
+											<label class="control-label profile_label" for="careerList2[${status.index }].career_end">활동종료</label>
+											<input type="text" id="careerList2[${status.index }].career_end" name="careerList2[${status.index }].career_end" placeholder="예) 2015.05" value="${careerList.career_end }">
 										</div>
 									</div>
 									<div class="row formprofile_row">
 										<div class="form-group formprofile_detail input">
-											<label class="control-label profile_label" for="careerList[${status.index }].career_task">담당직책/지위</label>
-											<input type="text" id="careerList[${status.index }].career_task" name="careerList[${status.index }].career_task" value="${careerList.career_task }">
+											<label class="control-label profile_label" for="careerList2[${status.index }].career_task">담당직책/지위</label>
+											<input type="text" id="careerList2[${status.index }].career_task" name="careerList2[${status.index }].career_task" value="${careerList.career_task }">
 										</div>
 										<div class="form-group formprofile_detail input">
-											<label class="control-label profile_label" for="careerList[${status.index }].career_activity">담당업무</label>
-											<input type="text" id="careerList[${status.index }].career_activity" name="careerList[${status.index }].career_activity" 
+											<label class="control-label profile_label" for="careerList2[${status.index }].career_activity">담당업무</label>
+											<input type="text" id="careerList2[${status.index }].career_activity" name="careerList2[${status.index }].career_activity" 
 													placeholder="담당하신 업무의 성과에 대해 간단 명료하게 작성해주세요." value="${careerList.career_activity }">
 										</div>
 									</div>
@@ -225,30 +225,30 @@ $(document).ready(function(){
 						
 						$('#career_addbtn').click(function(){
 							var careerStr =
-								'<div class="career_formcontainer['+career_containerIndex+']">'
+								'<div class="career_formcontainer'+career_containerIndex+'">'
 							+	'<input type="hidden" id="career_index" value="'+career_containerIndex+'">'
 							+		'<div class="row formprofile_row">'
 							+			'<div class="col-md-4 form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="careerList['+career_containerIndex+'].career_institute">회사/단체명</label>'
-							+				'<input type="text" id="careerList['+career_containerIndex+'].career_institute" name="careerList['+career_containerIndex+'].career_institute">'
+							+				'<label class="control-label profile_label" for="careerList2['+career_containerIndex+'].career_institute">회사/단체명</label>'
+							+				'<input type="text" id="careerList2['+career_containerIndex+'].career_institute" name="careerList2['+career_containerIndex+'].career_institute">'
 							+			'</div>'
 							+			'<div class="col-md-4 form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="careerList['+career_containerIndex+'].career_start">활동시작</label>'
-							+				'<input type="text" id="careerList['+career_containerIndex+'].career_start" name="careerList['+career_containerIndex+'].career_start" placeholder="예) 2015.05">'
+							+				'<label class="control-label profile_label" for="careerList2['+career_containerIndex+'].career_start">활동시작</label>'
+							+				'<input type="text" id="careerList2['+career_containerIndex+'].career_start" name="careerList2['+career_containerIndex+'].career_start" placeholder="예) 2015.05">'
 							+			'</div>'
 							+			'<div class="col-md-4 form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="careerList['+career_containerIndex+'].career_end">활동종료</label>'
-							+				'<input type="text" id="careerList['+career_containerIndex+'].career_end" name="careerList['+career_containerIndex+'].career_end" placeholder="예) 2015.05">'
+							+				'<label class="control-label profile_label" for="careerList2['+career_containerIndex+'].career_end">활동종료</label>'
+							+				'<input type="text" id="careerList2['+career_containerIndex+'].career_end" name="careerList2['+career_containerIndex+'].career_end" placeholder="예) 2015.05">'
 							+			'</div>'
 							+		'</div>'
 							+		'<div class="row formprofile_row">'
 							+			'<div class="form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="careerList['+career_containerIndex+'].career_task">담당직책/지위</label>'
-							+				'<input type="text" id="careerList['+career_containerIndex+'].career_task" name="careerList['+career_containerIndex+'].career_task">'
+							+				'<label class="control-label profile_label" for="careerList2['+career_containerIndex+'].career_task">담당직책/지위</label>'
+							+				'<input type="text" id="careerList2['+career_containerIndex+'].career_task" name="careerList2['+career_containerIndex+'].career_task">'
 							+			'</div>'
 							+			'<div class="form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="careerList['+career_containerIndex+'].career_activity">담당업무</label>'
-							+				'<input type="text" id="careerList['+career_containerIndex+'].career_activity" name="careerList['+career_containerIndex+'].career_activity" placeholder="담당하신 업무의 성과에 대해 간단 명료하게 작성해주세요.">'
+							+				'<label class="control-label profile_label" for="careerList2['+career_containerIndex+'].career_activity">담당업무</label>'
+							+				'<input type="text" id="careerList2['+career_containerIndex+'].career_activity" name="careerList2['+career_containerIndex+'].career_activity" placeholder="담당하신 업무의 성과에 대해 간단 명료하게 작성해주세요.">'
 							+			'</div>'
 							+		'</div>'
 							+	'</div>'
@@ -271,13 +271,13 @@ $(document).ready(function(){
 								<div class="formprofile lang_formcontainer" id="formprofile" class="col-lg-12">
 								
 								<c:forEach items="${langList }" var="langList" varStatus="status">
-									<div class="lang_formcontainer[${status.index }]">
-									<input type="hidden" id="lang_index" value="${status.index }">
+									<div class="lang_formcontainer${status.index }">
+										<input type="hidden" id="lang_index" value="${status.index }">
 										<div class="row formprofile_row">
 											<div class="col-md-3 form-group formprofile_detail input">
-												<label class="control-label profile_label" for="langList[${status.index }].lang_field">언어구분</label>
+												<label class="control-label profile_label" for="langList2[${status.index }].lang_field">언어구분</label>
 												<div>
-												<select id="langList[${status.index }].lang_field" name="langList[${status.index }].lang_field" value="${langList.lang_field }">
+												<select id="langList2[${status.index }].lang_field" name="langList2[${status.index }].lang_field" value="${langList.lang_field }">
 													<option value="korean">한국어</option>
 													<option value="english">영어</option>
 													<option value="japanese">일본어</option>
@@ -288,16 +288,16 @@ $(document).ready(function(){
 												</div>
 											</div>
 											<div class="col-md-3 form-group formprofile_detail input">
-												<label class="control-label profile_label" for="langList[${status.index }].lang_testname">언어자격증 명</label>
-												<input type="text" id="langList[${status.index }].lang_testname" name="langList[${status.index }].lang_testname" placeholder="예) toeic" value="${langList.lang_testname }">
+												<label class="control-label profile_label" for="langList2[${status.index }].lang_testname">언어자격증 명</label>
+												<input type="text" id="langList2[${status.index }].lang_testname" name="langList2[${status.index }].lang_testname" placeholder="예) toeic" value="${langList.lang_testname }">
 											</div>
 											<div class="col-md-3 form-group formprofile_detail input">
-												<label class="control-label profile_label" for="langList[${status.index }].lang_grade">점수/급수</label>
-												<input type="text" id="langList[${status.index }].lang_grade" name="langList[${status.index }].lang_grade" value="${langList.lang_grade }">
+												<label class="control-label profile_label" for="langList2[${status.index }].lang_grade">점수/급수</label>
+												<input type="text" id="langList2[${status.index }].lang_grade" name="langList2[${status.index }].lang_grade" value="${langList.lang_grade }">
 											</div>
 											<div class="col-md-3 form-group formprofile_detail input">
-												<label class="control-label profile_label" for="langList[${status.index }].lang_getdate">취득일</label>
-												<input type="text" id="langList[${status.index }].lang_getdate" name="langList[${status.index }].lang_getdate" placeholder="예) 2017.01" value="${langList.lang_getdate }">
+												<label class="control-label profile_label" for="langList2[${status.index }].lang_getdate">취득일</label>
+												<input type="text" id="langList2[${status.index }].lang_getdate" name="langList2[${status.index }].lang_getdate" placeholder="예) 2017.01" value="${langList.lang_getdate }">
 											</div>
 										</div>
 									</div>
@@ -320,13 +320,13 @@ $(document).ready(function(){
 					$(document).ready(function(){
 						$('#language_addbtn').click(function(){
 							var langStr=
-								'<div class="lang_formcontainer['+lang_containerIndex+']">'
-							+	'<input type="hidden" id="lang_index" value="'+lang_containerIndex+'">'
+								'<div class="lang_formcontainer'+lang_containerIndex+'">'
+							+		'<input type="hidden" id="lang_index" value="'+lang_containerIndex+'">'
 							+		'<div class="row formprofile_row">'
 							+			'<div class="col-md-3 form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="langList['+lang_containerIndex+'].lang_field">언어구분</label>'
+							+				'<label class="control-label profile_label" for="langList2['+lang_containerIndex+'].lang_field">언어구분</label>'
 							+				'<div>'
-							+				'<select id="langList['+lang_containerIndex+'].lang_field" name="langList['+lang_containerIndex+'].lang_field">'
+							+				'<select id="langList2['+lang_containerIndex+'].lang_field" name="langList2['+lang_containerIndex+'].lang_field">'
 							+					'<option value="korean">한국어</option>'
 							+					'<option value="english">영어</option>'
 							+					'<option value="japanese">일본어</option>'
@@ -337,16 +337,16 @@ $(document).ready(function(){
 							+				'</div>'
 							+			'</div>'
 							+			'<div class="col-md-3 form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="langList['+lang_containerIndex+'].lang_testname">언어자격증 명</label>'
-							+				'<input type="text" id="langList['+lang_containerIndex+'].lang_testname" name="langList['+lang_containerIndex+'].lang_testname" placeholder="예) toeic">'
+							+				'<label class="control-label profile_label" for="langList2['+lang_containerIndex+'].lang_testname">언어자격증 명</label>'
+							+				'<input type="text" id="langList2['+lang_containerIndex+'].lang_testname" name="langList2['+lang_containerIndex+'].lang_testname" placeholder="예) toeic">'
 							+			'</div>'
 							+			'<div class="col-md-3 form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="langList['+lang_containerIndex+'].lang_grade">점수/급수</label>'
-							+				'<input type="text" id="langList['+lang_containerIndex+'].lang_grade" name="langList['+lang_containerIndex+'].lang_grade">'
+							+				'<label class="control-label profile_label" for="langList2['+lang_containerIndex+'].lang_grade">점수/급수</label>'
+							+				'<input type="text" id="langList2['+lang_containerIndex+'].lang_grade" name="langList2['+lang_containerIndex+'].lang_grade">'
 							+			'</div>'
 							+			'<div class="col-md-3 form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="langList['+lang_containerIndex+'].lang_getdate">취득일</label>'
-							+				'<input type="text" id="langList['+lang_containerIndex+'].lang_getdate" name="langList['+lang_containerIndex+'].lang_getdate" placeholder="예) 2017.01">'
+							+				'<label class="control-label profile_label" for="langList2['+lang_containerIndex+'].lang_getdate">취득일</label>'
+							+				'<input type="text" id="langList2['+lang_containerIndex+'].lang_getdate" name="langList2['+lang_containerIndex+'].lang_getdate" placeholder="예) 2017.01">'
 							+			'</div>'
 							+		'</div>'
 							+	'</div>'
@@ -370,20 +370,20 @@ $(document).ready(function(){
 								<div class="formprofile license_formcontainer" id="formprofile" class="col-lg-12">
 								
 							<c:forEach items="${licenseList }" var="licenseList" varStatus="status">	
-									<div class="license_formcontainer[${status.index }]">
-									<input type="hidden" id="license_index" value="${status.index }">
+									<div class="license_formcontainer${status.index }">
+										<input type="hidden" id="license_index" value="${status.index }">
 										<div class="row formprofile_row">
 											<div class="col-md-4 form-group formprofile_detail input">
-												<label class="control-label profile_label" for="licenseList[${status.index }].license_name">자격증 명</label>
-												<input type="text" id="licenseList[${status.index }].license_name" name="licenseList[${status.index }].license_name" value="${licenseList.license_name }">
+												<label class="control-label profile_label" for="licenseList2[${status.index }].license_name">자격증 명</label>
+												<input type="text" id="licenseList2[${status.index }].license_name" name="licenseList2[${status.index }].license_name" value="${licenseList.license_name }">
 											</div>
 											<div class="col-md-4 form-group formprofile_detail input">
-												<label class="control-label profile_label" for="licenseList[${status.index }].license_co">발행기관</label>
-												<input type="text" id="licenseList[${status.index }].license_co" name="licenseList[${status.index }].license_co" value="${licenseList.license_co }">
+												<label class="control-label profile_label" for="licenseList2[${status.index }].license_co">발행기관</label>
+												<input type="text" id="licenseList2[${status.index }].license_co" name="licenseList2[${status.index }].license_co" value="${licenseList.license_co }">
 											</div>
 											<div class="col-md-4 form-group formprofile_detail input">
-												<label class="control-label profile_label" for="licenseList[${status.index }].license_getdate">취득일</label>
-												<input type="text" id="licenseList[${status.index }].license_getdate" name="licenseList[${status.index }].license_getdate" placeholder="예) 2017.01" value="${licenseList.license_getdate }">
+												<label class="control-label profile_label" for="licenseList2[${status.index }].license_getdate">취득일</label>
+												<input type="text" id="licenseList2[${status.index }].license_getdate" name="licenseList2[${status.index }].license_getdate" placeholder="예) 2017.01" value="${licenseList.license_getdate }">
 											</div>
 										</div>
 									</div>
@@ -407,20 +407,20 @@ $(document).ready(function(){
 					$(document).ready(function(){
 						$('#license_addbtn').click(function(){
 							var licenseStr=
-								'<div class="license_formcontainer['+license_containerIndex+']">'
-							+	'<input type="hidden" id="license_index" value="'+license_containerIndex+'">'
+								'<div class="license_formcontainer'+license_containerIndex+'">'
+							+		'<input type="hidden" id="license_index" value="'+license_containerIndex+'">'
 							+		'<div class="row formprofile_row">'
 							+			'<div class="col-md-4 form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="licenseList['+license_containerIndex+'].license_name">자격증 명</label>'
-							+				'<input type="text" id="licenseList['+license_containerIndex+'].license_name" name="licenseList['+license_containerIndex+'].license_name">'
+							+				'<label class="control-label profile_label" for="licenseList2['+license_containerIndex+'].license_name">자격증 명</label>'
+							+				'<input type="text" id="licenseList2['+license_containerIndex+'].license_name" name="licenseList2['+license_containerIndex+'].license_name">'
 							+			'</div>'
 							+			'<div class="col-md-4 form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="licenseList['+license_containerIndex+'].license_co">발행기관</label>'
-							+				'<input type="text" id="licenseList['+license_containerIndex+'].license_co" name="licenseList['+license_containerIndex+'].license_co">'
+							+				'<label class="control-label profile_label" for="licenseList2['+license_containerIndex+'].license_co">발행기관</label>'
+							+				'<input type="text" id="licenseList2['+license_containerIndex+'].license_co" name="licenseList2['+license_containerIndex+'].license_co">'
 							+			'</div>'
 							+			'<div class="col-md-4 form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="licenseList['+license_containerIndex+'].license_getdate">취득일</label>'
-							+				'<input type="text" id="licenseList['+license_containerIndex+'].license_getdate" name="licenseList['+license_containerIndex+'].license_getdate" placeholder="예) 2017.01">'
+							+				'<label class="control-label profile_label" for="licenseList2['+license_containerIndex+'].license_getdate">취득일</label>'
+							+				'<input type="text" id="licenseList2['+license_containerIndex+'].license_getdate" name="licenseList2['+license_containerIndex+'].license_getdate" placeholder="예) 2017.01">'
 							+			'</div>'
 							+		'</div>'
 							+	'</div>'
@@ -444,8 +444,9 @@ $(document).ready(function(){
 								<div class="formprofile" id="formprofile" class="col-lg-12">
 									<div class="row formprofile_row">
 										<div class="form-group formprofile_detail input">
-											<label class="control-label profile_label" for="file">파일추가</label>
-											<input type="file" id="file" name="file" value="${portpolio.portpolio_file }" >${portpolio.portpolio_file }
+											<label class="control-label profile_label" for="file2">파일추가</label>
+											<input type="file" id="file2" name="file2">
+											<input type="text" name="portpolio_update" value="${portpolio.portpolio_file }" readonly>
 										</div>
 									</div>
 									<div class="row formprofile_row" style="text-align: center">
@@ -454,18 +455,17 @@ $(document).ready(function(){
 								</div>
 								
 								
-								
 							<!-- 보유기술 : 선택 -->
 							<label class="formprofile_name" for="formprofile">보유기술</label>
 								<div class="formprofile skill_formcontainer" id="formprofile" class="col-lg-12">
 								
 							<c:forEach items="${skillList }" var="skillList" varStatus="status">
-									<div class="skill_formcontainer[${status.index }]">
-									<input type="hidden" id="skill_index" value="${status.index }">
+									<div class="skill_formcontainer${status.index }">
+										<input type="hidden" id="skill_index" value="${status.index }">
 										<div class="row formprofile_row">
 											<div class="form-group formprofile_detail input">
-												<label class="control-label profile_label" for="skillList[${status.index }].skill_name">보유기술</label>
-												<input type="text" id="skillList[${status.index }].skill_name" name="skillList[${status.index }].skill_name" 
+												<label class="control-label profile_label" for="skillList2[${status.index }].skill_name">보유기술</label>
+												<input type="text" id="skillList2[${status.index }].skill_name" name="skillList2[${status.index }].skill_name" 
 														placeholder="예) HTML5 / CSS5 , JQuery, JAVA, JSP, Eclipse" value="${skillList.skill_name }">
 											</div>
 										</div>
@@ -490,12 +490,12 @@ $(document).ready(function(){
 						$(document).ready(function(){
 							$('#skill_addbtn').click(function(){
 								var skillStr=
-									'<div class="skill_formcontainer['+skill_containerIndex+']">'
-								+	'<input type="hidden" id="license_index" value="'+skill_containerIndex+'">'
+									'<div class="skill_formcontainer'+skill_containerIndex+'">'
+								+		'<input type="hidden" id="license_index" value="'+skill_containerIndex+'">'
 								+		'<div class="row formprofile_row">'
 								+			'<div class="form-group formprofile_detail input">'
-								+				'<label class="control-label profile_label" for="skillList['+skill_containerIndex+'].skill_name">보유기술</label>'
-								+				'<input type="text" id="skillList['+skill_containerIndex+'].skill_name" name="skillList['+skill_containerIndex+'].skill_name" placeholder="예) HTML5 / CSS5 , JQuery, JAVA, JSP, Eclipse" >'
+								+				'<label class="control-label profile_label" for="skillList2['+skill_containerIndex+'].skill_name">보유기술</label>'
+								+				'<input type="text" id="skillList2['+skill_containerIndex+'].skill_name" name="skillList2['+skill_containerIndex+'].skill_name" placeholder="예) HTML5 / CSS5 , JQuery, JAVA, JSP, Eclipse" >'
 								+			'</div>'
 								+		'</div>'
 								+	'</div>'	
@@ -519,27 +519,27 @@ $(document).ready(function(){
 								<div class="formprofile award_formcontainer" id="formprofile" class="col-lg-12">
 							
 								<c:forEach items="${awardList }" var="awardList" varStatus="status">
-									<div class="award_formcontainer[${status.index }]">
-									<input type="hidden" id="award_index" value="${status.index }">						
+									<div class="award_formcontainer${status.index }">
+										<input type="hidden" id="award_index" value="${status.index }">						
 										<div class="row formprofile_row">
 											<div class="col-md-4 form-group formprofile_detail input">
-												<label class="control-label profile_label" for="awardList[${status.index }].award_name">수상명</label>
-												<input type="text" id="awardList[${status.index }].award_name" name="awardList[${status.index }].award_name" value="${awardList.award_name }">
+												<label class="control-label profile_label" for="awardList2[${status.index }].award_name">수상명</label>
+												<input type="text" id="awardList2[${status.index }].award_name" name="awardList2[${status.index }].award_name" value="${awardList.award_name }">
 											</div>
 											<div class="col-md-4 form-group formprofile_detail input">
-												<label class="control-label profile_label" for="awardList[${status.index }].award_co">수여기관</label>
-												<input type="text" id="awardList[${status.index }].award_co" name="awardList[${status.index }].award_co" value="${awardList.award_co }">
+												<label class="control-label profile_label" for="awardList2[${status.index }].award_co">수여기관</label>
+												<input type="text" id="awardList2[${status.index }].award_co" name="awardList2[${status.index }].award_co" value="${awardList.award_co }">
 											</div>
 											<div class="col-md-4 form-group formprofile_detail input">
-												<label class="control-label profile_label" for="awardList[${status.index }].award_year">수상연도</label>
-												<input type="text" id="awardList[${status.index }].award_year" name="awardList[${status.index }].award_year" placeholder="예) 2017" value="${awardList.award_year }">
+												<label class="control-label profile_label" for="awardList2[${status.index }].award_year">수상연도</label>
+												<input type="text" id="awardList2[${status.index }].award_year" name="awardList2[${status.index }].award_year" placeholder="예) 2017" value="${awardList.award_year }">
 											</div>
 										</div>
 										
 										<div class="row formprofile_row">
 											<div class="form-group formprofile_detail input">
-												<label class="control-label profile_label" for="awardList[${status.index }].award_activity">수여내용</label>
-												<input type="text" id="awardList[${status.index }].award_activity" name="awardList[${status.index }].award_activity" 
+												<label class="control-label profile_label" for="awardList2[${status.index }].award_activity">수여내용</label>
+												<input type="text" id="awardList2[${status.index }].award_activity" name="awardList2[${status.index }].award_activity" 
 														placeholder="수여 내용 및 결과를 자세히 입력해주세요." value="${awardList.award_activity }">
 											</div>
 										</div>
@@ -565,30 +565,31 @@ $(document).ready(function(){
 					$(document).ready(function(){
 						$('#award_addbtn').click(function(){
 							var awardStr=
-								'<div class="award_formcontainer['+award_containerIndex+']">'
-							+	'<input type="hidden" id="award_index" value="'+award_containerIndex+'">'
+								'<div class="award_formcontainer'+award_containerIndex+'">'
+							+		'<input type="hidden" id="award_index" value="'+award_containerIndex+'">'
 							+		'<div class="row formprofile_row">'
 							+			'<div class="col-md-4 form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="awardList['+award_containerIndex+'].award_name">수상명</label>'
-							+				'<input type="text" id="awardList['+award_containerIndex+'].award_name" name="awardList['+award_containerIndex+'].award_name">'
+							+				'<label class="control-label profile_label" for="awardList2['+award_containerIndex+'].award_name">수상명</label>'
+							+				'<input type="text" id="awardList2['+award_containerIndex+'].award_name" name="awardList2['+award_containerIndex+'].award_name">'
 							+			'</div>'
 							+			'<div class="col-md-4 form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="awardList['+award_containerIndex+'].award_co">수여기관</label>'
-							+				'<input type="text" id="awardList['+award_containerIndex+'].award_co" name="awardList['+award_containerIndex+'].award_co">'
+							+				'<label class="control-label profile_label" for="awardList2['+award_containerIndex+'].award_co">수여기관</label>'
+							+				'<input type="text" id="awardList2['+award_containerIndex+'].award_co" name="awardList2['+award_containerIndex+'].award_co">'
 							+			'</div>'
 							+			'<div class="col-md-4 form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="awardList['+award_containerIndex+'].award_year">수상연도</label>'
-							+				'<input type="text" id="awardList['+award_containerIndex+'].award_year" name="awardList['+award_containerIndex+'].award_year" placeholder="예) 2017" >'
+							+				'<label class="control-label profile_label" for="awardList2['+award_containerIndex+'].award_year">수상연도</label>'
+							+				'<input type="text" id="awardList2['+award_containerIndex+'].award_year" name="awardList2['+award_containerIndex+'].award_year" placeholder="예) 2017" >'
 							+			'</div>'
 							+		'</div>'
 							+		'<div class="row formprofile_row">'
 							+			'<div class="form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="awardList['+award_containerIndex+'].award_activity">수여내용</label>'
-							+				'<input type="text" id="awardList['+award_containerIndex+'].award_activity" name="awardList['+award_containerIndex+'].award_activity" placeholder="수여 내용 및 결과를 자세히 입력해주세요.">'
+							+				'<label class="control-label profile_label" for="awardList2['+award_containerIndex+'].award_activity">수여내용</label>'
+							+				'<input type="text" id="awardList2['+award_containerIndex+'].award_activity" name="awardList2['+award_containerIndex+'].award_activity" placeholder="수여 내용 및 결과를 자세히 입력해주세요.">'
 							+			'</div>'
 							+		'</div>'
 							+	'</div>'
-							+	'<hr color="#808080">'
+							+	'<hr color="#808080">';
+							
 								
 							console.log('수상 추가 버튼 누름');
 							$('#space_award_addForm').append(awardStr);
@@ -608,33 +609,34 @@ $(document).ready(function(){
 				<div class="formprofile question_formcontainer" id="formprofile" class="col-lg-12">
 				
 			<c:forEach items="${questionList }" var="questionList" varStatus="status">	
-					<div class="question_formcontainer[${status.index }]">
-					<input type="hidden" id="question_index" value="${status.index }">
+				<input type="hidden" id="pick_code" name="pick_code" value="${questionList.pick_code }">
+					<div class="question_formcontainer${status.index }">
+						<input type="hidden" id="question_index" value="${status.index }">
 						<div class="row formprofile_row">
 							<div class="col-md-10 form-group formprofile_detail input">
-								<label class="control-label profile_label" for="questionList[${status.index }].intro_no"> 항목 ${status.index +1} </label>
-								<div id="questionList[${status.index }].intro_no">${questionList.intro_no }</div>
+								<label class="control-label profile_label" for="coverletterList2.intro_no"> 항목 ${status.index +1} </label>
+								<input id="coverletterList2.intro_no" name="coverletterList2[${status.index }].intro_no" value="${questionList.intro_no }" readonly style="background-color: transparent;">
 							</div>
 							<div class="col-md-2 form-group formprofile_detail input">
-								<label class="control-label profile_label" for="questionList[${status.index }].intro_lim">글자 수</label>
-								<div id="questionList[${status.index }].intro_lim">${questionList.intro_lim }</div>
+								<label class="control-label profile_label" for="coverletterList2.intro_lim">글자 수</label>
+								<input id="coverletterList2.intro_lim" name="coverletterList2[${status.index }].intro_lim" value="${questionList.intro_lim }" readonly style="background-color: transparent;">
 							</div>
 							<div class="form-group formprofile_detail input">
-								<textarea id="questionList[${status.index }].resu_ctmt" name="questionList[${status.index }].resu_ctmt" rows="10" cols="92%" placeholder="기업에게 자신을 소개해주세요!"></textarea>		
+								<textarea id="coverletterList2_resu_ctmt${status.index }" name="coverletterList2[${status.index }].resu_ctmt" rows="10" cols="92%" placeholder="기업에게 자신을 소개해주세요!"></textarea>		
 							</div>
 						</div>
 					</div>
 					<hr color="#808080">
-					<input type="hidden" id="pick_no" name="pick_no" value="${questionList.pick_no }">
-					<input type="hidden" id="pick_code" name="pick_code" value="${questionList.pick_code }">
+					<input type="hidden" id="pick_no" name="coverletterList2[${status.index }].pick_no" value="${questionList.pick_no }">
+					<input type="hidden" id="pick_code" name="coverletterList2[${status.index }].pick_code" value="${questionList.pick_code }">
 			</c:forEach>		
 				</div>
 			
 <!-- //////////////////////////////////////////자기소개서 끝 ////////////////////////////////////////////////////////////////////////// -->					
 					
-				
 					<!-- 이력서/자기소개서 등록시 버튼!! -->	
 					<div style="text-align: center; margin-bottom: 40px;">
+						
 						<input type="hidden" id="paper_status" name="paper_status" value="">
 						<input type="hidden" id="edit_status" name="edit_status" value=""> <!-- 임시저장을 누르면 edit_status=0, 제출버튼 누르면 다른값???  -->
 						<input type="button" class="btn btn-lg btn-primary" id="justSaveResumeBtn" value="임시저장" onclick="saveORsubmbitResume(0)">
@@ -677,6 +679,8 @@ $(document).ready(function(){
 });
 
 function saveORsubmbitResume(status_resume){
+	console.log('스크립트 시작 : '+status_resume);
+	console.log($('#coverletterList2.resu_ctmt').length);
 	
 	if(status_resume =='0'){   //임시저장버튼 click
 		$('#paper_status').val(status_resume);   //paper_status = 0
@@ -684,13 +688,27 @@ function saveORsubmbitResume(status_resume){
 		console.log($('#paper_status').val());
 		console.log($('#edit_status').val());
 		
-	}else if(status_resume=='1'){  //제출완료버튼 click
-		$('#paper_status').val(status_resume);	 //paper_status = 1
-		$('#edit_status').val(4);				//edit_status=4
-		console.log($('#paper_status').val());	
-		console.log($('#edit_status').val());
+		
+	}else {  //제출완료버튼 click
+		//자소서 내용 비어있으면 제출완료 submit 안된다. <유효성체크>
+		$('textarea[id^="coverletterList2_resu_ctmt"]').each(function(){
+			if($(this).val()==""){
+				alert('자소서 내용이 전부 입력되지 않았습니다.');
+				$(this).focus();
+				return false;
+			}else{
+				$('#paper_status').val(status_resume);	 //paper_status = 1
+				$('#edit_status').val(4);				//edit_status=4
+				console.log($('#paper_status').val());	
+				console.log($('#edit_status').val());
+			}
+			
+		});
+		
 	}
+	alert('스크립트끝');
 	$('#applyResumeForm').submit();
+	
 }
 
 </script>
