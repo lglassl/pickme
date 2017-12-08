@@ -56,7 +56,8 @@ public class ResumeController {
 	@RequestMapping(value="resume.htm")
 	public String resume(UserSoloDTO usersoloDTO, Model model) throws ClassNotFoundException, SQLException {     // 파라미터 username가져가야한다.
 		System.out.println("resume.htm탄다");
-		usersoloDTO.setUsername("guswl2"); //임시로 username set 해주기 
+		usersoloDTO.setUsername("guswl4"); //임시로 username set 해주기 
+		System.out.println(usersoloDTO.getUsername());
 		
 		/*username에 해당하는 인적사항 화면에 뿌리기*/
 		UserSoloDTO userDTO = resumeService.getUserSoloInfo(usersoloDTO.getUsername());
@@ -80,7 +81,8 @@ public class ResumeController {
 	public String insertBasicResume(UserSoloDTO usersoloDTO, @RequestParam("file") MultipartFile file, Model model) throws ClassNotFoundException, SQLException, IOException {
 		
 		System.out.println("resume_insert.htm탄다");
-		usersoloDTO.setUsername("guswl2"); //임시로 username set 해주기
+		usersoloDTO.setUsername("guswl4"); //임시로 username set 해주기
+		System.out.println("set 해준 username : "+ usersoloDTO.getUsername());
 		
 		//포트폴리오 파일 업로드
 		String savedName= resumeService.uploadFile(file.getOriginalFilename(), file.getBytes());//return originalname

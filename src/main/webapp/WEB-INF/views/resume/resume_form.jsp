@@ -127,7 +127,7 @@
 							+			'</div>'
 							+			'<div class="col-md-3 formprofile_detail input">'
 							+				'<label class="control-label profile_label" for="eduList'+containerIndex+'_edu_category">구분</label>'
-							+				'<div><select id="eduList['+containerIndex+']_edu_category" name="eduList['+containerIndex+'].edu_category">'
+							+				'<div><select id="eduList'+containerIndex+'_edu_category" name="eduList['+containerIndex+'].edu_category">'
 							+					'<option value="재학중">재학중</option>'
 							+					'<option value="졸업예정">졸업예정</option>'
 							+					'<option value="졸업">졸업</option>'
@@ -278,12 +278,12 @@
 							<!-- 어학 :필수 -->
 							<label class="formprofile_name" for="formprofile">어학</label>
 								<div class="formprofile" id="formprofile" class="col-lg-12">
-									<div class="lang_formcontainer[0]">
+									<div class="lang_formcontainer0">
 										<div class="row formprofile_row">
 											<div class="col-md-3 form-group formprofile_detail input">
-												<label class="control-label profile_label" for="langList[0].lang_field">언어구분</label>
+												<label class="control-label profile_label" for="langList0_lang_field">언어구분</label>
 												<div>
-												<select id="langList[0].lang_field" name="langList[0].lang_field">
+												<select id="langList0_lang_field" name="langList[0].lang_field">
 													<option value="korean">한국어</option>
 													<option value="english">영어</option>
 													<option value="japanese">일본어</option>
@@ -294,16 +294,16 @@
 												</div>
 											</div>
 											<div class="col-md-3 form-group formprofile_detail input">
-												<label class="control-label profile_label" for="langList[0].lang_testname">언어자격증 명</label>
-												<input type="text" id="langList[0].lang_testname" name="langList[0].lang_testname" placeholder="예) toeic">
+												<label class="control-label profile_label" for="langList0_lang_testname">언어자격증 명</label>
+												<input type="text" id="langList0_lang_testname" name="langList[0].lang_testname" placeholder="예) toeic">
 											</div>
 											<div class="col-md-3 form-group formprofile_detail input">
-												<label class="control-label profile_label" for="langList[0].lang_grade">점수/급수</label>
-												<input type="text" id="langList[0].lang_grade" name="langList[0].lang_grade">
+												<label class="control-label profile_label" for="langList0_lang_grade">점수/급수</label>
+												<input type="text" id="langList0_lang_grade" name="langList[0].lang_grade">
 											</div>
 											<div class="col-md-3 form-group formprofile_detail input">
-												<label class="control-label profile_label" for="langList[0].lang_getdate">취득일</label>
-												<input type="text" id="langList[0].lang_getdate" name="langList[0].lang_getdate" placeholder="예) 2017.01">
+												<label class="control-label profile_label" for="langList0_lang_getdate">취득일</label>
+												<input type="text" id="langList0_lang_getdate" name="langList[0].lang_getdate" placeholder="예) 2017.01">
 											</div>
 										</div>
 									</div>
@@ -312,23 +312,29 @@
 									<div class="row formprofile_row" style="text-align: center">
 										<button type="button" class="btn" id="language_addbtn" style="background-color: transparent;">
 										<img id="addimg_btn" src="<%=request.getContextPath()%>/resources/resume/plus.PNG"><span><b> 어학 추가</b></span></button>
+										<button type="button" class="btn remove_btn" style="background-color: transparent;">
+										<img id="rmvimg_btn" src="<%=request.getContextPath()%>/resources/resume/minus.PNG"><span><b> 삭제</b></span></button>	
 										<div><span id="language_addbtn_alert_span"></span></div>
 									</div>
 								</div>
 								
 				<!-- 어학form추가 script// 7개까지만 생성가능 -->
 				<script type="text/javascript">
-					var lang_containerIndex=1;
+				
+					var containerIndex;
 					
 					$(document).ready(function(){
 						$('#language_addbtn').click(function(){
+							containerIndex =$(this).parents('div .formprofile').find('.remove_flag_div').length +1;
+							console.log('현재 remove_flag_div 갯수 : ' +containerIndex);
+							
 							var langStr=
-								'<div class="lang_formcontainer['+lang_containerIndex+']">'
+								'<div class="remove_flag_div" id="lang_formcontainer'+containerIndex+'">'
 							+		'<div class="row formprofile_row">'
 							+			'<div class="col-md-3 form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="langList['+lang_containerIndex+'].lang_field">언어구분</label>'
+							+				'<label class="control-label profile_label" for="langList'+containerIndex+'_lang_field">언어구분</label>'
 							+				'<div>'
-							+				'<select id="langList['+lang_containerIndex+'].lang_field" name="langList['+lang_containerIndex+'].lang_field">'
+							+				'<select id="langList'+containerIndex+'_lang_field" name="langList['+containerIndex+'].lang_field">'
 							+					'<option value="korean">한국어</option>'
 							+					'<option value="english">영어</option>'
 							+					'<option value="japanese">일본어</option>'
@@ -339,16 +345,16 @@
 							+				'</div>'
 							+			'</div>'
 							+			'<div class="col-md-3 form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="langList['+lang_containerIndex+'].lang_testname">언어자격증 명</label>'
-							+				'<input type="text" id="langList['+lang_containerIndex+'].lang_testname" name="langList['+lang_containerIndex+'].lang_testname" placeholder="예) toeic">'
+							+				'<label class="control-label profile_label" for="langList'+containerIndex+'_lang_testname">언어자격증 명</label>'
+							+				'<input type="text" id="langList'+containerIndex+'_lang_testname" name="langList['+containerIndex+'].lang_testname" placeholder="예) toeic">'
 							+			'</div>'
 							+			'<div class="col-md-3 form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="langList['+lang_containerIndex+'].lang_grade">점수/급수</label>'
-							+				'<input type="text" id="langList['+lang_containerIndex+'].lang_grade" name="langList['+lang_containerIndex+'].lang_grade">'
+							+				'<label class="control-label profile_label" for="langList'+lang_containerIndex+'_lang_grade">점수/급수</label>'
+							+				'<input type="text" id="langList'+containerIndex+'_lang_grade" name="langList['+containerIndex+'].lang_grade">'
 							+			'</div>'
 							+			'<div class="col-md-3 form-group formprofile_detail input">'
-							+				'<label class="control-label profile_label" for="langList['+lang_containerIndex+'].lang_getdate">취득일</label>'
-							+				'<input type="text" id="langList['+lang_containerIndex+'].lang_getdate" name="langList['+lang_containerIndex+'].lang_getdate" placeholder="예) 2017.01">'
+							+				'<label class="control-label profile_label" for="langList'+containerIndex+'_lang_getdate">취득일</label>'
+							+				'<input type="text" id="langList'+containerIndex+'_lang_getdate" name="langList['+containerIndex+'].lang_getdate" placeholder="예) 2017.01">'
 							+			'</div>'
 							+		'</div>'
 							+	'</div>'
@@ -356,11 +362,15 @@
 							
 							console.log('어학 추가 버튼 누름');
 							$('#space_lang_addForm').append(langStr);
-							lang_containerIndex++;
-							if(lang_containerIndex =="7"){
+							
+							if(containerIndex >= 6){
 								$('#language_addbtn').prop("disabled", true);
 								$('#language_addbtn_alert_span').html('어학 항목은 7개까지 입력가능합니다!');
 							}
+							if( $(this).parents('div .formprofile').find('.remove_flag_div').length > 0 ){
+								$(this).next().prop("disabled", false);   // 1번째 div 초과면 '삭제'버튼 '활성화'
+							}
+							
 						});
 					});
 				</script>				

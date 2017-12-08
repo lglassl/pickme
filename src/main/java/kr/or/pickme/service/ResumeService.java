@@ -59,6 +59,7 @@ public class ResumeService {
 	@Transactional
 	public String insertBasicResume(UserSoloDTO usersoloDTO) throws ClassNotFoundException, SQLException {
 		ResumeBasicDAO resumebasicDAO = session.getMapper(ResumeBasicDAO.class);
+		System.out.println("controller에서 받아오는 username : "+usersoloDTO.getUsername());
 		
 		try {
 			/*학력 list로 insert*/
@@ -66,6 +67,7 @@ public class ResumeService {
 				System.out.println("어학 받아오는 값X insert 패스");
 			}else {
 				for(int i=0; i<usersoloDTO.getEduList().size(); i++) {
+					usersoloDTO.getEduList().get(i).setUsername(usersoloDTO.getUsername());  //eduDTO의 username에 set해주기
 					resumebasicDAO.insertBasicResume_edu(usersoloDTO.getEduList().get(i));
 					System.out.println("학력 : "+usersoloDTO.getEduList().get(i).toString());
 				}System.out.println("학력 다중insert 성공!");
@@ -76,6 +78,7 @@ public class ResumeService {
 				System.out.println("경력 받아오는 값X insert 패스");
 			}else {
 				for(int i=0; i<usersoloDTO.getCareerList().size(); i++) {
+					usersoloDTO.getCareerList().get(i).setUsername(usersoloDTO.getUsername());  //careerDTO의 username에 set해주기
 					resumebasicDAO.insertBasicResume_career(usersoloDTO.getCareerList().get(i));
 					System.out.println("경력 : "+usersoloDTO.getCareerList().get(i).toString());
 				}System.out.println("경력 다중insert 성공!");
@@ -86,7 +89,8 @@ public class ResumeService {
 				System.out.println("어학 받아오는 값X insert 패스");
 			}else {
 				for(int i=0; i<usersoloDTO.getLangList().size(); i++) {
-					//resumebasicDAO.insertBasicResume_lang(usersoloDTO.getLangList().get(i));
+					usersoloDTO.getLangList().get(i).setUsername(usersoloDTO.getUsername());   //langDTO의 username에 set해주기
+					resumebasicDAO.insertBasicResume_lang(usersoloDTO.getLangList().get(i));
 					System.out.println("어학 :" + usersoloDTO.getLangList().get(i).toString());
 				}System.out.println("어학 다중 insert 성공!");
 			}
@@ -96,6 +100,7 @@ public class ResumeService {
 				System.out.println("자격증 받아오는 값X insert 패스");
 			}else {
 				for(int i=0; i<usersoloDTO.getLicenseList().size(); i++) {
+					usersoloDTO.getLicenseList().get(i).setUsername(usersoloDTO.getUsername());   //licenseDTO의 username에 set해주기
 					resumebasicDAO.insertBasicResume_license(usersoloDTO.getLicenseList().get(i));
 					System.out.println("자격증 : "+ usersoloDTO.getLicenseList().get(i).toString());
 				}System.out.println("자격증 다중 insert 성공!");
@@ -106,6 +111,8 @@ public class ResumeService {
 			if(usersoloDTO.getPortpolio_file()=="") {
 				System.out.println("포트폴리오 받아오는 값X insert 패스");
 			}else {
+				SoloPortpolioDTO portpolio =new SoloPortpolioDTO();
+				portpolio.setUsername(usersoloDTO.getUsername()); //portpolioDTO의 username에 set해주기
 				resumebasicDAO.insertBasicResume_portpolio(usersoloDTO);
 				System.out.println("포트폴리오 : "+ usersoloDTO.getPortpolio_file());
 			}
@@ -115,6 +122,7 @@ public class ResumeService {
 				System.out.println("보유기술 받아오는 값X insert 패스");
 			}else {
 				for(int i=0; i<usersoloDTO.getSkillList().size(); i++) {
+					usersoloDTO.getSkillList().get(i).setUsername(usersoloDTO.getUsername());   //skillDTO의 username에 set해주기
 					resumebasicDAO.insertBasicResume_skill(usersoloDTO.getSkillList().get(i));
 					System.out.println("보유기술 :"+usersoloDTO.getSkillList().get(i).toString());
 				}System.out.println("보유기술 다중 insert성공!");
@@ -125,6 +133,7 @@ public class ResumeService {
 				System.out.println("수상내역 받아오는 값X insert 패스");
 			}else {
 				for(int i=0; i<usersoloDTO.getAwardList().size(); i++) {
+					usersoloDTO.getAwardList().get(i).setUsername(usersoloDTO.getUsername());   //awardDTO의 username에 set해주기
 					resumebasicDAO.insertBasicResume_award(usersoloDTO.getAwardList().get(i));
 					System.out.println("수상내역 :"+usersoloDTO.getAwardList().get(i).toString());
 				}System.out.println("슈상내역 다중 insert성공!");
