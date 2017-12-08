@@ -113,6 +113,27 @@
 			return false;
 		}
 	}
+}
+
+function del(){
+	if (confirm("정말 탈퇴하시겠습니까? 탈퇴이후 같은 아이디 재사용 불가합니다.") == true){
+		$.ajax({
+			type : "post",
+			url : "member_del_comp.htm",
+			data : 'username='+$('#username').val(),
+			dataType: "json",
+			success : function(data){
+				if(data.msg == 'success'){
+					alert("완료했습니다.");
+					location.href="/logout";
+				}else{
+					alert("실패했습니다.");
+				}
+			}
+		});
+	}else
+		return;
+}
 </script>
 
 <div class="main_area">
@@ -235,7 +256,7 @@
 	</table>
 	<div style="text-align:center">
 		<input type="submit" class="btn btn-success" onclick="return dataCheck()">
-		<input type="reset" class="btn btn-danger">
+		<input type="button" value="회원탈퇴" class="btn btn-danger" onclick="del()">
 	</div>
 	</form>
 </div>

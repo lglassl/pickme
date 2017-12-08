@@ -27,28 +27,13 @@ public class HomeService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	public String compList(String ps, String cp, Model model, Locale locale, HttpServletRequest request, String username) {
+	public String compList(Model model, Locale locale, HttpServletRequest request, String username) {
 		//UI에서 처리
 		logger.info("Welcome home! The client locale is {}.", locale);
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate );
-		
-		//페이징 처리
-		int page = Integer.parseInt(ps);
-		int cpage = Integer.parseInt(cp);
-		model.addAttribute("page", page);
-		model.addAttribute("cpage", cpage);
-		int cnt = 10;
-		model.addAttribute("cnt", cnt);
-		int pagecount = 0;
-		if(cnt % page == 0) {
-			pagecount = cnt / page;
-		}else {
-			pagecount = (cnt / page) + 1;
-		}
-		model.addAttribute("pagecount", pagecount);
 		
 		//채용공고 리스트 가져오기
 		CompPickInfoDAO compPickInfoDAO = sqlsession.getMapper(CompPickInfoDAO.class);

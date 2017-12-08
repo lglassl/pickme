@@ -568,4 +568,56 @@ public class MemberController {
 		return "redirect:home.htm";
 	}
 
+	/*
+	@class : MemberController
+	@Date : 2017-12-06
+	@Author : 강희창
+	@Desc : View memberDel(String username, ModelMap map)
+	*/
+	/*개인회원탈퇴*/
+	@RequestMapping("/member_del.htm")
+	public @ResponseBody View memberDel(String username, ModelMap map)  {
+		
+		int result = 0;
+		String msg;
+		
+		result = service.memberDel(username);
+		
+		if(result > 0) {
+			msg = "success";
+		}else {
+			msg = "fail";
+		}
+
+		map.addAttribute("msg", msg);
+		
+		return jsonview;
+	}
+
+	/*
+	@class : MemberController
+	@Date : 2017-12-06
+	@Author : 강희창
+	@Desc : View memberDelComp(String username, ModelMap map)
+	*/
+	/*기업회원탈퇴*/
+	@RequestMapping("/member_del_comp.htm")
+	public @ResponseBody View memberDelComp(String username, ModelMap map)  {
+		
+		int result = 0;
+		String msg;
+		
+		result = service.memberDelComp(username);
+		
+		if(result > 0) {
+			msg = "success";
+		}else {
+			msg = "fail";
+		}
+
+		map.addAttribute("msg", msg);
+		
+		return jsonview;
+	}
+
 }

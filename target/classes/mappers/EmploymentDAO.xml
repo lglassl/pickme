@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.pickme.dao.EmploymentDAO">	
+
+	<!-- 직무코드를 이용한 직무이름 뽑기 -->
+	<select id="job_Field" resultType="String">
+		select job_field
+		from job_data
+		where job_code = #{job_code}
+	</select>
+	
+	<!-- 채용코드를 이용한 채용형태이름 뽑기 -->
+	<select id="hire_Field" resultType="String">
+		select hire_field
+		from hire_data
+		where hire_code = #{hire_code} 
+	</select>
+	
+	<!-- 직무필드를 이용한 직무코드 뽑기 -->
+	<select id="job_Code" resultType="Integer">
+		select job_code
+		from job_data
+		where job_field = #{job_field}
+	</select>
+	
+	<!-- 채용코드를 이용한 채용형태이름 뽑기 -->
+	<select id="hire_Code" resultType="Integer">
+		select hire_code
+		from hire_data
+		where hire_field = #{hire_field} 
+	</select>
+	
+	<!-- 기업회원 등록된 '공고코드'만 출력 -->
+	<select id="employment_pickcodePrint" resultType="kr.or.pickme.dto.CompPickInfoDTO">
+		select pick_code, username, job_code, hire_code
+		from comp_pick_info 
+		where username = #{username} order by pick_code asc
+	</select>
+	
+	<!-- 채용정보 insert -->
+	<insert id="employmentInsert">
+		insert into comp_pick_info(pick_code, username, pick_start, pick_end, pick_ctmt, pick_num, pick_qulify, pick_apply_num, hire_code, job_code) 
+		values((select nvl(max(pick_code),1111110)+1 from comp_pick_info), 'abc', #{pick_start}, #{pick_end}, #{pick_ctmt}, #{pick_num}, #{pick_qulify}, 5, #{hire_code}, #{job_code})
+	</insert>
+	
+	<!-- 자소서 항목 insert -->
+	<insert id="pickintro_Insert">
+		 insert into pick_intro(pick_no, pick_code, intro_no, intro_lim) 
+		 values((select nvl(max(pick_no),0)+1 from pick_intro), (select nvl(max(pick_code),1111110)+1 from comp_pick_info), #{intro_no}, #{intro_lim})
+	</insert>
+	
+	<!-- 채용형태 리스트 출력 -->
+	<select id="hiredata_Print" resultType="kr.or.pickme.dto.CompPickInfoDTO">
+		select  hire_code, hire_field 
+		from hire_data
+	</select>
+	
+	<!-- 직무종류 리스트 출력 -->
+	<select id="jobdata_Print" resultType="kr.or.pickme.dto.CompPickInfoDTO">
+		select job_code, job_field 
+		from job_data
+	</select>
+	
+	<!-- pick_code를 통한 채용정보를 select -->
+	<select id="employment_UpdatePrint" resultType="kr.or.pickme.dto.CompPickInfoDTO">
+		select *
+		from comp_pick_info
+		where pick_code= #{pick_code}
+	</select>
+	
+	<!-- pick_code를 통한 자소서 항목을 select -->
+	<select id="employment_Update_introPrint" resultType="kr.or.pickme.dto.CompPickInfoDTO">
+		select intro_lim, intro_no
+		from pick_intro
+		where pick_code= #{pick_code}
+	</select>
+	
+	
+	
+</mapper>
+
+
+
+

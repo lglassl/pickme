@@ -102,6 +102,26 @@
 			}
 		});
 	}
+	
+	function del(){
+		if (confirm("정말 탈퇴하시겠습니까? 탈퇴이후 같은 아이디 재사용 불가합니다.") == true){
+			$.ajax({
+				type : "post",
+				url : "member_del.htm",
+				data : 'username='+$('#username').val(),
+				dataType: "json",
+				success : function(data){
+					if(data.msg == 'success'){
+						alert("완료했습니다.");
+						location.href="/logout";
+					}else{
+						alert("실패했습니다.");
+					}
+				}
+			});
+		}else
+			return;
+	}
 </script>
 
 <style>
@@ -198,6 +218,7 @@
 	</table>
 	<div style="text-align:center">
 		<input type="button" value="수정" class="btn btn-success" onclick="join()">
+		<input type="button" value="회원탈퇴" class="btn btn-danger" onclick="del()">
 	</div>
 	</form>
 </div>

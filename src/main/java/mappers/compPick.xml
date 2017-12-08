@@ -45,6 +45,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on ucp.username = ci.username
 		where ci.comp_name like '%'||#{comp_name}||'%'
 	</select>
+	
+	<!-- 회원 좋아요 채용공고  -->
+	<select id="compLikeList" resultType="kr.or.pickme.dto.CompPickInfoDTO">
+		select comp.HIRE_CODE, comp.JOB_CODE, comp.PICK_APPLY_NUM, comp.PICK_CODE, comp.PICK_CTMT, comp.PICK_START, comp.PICK_END, comp.PICK_NUM, comp.PICK_QULIFY, comp.USERNAME,
+		intro.INTRO_LIM, intro.INTRO_NO, hire.HIRE_FIELD, job.JOB_FIELD
+		from comp_pick_info comp join pick_intro intro
+		on comp.pick_code = intro.pick_code
+		join hire_data hire 
+		on comp.HIRE_CODE = hire.hire_code
+		join job_data job
+		on comp.job_CODE = job.JOB_CODE
+		join like_cart cart
+		on comp.PICK_CODE = cart.PICK_CODE
+		where cart.username = #{username}
+	</select>
 <!-- 
 	<select id="boardList" resultType="kr.or.kosta.dto.BoardDTO">
 		select * from board

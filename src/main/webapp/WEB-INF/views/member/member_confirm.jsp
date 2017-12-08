@@ -25,7 +25,7 @@
 	</form>
 	<div style="margin-top:20px">
 		<form class="form-horizontal" action="/member_confirm_fb.htm" method="post">
-			<input type="submit" value="페이스북 회원" class="btn btn-default">
+			<input type="submit" value="페이스북 회원" class="btn btn-default facebook">
 		</form>
 	</div>
 </div>

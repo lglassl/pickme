@@ -35,7 +35,7 @@
 		<a href="/member_solo_find.htm">아이디 비밀번호 찾기</a>
 	</div>
 	<div style="margin-top:20px">
-		<a href="javascript:login()" class="btn btn-default">페이스북으로 로그인하기</a>
+		<a href="javascript:login()" class="btn btn-default facebook">페이스북으로 로그인하기</a>
 	</div>
 </div>
 </div>
