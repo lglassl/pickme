@@ -25,10 +25,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.pickme.dto.CompPickInfoDTO;
+import kr.or.pickme.dto.CoverletterDTO2;
 import kr.or.pickme.dto.ResumeDTO;
 import kr.or.pickme.dto.SoloAwardDTO;
 import kr.or.pickme.dto.SoloCareerDTO;
 import kr.or.pickme.dto.SoloEduDTO;
+import kr.or.pickme.dto.SoloEduDTO2;
 import kr.or.pickme.dto.SoloLangDTO;
 import kr.or.pickme.dto.SoloLicenseDTO;
 import kr.or.pickme.dto.SoloPortpolioDTO;
@@ -162,8 +164,16 @@ public class ResumeController {
 		System.out.println("받아오는 pick_code : "+pick_code);
 		System.out.println("받아오는 username : "+userDTO.getUsername());
 		
-		// username에 해당하는 pick_code가 존재하는지 확인 - 존재하면 빠꾸
+		String url="";
 		
+		/*username에 해당하는 pick_code가 존재하는지 확인 - 존재하면 빠꾸*/
+		String isPickCode= resumeService.getUsernamePerPickCode(userDTO);
+		System.out.println("username이 pick_code를 갖고있니? "+isPickCode );
+		if(isPickCode==null ) {
+			url="resume.apply";
+		}else {
+			url="redirect:/home.htm";
+		}
 		
 		/*username에 해당하는 인적사항*/
 		UserSoloDTO usersoloDTO = resumeService.getUserSoloInfo(userDTO.getUsername());
@@ -200,9 +210,14 @@ public class ResumeController {
 		
 		/*채용공고 code에 따른 자기소개서 질문 갯수와 항목 뽑는 service*/
 		List<CompPickInfoDTO> compPickinfoDTO = resumeService.getCompQuestion(pick_code);
+		System.out.println("채용공고 자소사 항목뽑을때 pick_code뽑냐?:"+compPickinfoDTO.get(0).getPick_code());
 		model.addAttribute("questionList", compPickinfoDTO);
+
 		
-		return "resume.apply";
+		
+		
+		
+		return url;
 	}
 	
 	
@@ -216,27 +231,27 @@ public class ResumeController {
 	    * @return : String 
 	*/	
 	@RequestMapping(value="apply.htm", method=RequestMethod.POST)
-	public String applyinsertCompany(ResumeDTO resumeDTO, @RequestParam("file") MultipartFile file, Model model) throws IOException, ClassNotFoundException, SQLException {
+	public String applyinsertCompany(ResumeDTO resumeDTO, @RequestParam("file2") MultipartFile file, Model model) throws IOException, ClassNotFoundException, SQLException {
 									// principal 추가!!
 		
 		System.out.println("apply.htm / POST");
 		// principal로 바꾸기  => username 설정 =>  resumeDTO.setUsername(pc.getName());
 		resumeDTO.setUsername("guswl2"); //임시로 username set
-		System.out.println(resumeDTO.getUsername());
-		System.out.println(resumeDTO.getPick_code());
-		System.out.println(resumeDTO.getPaper_status());
-		System.out.println(resumeDTO.getEdit_status());
-		
-		//포트폴리오 파일 업로드
-		/*String savedName= resumeService.uploadFile(file.getOriginalFilename(), file.getBytes());//return originalname
-		System.out.println("파일이름  :" + savedName);
-		resumeDTO.setPortpolio_file(savedName);
-		System.out.println("set되냐? "+ resumeDTO.getPortpolio_file());
-		*/
+		System.out.println("controller에 pick_code 불러와?? : "+resumeDTO.getPick_code());
 		
 		/*username과 pick_code로 생기는 resume table에 insert*/
 		resumeService.insertResumeCoverletter(resumeDTO);
 		
+		/*포트폴리오 파일 업로드*/
+		if(file==null) {
+			resumeDTO.setPortpolio_file(resumeDTO.getPortpolio_update());
+		}else {
+			String savedName= resumeService.uploadFile(file.getOriginalFilename(), file.getBytes());//return originalname
+			System.out.println("파일이름  :" + savedName);
+			resumeDTO.setPortpolio_file(savedName);
+		}
+		System.out.println("포트폴리오2 set되냐? "+ resumeDTO.getPortpolio_file());
+				
 		/*이력서 코드로 입력하는 coverletter2 & 각 이력서항목 table에 insert*/
 		String url = resumeService.insertResumeItem(resumeDTO);
 		
