@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.pickme.dao.ResumeBoardDAO;
-import kr.or.pickme.dto.BoardEntityDTO;
 import kr.or.pickme.dto.ResumeDTO;
 @Service
 public class ResumeBoardService {
@@ -32,7 +31,9 @@ public class ResumeBoardService {
 		}
 		
 		ResumeBoardDAO resumeboarddao = sqlsession.getMapper(ResumeBoardDAO.class);
+		System.out.println(resumeboarddao + " / " + resumeboarddao.toString());
 		List<ResumeDTO> list = resumeboarddao.resumeList(page, cpage);
+		System.out.println(list.toString());
 		return list;
 	}
 	//개인회원 이력서 자소서 상세보기
@@ -45,9 +46,7 @@ public class ResumeBoardService {
 	}
 	//이력서 자소서 첨삭상태
 	public void esUpdate(ResumeDTO dto) {
-		System.out.println("service진입" + dto.toString());
 		ResumeBoardDAO resumeboarddao = sqlsession.getMapper(ResumeBoardDAO.class);
-		System.out.println("service진입2");
 		resumeboarddao.esUpdate(dto);
 		
 		System.out.println("서비스" + dto);
@@ -56,14 +55,11 @@ public class ResumeBoardService {
 	
 	//이력서 자소서 제출상태
 	public void psUpdate(ResumeDTO dto) {
-		System.out.println("service진입" + dto.toString());
 		ResumeBoardDAO resumeboarddao = sqlsession.getMapper(ResumeBoardDAO.class);
-		System.out.println("service진입2  " +  resumeboarddao);
 		
 		ResumeDTO result = resumeboarddao.psUpdate(dto);
 		System.out.println(result);
 		
-		System.out.println("서비스" + dto);
 		
 	}
 }
