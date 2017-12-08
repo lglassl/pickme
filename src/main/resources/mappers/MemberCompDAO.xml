@@ -101,5 +101,20 @@
 		comp_year = #{comp_year}, comp_addr = #{comp_addr}
 		where username = #{username}		
 	</update>
+	
+	<!-- 
+	@class : MemberCompDAO
+	@Date : 2017-12-06
+	@Author : 강희창
+	@Desc : memberDel
+	 -->
+	<!-- 기업회원탈퇴 -->
+	<update id="memberDelComp">
+		update user_comp_pp
+		set
+		ENABLED = '9'
+		where username = #{param1}
+		
+	</update>
 		
 </mapper>

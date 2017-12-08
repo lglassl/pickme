@@ -12,3 +12,5 @@ ul.login_form_con li.rgt{float:left;width:29%;margin-left:1%}
 ul.login_form_con li.rgt button{height:40px}
 
 .check_area{margin:20px 0 10px 0}
+
+.facebook{background:url('/resources/images/facebook.png') 5px 4px no-repeat;background-size:25px 25px;padding-left:35px}

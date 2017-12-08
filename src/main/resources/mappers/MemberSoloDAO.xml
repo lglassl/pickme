@@ -88,5 +88,20 @@
 		where username = #{username}
 		
 	</update>
+	
+	<!-- 
+	@class : MemberCompDAO
+	@Date : 2017-12-06
+	@Author : 강희창
+	@Desc : memberDel
+	 -->
+	<!-- 개인회원탈퇴 -->
+	<update id="memberDel">
+		update user_solo
+		set
+		ENABLED = '9'
+		where username = #{param1}
+		
+	</update>
 		
 </mapper>

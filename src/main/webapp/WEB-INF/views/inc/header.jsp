@@ -225,8 +225,8 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="/comp_pick.htm"><i class="fa fa-circle-o"></i>채용리스트</a></li>
-                <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i>채용달력</a></li>
+                <li><a href="/comp_pick_list.htm"><i class="fa fa-circle-o"></i>채용리스트</a></li>
+                <li><a href="/comp_pick_cal.htm"><i class="fa fa-circle-o"></i>채용달력</a></li>
               </ul>
             </li>
             

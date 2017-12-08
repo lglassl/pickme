@@ -161,7 +161,7 @@
 		<li><a href="/join_comp.htm">기업회원가입</a></li>       
 	</ul>
 	<div style="margin-top:20px">
-		<a href="javascript:login()" class="btn btn-default">페이스북으로 가입하기</a>
+		<a href="javascript:login()" class="btn btn-default facebook">페이스북으로 가입하기</a>
 	</div>
 	<form>
 	<table class="table table-striped" style="margin-top:20px">
