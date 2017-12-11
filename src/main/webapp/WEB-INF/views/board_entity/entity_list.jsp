@@ -6,8 +6,6 @@
 
 <head>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -19,8 +17,7 @@
 <link href="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css"
 	rel="stylesheet" type="text/css">
 
-<link href="/resources/bootstrap/css/entityList.css" rel="stylesheet"
-	type="text/css">
+<link href="/resources/bootstrap/css/entityList.css" rel="stylesheet" type="text/css">
 
 
 
@@ -50,19 +47,19 @@ $(document).ready(function() {
         "lengthMenu": [[10,15,20],[10,15,20]],
     	//"class" : table-hover,
     	"searching": true,
-    	 "order": [[ 3, "desc" ]], // 정렬 (sort)
+    	 order: [[ 0, 'desc' ], [ 1, 'desc' ]], // 정렬 (sort)
         "columnDefs" : [ //이건 수정이랑 삭제버튼은 정렬버튼 없애려고 한거임
             {
                "targets" : [ -1 ], //마지막 컬럼
                "orderable" : false, //정렬하는거 없앰
             }, ]
       }); 
-
+    $('#insertModal').click(function(){
+    	$('#aa').modal('show');
+    });  
 }); 
 
-
- 
- function check(){
+ /* function check(){
 		var check = false;
 
 	    if(!insertmodalform.entity_title.value){
@@ -85,42 +82,59 @@ $(document).ready(function() {
 	    document.insertmodalform.submit();
 	    alert("등록 성공 !");
 	}
-
+ */
 
 
 </script> 
 
 <div id="content">
+<div class="main_area">
+
 	<div>
 		<table class="table table-hover"
 			style="text-align: center; background-color: white; color: black;"
 			id="entityList" >
 			<thead style="font-size: 18px">
 				<tr>
-					<th width=60% style="margin-left: 20px; width: 709px; left: 40px;">번호</th>
+					 <th style="visibility: hidden; width : 1%;"></th> <!-- 공지사항 여부 (숨김) -->
+					<th width=40% style="text-align: center; width: 709px; left: 10px;">번호</th>
 					<th width=10% style="text-align: center; width: 469px; left: 10px;">제목</th>
 					<th width=10% style="text-align: center; width: 343px; left: 10px;">작성자</th>
 					<th width=10%
 						style="text-align: center;  border-left-width: 10px; padding-right: 15px;">작성일</th>
 						<th width=5% style="text-align: center; padding-right: 10px;">조회수</th> 
+						<th style="visibility: hidden; width : 1%;"></th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="list" items="${list}">
+				<c:forEach var="list" items="${list}" varStatus="status">
 					<tr>
 					<!-- <a href="read.htm?num=${b.num}&pg=${pg}">${b.subject}</a></td>  -->
-					
+							
+							
+							<c:if test="${ list.entity_notice =='1'}">
+						 <td style="visibility: hidden; width : 1%; background: gray">${list.entity_notice}</td>
+						<td width=5% style="text-align: center; background: gray">${list.entity_code}</td>
+						<td width=20% style="text-align: center; background: gray">
+						 <a id ="detail" href="entity_Detail.htm?entity_code=${list.entity_code}">${list.entity_title}</a> 
+						</td> 
+						<td width=10% style="text-align: center; background: gray" >${list.username}</td>
+						<td width=10% style="text-align: center; background: gray">${list.entity_date}</td>
+						<td width=5% style="text-align: center; background: gray">1 </td>
+						<td style="visibility: hidden; width : 1%; background: gray"></td>
+						</c:if>
+							<c:if test="${ list.entity_notice =='0'}">
+						 <td style="visibility: hidden; width : 1%;">${list.entity_notice}</td>
 						<td width=5% style="text-align: center;">${list.entity_code}</td>
 						<td width=20% style="text-align: center;">
 						 <a id ="detail" href="entity_Detail.htm?entity_code=${list.entity_code}">${list.entity_title}</a> 
 						</td> 
 						<td width=10% style="text-align: center;">${list.username}</td>
 						<td width=10% style="text-align: center;">${list.entity_date}</td>
-						<td width=5% style="text-align: center;">1
-						</td>
-						<%-- <td><form action="Empdelete.do" method="post">
-										<button name="empno" type="submit" value="${list.empno }">삭제</button>
-								</form></td> --%>
+						<td width=5% style="text-align: center;">1 </td>
+						<td style="visibility: hidden; width : 1%;"></td>
+						</c:if>
+					
 					</tr>
 				</c:forEach>
 
@@ -131,49 +145,19 @@ $(document).ready(function() {
 				<td></td>
 				<td> </td>
 				<td> </td>
+				<td> </td>
 				<td width=10% align="right">
+				
 				<a id="insert" href="entity_insertForm.htm">
-					<button type="button" >글등록</button>
+					<button type="button" style="" >글등록</button>
 					</a>
 				</td>
 			</tr>
 		</table>
 		
-		
 
-	<!-- 	<div id="aa" class="modal fade" role="dialog">
-			Modal content
-			<div class="modal-dialog" id="modalformsize">
-				<div class="container col-sm-12" style="background-color: white;">
-					<form name="insertmodalform" action="entity_insert.htm" method="post">
-						<div class="modal-header" style="text-align: center;">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title" id="mtitle" style="font-weight: bold; font-size: 20px">글 등록</h4>
-						</div>
-						<div class="modal-body">
-							<label id="label_1">글제목</label> 
-							<input type="text" name="entity_title" id="entity_title"class="form-control"> <br>
-							 <label id="label_2">글내용</label> 
-							 <input type="text" name="entity_ctmt" id="entity_ctmt" class="form-control" style="height: 200px">
-							<br> 
-							<label id="label_2">작성자</label> 
-							 <input type="text" name="username" id="username" class="form-control" style="height: 200px">
-							<br> 
-							<input type="button" class="btn btn-default" value="등록하기" onclick="check()">
-							<button type="reset" class="btn btn-default" data-dismiss="modal">등록취소</button>
-						</div>
-					</form>
-				</div>
-			</div>
-
-
-		</div> 
-		 -->
-		
-	
-	<!-- 모달라고 -->
 
 
 	</div>
 	</div>
-	
+</div>

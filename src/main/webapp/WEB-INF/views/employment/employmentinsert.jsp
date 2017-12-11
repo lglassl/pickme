@@ -14,7 +14,7 @@
 	      $(this).find('form')[0].reset();
 	   	 });
 	   
-   		$("#pick_start").datepicker(
+   		/* $("#pick_start").datepicker(
 			{
 				changeYear: true,
 				changeMonth: true,
@@ -26,7 +26,7 @@
 				numberOfMonths : 1,
 				yearRange: 'c-80:c'
 			}
-		);
+		); */
    		
    		$("#pick_end").datepicker(
    				{
@@ -120,10 +120,10 @@
 				   		+   "<td><input type='text' class='form-control' id='intro_no' "
 				   		+   "name='list[" + skill_containerIndex + "].intro_no' placeholder='자소서 항목을 입력해주세요'> "
 						+   "<input type='text' class='form-control' id='intro_lim' "
-						+   "name='list[" + skill_containerIndex + "].intro_lim' placeholder='글자 수를 입력해주세요'></td>" 
+						+   "name='list[" + skill_containerIndex + "].intro_lim' placeholder='글자 수를 입력해주세요'></td>"
 				   		+"</tr>";
 				   		
-			        $('#intro_after').after(skillStr);
+			        $('#table').append(skillStr);
 			        console.log("plus : " + skill_containerIndex);
 			        skill_containerIndex++;
 		    }
@@ -149,17 +149,7 @@
 		        }
 		        console.log("last : " + skill_containerIndex);
 	        }
-	        
-	        /* 
-	        
-	        
-	        if(skill_containerIndex > "-1" && skill_containerIndex < "7"){
-		        $('#intro_plus').prop("disabled", false);
-		    
-		    } else {
-	        	skill_containerIndex = 1;
-	        }
-	        console.log("close : " + skill_containerIndex); */
+	 
 	     });
    });
 </script>
@@ -214,15 +204,16 @@
 <div id="content">
 	<div>
 		<form action="employmentinsert.htm" method="post">
-			<table class="table table-striped" style="width:75%" id="table">
+			<table class='table table-condensed' style="width:75%" id="table">
 				<tr>
 					<td>
-						채용 기간
+						<label>채용 기간</label>
+						<input type="hidden" name="username" value="${username}">
 					</td>
 				
 					<td>
-						채용 시작일
-						<input type="text" id="pick_start" name="pick_start">
+						<label>채용 시작일</label>
+						<input type="text" class="form-control" id="pick_start" name="pick_start" value="현재날짜 / 현재시간" readonly>
 					</td>
 				</tr>
 				<tr>
@@ -230,52 +221,60 @@
 					 &nbsp;
 					</td>
 					<td>
-						채용 마감일
-						<input type="text" id="pick_end" name="pick_end">
+						<label>채용 마감일</label>
+						<input type="text"  class="form-control" id="pick_end" name="pick_end" readonly>
 					</td>
 				</tr>
-				<tr>
-					<td>
-						직무종류 및 채용형태
-					</td>
 				
+				<tr>
 					<td>
-						직무종류 
-						<input type="text" id="hire_field" name="hire_field" readonly>
-						채용형태
-						<input type="text" id="job_field" name="job_field" readonly>
-						
-						<input type="button" class="btn btn-default" id="hirejob_select" data-toggle="modal" data-target="#Modal" value="선택"/>
-						
+						<label>직무종류 및 채용형태</label>
+					</td>
+					<td>
+						<div class="form-inline">
+							<div class="form-group">
+						      <label>직무종류:</label>
+						      <input type="text" class="form-control" id="hire_field" name="hire_field" readonly>
+						    </div>
+						    <div class="form-group">
+						      <label>채용형태:</label>
+						      <input type="text" class="form-control" id="job_field" name="job_field" readonly>
+						    </div>
+						    &nbsp;
+						    <input type="button" class="btn btn-default" id="hirejob_select" data-toggle="modal" data-target="#Modal" value="선택"/>
+						</div>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						채용 인원
+						<label>채용 인원</label>
 					</td>
 					<td>
-						<input type="text" id="pick_num" name="pick_num" value=""> &nbsp; 명
-					</td>
-				</tr>
-				<tr>
-					<td>
-						지원자격
-					</td>
-					<td>
-						<input type="text" id="pick_qulify" name="pick_qulify" value="">
+						<div class="form-inline">
+							<input type="text" class="form-control" id="pick_num" name="pick_num" value="" style="width:50%"> &nbsp; 
+							<label>명</label>
+						</div>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						채용 내용
+						<label>지원자격</label>
 					</td>
 					<td>
-						<textarea id="pick_ctmt" name="pick_ctmt" rows="4" cols="50"></textarea>
+						<input type="text" class="form-control" id="pick_qulify" name="pick_qulify" value="">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>채용 내용</label>
+					</td>
+					<td>
+						<textarea class="form-control" id="pick_ctmt" name="pick_ctmt" rows="8"></textarea>
 					</td>
 				</tr>
 				<tr id="intro_after">
 					<td>
-						자소서 항목	/ 글자수
+						<label>자소서 항목	/ 글자수</label>
 					</td>
 					<td>
 						<input type="text" class="form-control" id="intro_no" name="list[0].intro_no" placeholder="자소서 항목을 입력해주세요">
@@ -286,13 +285,11 @@
 						<input type="button" class="btn btn-default" id="intro_close" value="x"/>
 					</td>
 				</tr>
-				<tr>
-					<td colspan="2">
-						<input class="btn btn-success" type="submit" value="등록하기">
-						<input class="btn btn-success" type="reset" id="reset" name="reset" value="취소하기">
-					</td>
-				</tr>
 			</table>
+			<div class='col-sm-12'>
+	         	<input class="btn btn-success" type="submit" value="등록하기">
+	         	<input class="btn btn-success" type="reset" id="reset" name="reset" value="취소하기">
+	       	</div>
 		</form>	
 	</div>
 </div>

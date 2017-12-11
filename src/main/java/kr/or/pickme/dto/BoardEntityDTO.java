@@ -10,6 +10,14 @@ public class BoardEntityDTO {
 	private int entity_ref_step;
 	private int entity_ref_level;
 	private int entity_status;
+	private int entity_notice;
+	
+	public int getEntity_notice() {
+		return entity_notice;
+	}
+	public void setEntity_notice(int entity_notice) {
+		this.entity_notice = entity_notice;
+	}
 	public int getEntity_code() {
 		return entity_code;
 	}
@@ -69,7 +77,7 @@ public class BoardEntityDTO {
 		return "BoardEntityDTO [entity_code=" + entity_code + ", entity_title=" + entity_title + ", username="
 				+ username + ", entity_ctmt=" + entity_ctmt + ", entity_date=" + entity_date + ", entity_ref="
 				+ entity_ref + ", entity_ref_step=" + entity_ref_step + ", entity_ref_level=" + entity_ref_level
-				+ ", entity_status=" + entity_status + "]";
+				+ ", entity_status=" + entity_status + ", entity_notice=" + entity_notice + "]";
 	}
 	
 	

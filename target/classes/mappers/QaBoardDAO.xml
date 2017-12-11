@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.pickme.dao.QaBoardDAO">
+
+ <select id="qaList" resultType="kr.or.pickme.dto.BoardQaDTO">
+ 	<!-- select * from
+ 		(select rownum rn , entity_code,entity_title,username,entity_ctmt,entity_date 
+ 		from board where rownum &lt;= (${param2} * ${param1}))
+	where rn &gt;= (${param2} * ${param1} - (${param1}-1)) -->
+	select qa_code,qa_title,username,qa_ctmt,qa_date ,qa_notice
+	from board_qa 
+	order by qa_code desc
+ </select>
+ 
+
+ <select id="getCount" resultType="Integer">
+ 	select count(*) cnt 
+ 	from board_qa
+ </select>
+ 
+  <select id="getBoard" parameterType="Integer" resultType="kr.or.pickme.dto.BoardQaDTO">
+  select * from board_qa 
+  where qa_code=#{qa_code}
+ </select>
+ 
+ <insert id="qaInsert" parameterType="kr.or.pickme.dto.BoardQaDTO">
+ insert into board_qa(qa_code,qa_title,qa_ctmt,username,qa_date,
+ qa_ref,qa_ref_step,qa_ref_level,qa_status,qa_notice) 
+ values(qa_seq.nextval,#{qa_title},#{qa_ctmt},#{username},sysdate
+ ,0,0,0,0,#{qa_notice})
+ 
+ </insert>
+ 
+  <select id="qaDetail" parameterType="integer" resultType="kr.or.pickme.dto.BoardQaDTO">
+  select qa_code,qa_title,qa_ctmt,qa_date,username 
+  from board_qa 
+  where qa_code=#{qa_code}
+ </select>
+
+ 
+ 
+  <!-- public int empUpdate(Emp_DTO emp); -->
+ <update id="qaUpdate">
+ 	update board_qa 
+ 	set qa_title=#{qa_title}, qa_ctmt=#{qa_ctmt} 
+ 	where qa_code=#{qa_code}
+ </update>
+ 
+ <delete id="qadelete">
+ 	delete from 
+ 	board_qa 
+ 	where qa_code = #{qa_code}
+ </delete>
+ 
+ 
+ 
+ <!--    ///////////////////////////////////////////////////         -->
+ 
+ 
+ 
+ 
+  <insert id="regReply" parameterType="java.util.HashMap">
+   <selectKey keyProperty="qa_re_code" resultType="String" order="BEFORE">
+    select test_re_seq.nextval FROM DUAL
+  </selectKey>
+        insert into qa_reply(
+            qa_code,
+            qa_re_code,
+            qa_parent,
+            qa_re_depth,
+            qa_re_ctmt,
+            username,
+            qa_re_pwd,
+            qa_re_date
+            
+        )values(
+            #{qa_code},
+            #{qa_re_code},
+            #{qa_parent},
+            #{qa_re_depth},
+            #{qa_re_ctmt},
+            #{username},
+            #{qa_re_pwd},
+            sysdate
+        )
+    </insert>
+    <select id="getReplyList" resultType="kr.or.pickme.dto.QaReplyDTO" parameterType="java.util.HashMap">
+        select
+            qa_re_code,
+            qa_code,
+            qa_parent,
+            qa_re_depth,
+            qa_re_ctmt,
+            qa_re_date,
+            qa_re_pwd,
+            qa_re_date,
+            username
+        from
+            qa_reply
+        where
+            qa_code = #{qa_code}
+        order by qa_re_code asc
+    </select>
+    <delete id="delReply" >
+        delete
+        from
+            qa_reply
+        where
+            qa_re_code = #{qa_re_code}
+            and qa_re_pwd = #{qa_re_pwd}
+    </delete>
+</mapper>

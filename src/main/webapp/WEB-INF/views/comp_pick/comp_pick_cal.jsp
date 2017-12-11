@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 	<link rel="stylesheet" type="text/css" href="/resources/fullcalendar/fullcalendar.css">
-	<script src='/resources/fullcalendar/jquery.min.js'></script>
+	<!-- <script src='/resources/fullcalendar/jquery.min.js'></script> -->
 	<script src='/resources/fullcalendar/moment.min.js'></script>
 	<script src="/resources/fullcalendar/fullcalendar.js"></script>
 
@@ -45,7 +45,7 @@ $(document).ready(function() {
 			events: ${compInfo}
 		}],
 		eventClick: function(calEvent, jsEvent, view) {	//alertÃ¢ ¶ç¿ì±â
-	           alert(calEvent.title);
+	           /* alert(calEvent.title); */
 	           // change the border color just for fun
 	           //$(this).css('border-color', 'red');
 	       }
@@ -86,5 +86,7 @@ $(document).ready(function() {
 
 </style>
 <div id="content">
-<div id="calendar"></div>
+<div class="main_area">
+	<div id="calendar"></div>
+</div>
 </div>
