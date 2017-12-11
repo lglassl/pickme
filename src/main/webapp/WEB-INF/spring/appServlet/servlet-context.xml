@@ -16,7 +16,7 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
 	<context:annotation-config />
-	 <context:component-scan base-package="controller"/>
+
 	<context:component-scan base-package="kr.or.pickme.controller" />	
 	<context:component-scan base-package="kr.or.pickme.service" />	
 

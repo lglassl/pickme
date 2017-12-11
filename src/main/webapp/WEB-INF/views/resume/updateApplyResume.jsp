@@ -7,8 +7,12 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 
+<!-- progress bar -->  
+  <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+  <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -22,8 +26,8 @@ $(document).ready(function(){
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<div class="row">
-					<div class="col-lg-12" class="label" style="text-align: center"><h2>%%기업 이력서자기소개서 등록</h2></div>
-					<form action="apply.htm" method="POST" id="applyResumeForm" enctype="multipart/form-data">
+					<div class="col-lg-12" class="label" style="text-align: center"><h2>%%기업 이력서자기소개서 수정</h2></div>
+					<form action="applyupdate.htm" method="POST" id="applyUpdateResumeForm" enctype="multipart/form-data">
 					
 					<!-- 인적사항 : 필수-->
 					<label class="formprofile_name" for="formprofile">인적사항</label>
@@ -64,7 +68,7 @@ $(document).ready(function(){
 					<label class="formprofile_name" for="formprofile">학력</label>
 						<div class="formprofile edu_formcontainer" id="formprofile" class="col-lg-12">
 						
-						<c:forEach items="${eduList}" var="eduList" varStatus="status">
+						<c:forEach items="${eduList2}" var="eduList" varStatus="status">
 							<div class="formcontainerIndex">
 							<input type="hidden" id="edu_index" value="${status.index }">
 								<div class="row formprofile_row">
@@ -119,7 +123,7 @@ $(document).ready(function(){
 						<label class="formprofile_name" for="formprofile">경력 /인턴/대외활동</label>
 							<div class="formprofile career_formcontainer" id="formprofile" class="col-lg-12">
 							
-							<c:forEach items="${careerList}" var="careerList" varStatus="status">
+							<c:forEach items="${careerList2}" var="careerList" varStatus="status">
 								<div class="formcontainerIndex">
 								<input type="hidden" id="career_index" value="${status.index }">
 									<div class="row formprofile_row">
@@ -217,7 +221,7 @@ $(document).ready(function(){
 						<label class="formprofile_name" for="formprofile">자격증</label>
 							<div class="formprofile license_formcontainer" id="formprofile" class="col-lg-12">
 							
-						<c:forEach items="${licenseList }" var="licenseList" varStatus="status">	
+						<c:forEach items="${licenseList2 }" var="licenseList" varStatus="status">	
 								<div class="formcontainerIndex">
 									<input type="hidden" id="license_index" value="${status.index }">
 									<div class="row formprofile_row">
@@ -257,7 +261,7 @@ $(document).ready(function(){
 									<div class="form-group formprofile_detail input">
 										<label class="control-label profile_label" for="file2">파일추가</label>
 										<input type="file" id="file2" name="file2">
-										<input type="text" name="portpolio_update" value="${portpolio.portpolio_file }" readonly>
+										<input type="text" name="portpolio_update" value="${portpolio2.portpolio_file }" readonly>
 									</div>
 								</div>
 								<div class="row formprofile_row" style="text-align: center">
@@ -270,7 +274,7 @@ $(document).ready(function(){
 					<label class="formprofile_name" for="formprofile">보유기술</label>
 						<div class="formprofile skill_formcontainer" id="formprofile" class="col-lg-12">
 						
-					<c:forEach items="${skillList }" var="skillList" varStatus="status">
+					<c:forEach items="${skillList2 }" var="skillList" varStatus="status">
 							<div class="formcontainerIndex">
 								<input type="hidden" id="skill_index" value="${status.index }">
 								<div class="row formprofile_row">
@@ -300,7 +304,7 @@ $(document).ready(function(){
 					<label class="formprofile_name" for="formprofile">수상</label>
 						<div class="formprofile award_formcontainer" id="formprofile" class="col-lg-12">
 					
-						<c:forEach items="${awardList }" var="awardList" varStatus="status">
+						<c:forEach items="${awardList2 }" var="awardList" varStatus="status">
 							<div class="formcontainerIndex">
 								<input type="hidden" id="award_index" value="${status.index }">						
 								<div class="row formprofile_row">
@@ -346,30 +350,46 @@ $(document).ready(function(){
 		<label class="formprofile_name" for="formprofile">자기소개서</label>
 				<div class="formprofile question_formcontainer" id="formprofile" class="col-lg-12">
 				
-			<c:forEach items="${questionList }" var="questionList" varStatus="status">	
-				<input type="hidden" id="pick_code" name="pick_code" value="${questionList.pick_code }">
+			<c:forEach items="${coverletterList2 }" var="coverletterList2" varStatus="status">	
+				<input type="hidden" id="pick_code" name="pick_code" value="${coverletterList2.pick_code }">
+				<input type="hidden" id="resu_code" name="resu_code" value="${coverletterList2.resu_code }">
 					<div class="question_formcontainer${status.index }">
 						<input type="hidden" id="question_index" value="${status.index }">
 						<div class="row formprofile_row">
 							<div class="col-md-10 form-group formprofile_detail input">
 								<label class="control-label profile_label" for="coverletterList2.intro_no"> 항목 ${status.index +1} </label>
-								<input id="coverletterList2.intro_no" name="coverletterList2[${status.index }].intro_no" value="${questionList.intro_no }" readonly style="background-color: transparent;">
+								<input id="coverletterList2.intro_no" name="coverletterList2[${status.index }].intro_no" value="${coverletterList2.intro_no }" readonly style="background-color: transparent;">
 							</div>
 							<div class="col-md-2 form-group formprofile_detail input">
 								<label class="control-label profile_label" for="coverletterList2.intro_lim">글자 수</label>
-								<input id="coverletterList2.intro_lim" name="coverletterList2[${status.index }].intro_lim" value="${questionList.intro_lim }" readonly style="background-color: transparent;">
+								<input class="remaining" id="coverletterList2_intro_lim${status.index }" name="coverletterList2[${status.index }].intro_lim"
+										readonly style="background-color: transparent;"> <span class="count">${coverletterList2.intro_lim }</span>
 							</div>
 							<div class="form-group formprofile_detail input">
-								<textarea id="coverletterList2_resu_ctmt${status.index }" name="coverletterList2[${status.index }].resu_ctmt" rows="10" cols="92%" placeholder="기업에게 자신을 소개해주세요!"></textarea>		
+								<textarea class="count_me" id="coverletterList2_resu_ctmt${status.index }" name="coverletterList2[${status.index }].resu_ctmt" rows="10" cols="92%" placeholder="기업에게 자신을 소개해주세요!"
+											maxlength="${coverletterList2.intro_lim }">${coverletterList2.resu_ctmt }
+								</textarea>	
+							<div id="progressbar${status.index }"></div>
+							
 							</div>
+							
 						</div>
 					</div>
 					<hr color="#808080">
-					<input type="hidden" id="pick_no" name="coverletterList2[${status.index }].pick_no" value="${questionList.pick_no }">
-					<input type="hidden" id="pick_code" name="coverletterList2[${status.index }].pick_code" value="${questionList.pick_code }">
+					<input type="hidden" id="pick_no" name="coverletterList2[${status.index }].pick_no" value="${coverletterList2.pick_no }">
+					<input type="hidden" id="pick_code" name="coverletterList2[${status.index }].pick_code" value="${coverletterList2.pick_code }">
+					<input type="hidden" id="resu_code" name="coverletterList2[${status.index }].resu_code" value="${coverletterList2.resu_code }">
 			</c:forEach>		
 				</div>
-			
+
+<script type="text/javascript">
+$(function() {
+    $('.remaining').each(function() {
+        
+    });
+});
+
+</script>
 <!-- //////////////////////////////////////////자기소개서 끝 ////////////////////////////////////////////////////////////////////////// -->					
 					
 					<!-- 이력서/자기소개서 등록시 버튼!! -->	
@@ -767,7 +787,7 @@ $(document).ready(function(){
 			});
 		}
 		alert('스크립트끝');
-		$('#applyResumeForm').submit();
+		$('#applyUpdateResumeForm').submit();
 		
 	}
 

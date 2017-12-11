@@ -62,8 +62,23 @@ public interface ResumeBasicDAO {
 	
 //-------------------------------------------------------------------------------------/	
 	
-	//초기 이력서 수정
-	public int updateBasicResume(UserSoloDTO usersoloDTO) throws ClassNotFoundException, SQLException;
+	/*초기이력서 수정을 위한 기존 데이터 delete*/
+	// 초기이력서에서 - 학력 삭제
+	public int deleteBasicResume_edu(String username) throws ClassNotFoundException, SQLException;
+	// 초기이력서에서 - 경력 삭제
+	public int deleteBasicResume_career(String username) throws ClassNotFoundException, SQLException;
+	// 초기이력서에서 - 어학 삭제
+	public int deleteBasicResume_lang(String username) throws ClassNotFoundException, SQLException;
+	// 초기이력서에서 - 자격증 삭제
+	public int deleteBasicResume_license(String username) throws ClassNotFoundException, SQLException;
+	// 초기이력서에서 - 포트폴리오 삭제
+	public int deleteBasicResume_portpolio(String username) throws ClassNotFoundException, SQLException;
+	// 초기이력서에서 - 보유기술 삭제
+	public int deleteBasicResume_skill(String username) throws ClassNotFoundException, SQLException;
+	// 초기이력서에서 - 수상 삭제
+	public int deleteBasicResume_award(String username) throws ClassNotFoundException, SQLException;
+
+	
 	
 	
 }

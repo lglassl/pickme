@@ -243,6 +243,16 @@
 					<li><a href="../widgets.html"> <i class="fa fa-th"></i> <span>Q&A
 								게시판</span> <small class="label pull-right bg-green">new</small>
 					</a></li>
+					
+					
+					<!-- 현지부분 // 회원일때 이력서 등록, 초기 이력서 등록, 초기이력서 수정, 채용공고 -지원이력서 등록, 지원이력서-수정 -->
+					<li><a href="<%=request.getContextPath() %>/resume.htm">이력서 등록 버튼 click</a></li>
+					<li><a href="<%=request.getContextPath() %>/resumepage.htm">초기이력서 수정 버튼 click</a></li>
+	   				<li><a href="<%=request.getContextPath() %>/apply.htm?pick_code=1111111">공고 지원 버튼 click</a></li>
+	   				<li><a href="<%=request.getContextPath() %>/applypage.htm?resu_code=1001">공고 지원한 이력서 및 자소서 수정 버튼 click</a></li>
+					
+					
+					
 				</ul>
 			</se:authorize>
 

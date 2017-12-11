@@ -69,6 +69,104 @@
 	
 	
 	
+		
+<!-- 지원 이력서 정보 불러오기 -->	
+	<select id="getResumeCoverletter_edu" resultType="kr.or.pickme.dto.SoloEduDTO2">
+		select resu_code, username, edu_no, edu_institute, edu_start, edu_end, edu_category, edu_major, edu_grade 
+		from edu2
+		where username=#{param1} and resu_code=#{param2}
+		order by edu_no asc
+	</select>
+	
+	<select id="getResumeCoverletter_career" resultType="kr.or.pickme.dto.SoloCareerDTO2">
+		select resu_code, username, career_no, career_start, career_end, career_institute, career_task, career_activity 
+		from career2 
+		where username=#{param1} and resu_code=#{param2}
+		order by career_no asc
+	</select>
+	
+	<select id="getResumeCoverletter_lang" resultType="kr.or.pickme.dto.SoloLangDTO2">
+		select resu_code, username, lang_no, lang_field, lang_testname, lang_grade, lang_getdate 
+		from lang2 
+		where username=#{param1} and resu_code=#{param2}
+		order by lang_no asc
+	</select>
+	
+	<select id="getResumeCoverletter_license" resultType="kr.or.pickme.dto.SoloLicenseDTO2">
+		select resu_code, username, license_no, license_name, license_co, license_getdate 
+		from license2 
+		where username=#{param1} and resu_code=#{param2}
+		order by license_no asc
+	</select>
+	
+	<select id="getResumeCoverletter_portpolio" resultType="kr.or.pickme.dto.ResumeDTO">
+		select resu_code, username, portpolio_no, portpolio_file 
+		from portpolio2 
+		where username=#{param1} and resu_code=#{param2}
+	</select>
+	
+	<select id="getResumeCoverletter_skill" resultType="kr.or.pickme.dto.SoloSkillDTO2">
+		select resu_code, username, skill_no, skill_name 
+		from skill2 
+		where username=#{param1} and resu_code=#{param2}
+		order by skill_no
+	</select>
+	
+	<select id="getResumeCoverletter_award" resultType="kr.or.pickme.dto.SoloAwardDTO2">
+		select resu_code, username, award_no, award_name, award_co, award_year, award_activity 
+		from award2 
+		where username=#{param1} and resu_code=#{param2}
+		order by award_no asc
+	</select>
+
+	<select id="getResumeCoverletter_list" resultType="kr.or.pickme.dto.CoverletterDTO2">
+		select cover_no, resu_code, username, pick_code, pick_no, intro_no, intro_lim, resu_ctmt, resu_edit
+		from coverletter2
+		where username=#{param1} and resu_code=#{param2}
+		order by cover_no
+	</select>
+	
+	
+<!-- 지원 이력서 수정을 위한 기존정보 delete!! -->
+	<update id="deleteResumeCoverletter_edu">
+		delete from edu2 where username=#{param1} and resu_code=#{param2}              
+	</update>
+	
+	<update id="deleteResumeCoverletter_career">
+		delete from career2 where username=#{param1} and resu_code=#{param2} 
+	</update>
+	
+	<update id="deleteResumeCoverletter_lang">
+		delete from lang2 where username=#{param1} and resu_code=#{param2}    
+	</update>
+	
+	<update id="deleteResumeCoverletter_license">
+		delete from license2 where username=#{param1} and resu_code=#{param2}    
+	</update>
+	
+	<update id="deleteResumeCoverletter_skill">
+		delete from skill2 where username=#{param1} and resu_code=#{param2}
+	</update>
+	
+	<update id="deleteResumeCoverletter_award">
+		delete from award2 where username=#{param1} and resu_code=#{param2}
+	</update>
+	
+	<update id="deleteResumeCoverletter_portpolio">
+		delete from portpolio2 where username=#{param1} and resu_code=#{param2}
+	</update>
+	
+	<update id="deleteResumeCoverletter_coverletter">
+		delete from coverletter2 where username=#{param1} and resu_code=#{param2}
+	</update>
+
+	
+	
+	
+	
+	
+	
+	
 	
 	
 

@@ -102,6 +102,7 @@
 		order by award_no asc
 	</select>
 
+
 <!-- 채용공고코드의 자소서 항목 정보 불러오기 -->	
 	<select id="getCompQuestion" resultType="kr.or.pickme.dto.CompPickInfoDTO">
 		select pick_no, pick_code, intro_no, intro_lim 
@@ -109,6 +110,42 @@
 		where pick_code=#{pick_code}
 		order by pick_no
 	</select>
+
+
+
+
+<!-- 초기이력서 수정을 위한 기존정보 delete!! -->
+	<update id="deleteBasicResume_edu">
+		delete from edu where username=#{username}                
+	</update>
+	
+	<update id="deleteBasicResume_career">
+		delete from career where username=#{username}     
+	</update>
+	
+	<update id="deleteBasicResume_lang">
+		delete from lang where username=#{username}     
+	</update>
+	
+	<update id="deleteBasicResume_license">
+		delete from license where username=#{username}     
+	</update>
+	
+	<update id="deleteBasicResume_skill">
+		delete from skill where username=#{username}     
+	</update>
+	
+	<update id="deleteBasicResume_award">
+		delete from award where username=#{username}     
+	</update>
+	
+	<update id="deleteBasicResume_portpolio">
+		delete from portpolio where username=#{username}
+	</update>
+
+
+
+
 
 </mapper>
 

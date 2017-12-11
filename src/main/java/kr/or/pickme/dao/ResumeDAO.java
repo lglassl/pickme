@@ -50,4 +50,52 @@ public interface ResumeDAO {
 	public int insertResumeCoverletter_award(SoloAwardDTO2 soloAwardDTO2) throws ClassNotFoundException, SQLException;
 	//채용공고 이력서 - 자기소개서 등록
 	public int insertCoverletter2Table (CoverletterDTO2 coverletterDTO2) throws ClassNotFoundException, SQLException;
+	
+	
+	//---------------------------------------------------------------------------------------/
+	
+	/* 지원 이력서 정보 불러오기(수정 화면에 뿌릴 정보 얻어오는거) & 채용공고 코드에 해당하는 자소서 항목 불러오기*/
+	//지원이력서에서 - 학력 뽑기
+	public List<SoloEduDTO2> getResumeCoverletter_edu(String username, int resu_code) throws ClassNotFoundException, SQLException;
+	//지원이력서에서 - 경력 뽑기
+	public List<SoloCareerDTO2> getResumeCoverletter_career(String username, int resu_code) throws ClassNotFoundException, SQLException;
+	//지원이력서에서 - 어학 뽑기
+	public List<SoloLangDTO2> getResumeCoverletter_lang(String username, int resu_code)throws ClassNotFoundException, SQLException;
+	//지원이력서에서 - 자격증뽑기
+	public List<SoloLicenseDTO2> getResumeCoverletter_license(String username, int resu_code) throws ClassNotFoundException, SQLException;
+	//지원이력서에서 - 포트폴리오 뽑기 (1개뿐이어서 list로 안뽑는다)
+	public ResumeDTO getResumeCoverletter_portpolio(String username, int resu_code) throws ClassNotFoundException, SQLException;
+	//지원이력서에서 - 보유기술 뽑기
+	public List<SoloSkillDTO2> getResumeCoverletter_skill(String username, int resu_code) throws ClassNotFoundException, SQLException;
+	//지원이력서에서 - 수상내역 뽑기
+	public List<SoloAwardDTO2> getResumeCoverletter_award(String username, int resu_code) throws ClassNotFoundException, SQLException;
+	// 지원이력서에서 - coverletter 자기소개서 부분 뽑기
+	public List<CoverletterDTO2> getResumeCoverletter_list(String username, int resu_code) throws ClassNotFoundException, SQLException;
+		
+		
+	//-------------------------------------------------------------------------------------/	
+	
+	
+	/* 지원 이력서 수정을 위한 기존 데이터 delete*/
+	//지원 이력서에서 - 학력 삭제
+	public int deleteResumeCoverletter_edu(String username, int resu_code) throws ClassNotFoundException, SQLException;
+	//지원 이력서에서 - 경력 삭제
+	public int deleteResumeCoverletter_career(String username, int resu_code) throws ClassNotFoundException, SQLException;
+	//지원 이력서에서 - 어학 삭제
+	public int deleteResumeCoverletter_lang(String username, int resu_code) throws ClassNotFoundException, SQLException;
+	//지원 이력서에서 - 자격증 삭제
+	public int deleteResumeCoverletter_license(String username, int resu_code) throws ClassNotFoundException, SQLException;
+	//지원 이력서에서 - 포트폴리오 삭제
+	public int deleteResumeCoverletter_portpolio(String username, int resu_code) throws ClassNotFoundException, SQLException;
+	//지원 이력서에서 - 보유기술 삭제
+	public int deleteResumeCoverletter_skill(String username, int resu_code) throws ClassNotFoundException, SQLException;
+	//지원 이력서에서 - 수상 삭제
+	public int deleteResumeCoverletter_award(String username, int resu_code) throws ClassNotFoundException, SQLException;
+	//지원 이력서에서 - 자기소개서 삭제
+	public int deleteResumeCoverletter_coverletter(String username, int resu_code) throws ClassNotFoundException, SQLException;
+
+	
+	
+	
+	
 }
