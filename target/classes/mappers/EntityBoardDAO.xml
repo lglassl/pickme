@@ -9,36 +9,106 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		(select rownum rn , entity_code,entity_title,username,entity_ctmt,entity_date 
  		from board where rownum &lt;= (${param2} * ${param1}))
 	where rn &gt;= (${param2} * ${param1} - (${param1}-1)) -->
-	select entity_code,entity_title,username,entity_ctmt,entity_date from board_entity2 order by entity_code desc
+	select entity_code,entity_title,username,entity_ctmt,entity_date ,entity_notice
+	from board_entity 
+	order by entity_code desc
  </select>
  
 
  <select id="getCount" resultType="Integer">
- 	select count(*) cnt from board_entity2
+ 	select count(*) cnt 
+ 	from board_entity
  </select>
  
   <select id="getBoard" parameterType="Integer" resultType="kr.or.pickme.dto.BoardEntityDTO">
-  select * from board_entity2 where entity_code=#{entity_code}
+  select * from board_entity 
+  where entity_code=#{entity_code}
  </select>
  
  <insert id="entityInsert" parameterType="kr.or.pickme.dto.BoardEntityDTO">
- insert into board_entity2(entity_code,entity_title,entity_ctmt,username,entity_date) 
- values(test_seq.nextval,#{entity_title},#{entity_ctmt},#{username},sysdate)
+ insert into board_entity(entity_code,entity_title,entity_ctmt,username,entity_date,
+ entity_ref,entity_ref_step,entity_ref_level,entity_status,entity_notice) 
+ values(test_seq.nextval,#{entity_title},#{entity_ctmt},#{username},sysdate
+ ,0,0,0,0,#{entity_notice})
  
  </insert>
  
   <select id="entityDetail" parameterType="integer" resultType="kr.or.pickme.dto.BoardEntityDTO">
-  select * from board_entity2 where entity_code=#{entity_code}
+  select entity_code,entity_title,entity_ctmt,entity_date,username 
+  from board_entity 
+  where entity_code=#{entity_code}
  </select>
+
  
  
   <!-- public int empUpdate(Emp_DTO emp); -->
  <update id="entityUpdate">
- 	update board_entity2 set entity_title=#{entity_title}, entity_ctmt=#{entity_ctmt} where entity_code=#{entity_code}
+ 	update board_entity 
+ 	set entity_title=#{entity_title}, entity_ctmt=#{entity_ctmt} 
+ 	where entity_code=#{entity_code}
  </update>
  
  <delete id="entitydelete">
- 	delete from board_entity2 where entity_code = #{entity_code}
+ 	delete from 
+ 	board_entity 
+ 	where entity_code = #{entity_code}
  </delete>
  
+ 
+ 
+ <!--    ///////////////////////////////////////////////////         -->
+ 
+ 
+ 
+ 
+  <insert id="regReply" parameterType="java.util.HashMap">
+   <selectKey keyProperty="entity_re_code" resultType="String" order="BEFORE">
+    select test_re_seq.nextval FROM DUAL
+  </selectKey>
+        insert into entity_reply(
+            entity_code,
+            entity_re_code,
+            entity_parent,
+            entity_re_depth,
+            entity_re_ctmt,
+            username,
+            entity_re_pwd,
+            entity_re_date
+            
+        )values(
+            #{entity_code},
+            #{entity_re_code},
+            #{entity_parent},
+            #{entity_re_depth},
+            #{entity_re_ctmt},
+            #{username},
+            #{entity_re_pwd},
+            sysdate
+        )
+    </insert>
+    <select id="getReplyList" resultType="kr.or.pickme.dto.EntityReplyDTO" parameterType="java.util.HashMap">
+        select
+            entity_re_code,
+            entity_code,
+            entity_parent,
+            entity_re_depth,
+            entity_re_ctmt,
+            entity_re_date,
+            entity_re_pwd,
+            entity_re_date,
+            username
+        from
+            entity_reply
+        where
+            entity_code = #{entity_code}
+        order by entity_re_code asc
+    </select>
+    <delete id="delReply" >
+        delete
+        from
+            entity_reply
+        where
+            entity_re_code = #{entity_re_code}
+            and entity_re_pwd = #{entity_re_pwd}
+    </delete>
 </mapper>

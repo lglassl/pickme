@@ -110,6 +110,18 @@
 		order by pick_no
 	</select>
 
+<!-- 이력서 등록 및 수정 여부 확인을 위한 학력 테이블 뽑아오기 -->
+	<select id="checkExistResumeForThisUser" resultType="kr.or.pickme.dto.SoloEduDTO">
+		select * from edu where username = #{username}
+	</select>
+
+<!-- 초기이력서 수정을 위한 기존정보 delete!! -->
+	<update id="deleteBasicResume_edu">
+		delete from edu where username=#{username}                
+	</update>
+
+
+
 </mapper>
 
 

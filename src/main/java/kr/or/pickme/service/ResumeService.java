@@ -51,7 +51,8 @@ public class ResumeService {
 	    * @Method Name : insertBasicResume
 	    * @작성일 : 2017. 12. 02.
 	    * @작성자 : 박현지
-	    * @변경이력 : 포트폴리오는 1개만 받아와서 DB에 insert / for문 안돌린다.
+	    * @변경이력 : 1. 포트폴리오는 1개만 받아와서 DB에 insert -> for문 안돌린다.
+	    * 		   2. 이력서 각 DTO에 username set한다
 	    * @Method 설명 : **초기 이력서 등록 처리 
 	    * @param : UserSoloDTO
 	    * @return : String 
@@ -169,11 +170,11 @@ public class ResumeService {
 	
 	
 	/*	
-	    * @Method Name : uploadFile
+	    * @Method Name : getUserSoloInfo
 	    * @작성일 : 2017. 12. 04.
 	    * @작성자 : 박현지
 	    * @변경이력 : 
-	    * @Method 설명 : **채용공고 이력서에 뜨는 개인정보 인적사항
+	    * @Method 설명 : **초기이력서 등록, 초기이력서 수정, 지원이력서 등록, 지원이력서 수정 페이지에 뜨는 username의 인적사항
 	    * @param : String
 	    * @return : UserSoloDTO 
 	*/
@@ -183,6 +184,17 @@ public class ResumeService {
 		return usersoloDTO;
 	}
 	
+	
+	
+	/*	
+	    * @Method Name : getBasicResume_____
+	    * @작성일 : 2017. 12. 04.
+	    * @작성자 : 박현지
+	    * @변경이력 : 
+	    * @Method 설명 : **초기이력서 수정, 지원이력서 등록 페이지에 뜨는 username의 이력서 항목들 뽑기!!
+	    * @param : String
+	    * @return : UserSoloDTO 
+	*/
 	/* @Method 설명 : **username에 해당하는 학력 list 뽑기*/
 	public List<SoloEduDTO> getBasicResume_edu(String username) throws ClassNotFoundException, SQLException {
 		ResumeBasicDAO resumebasicDAO = session.getMapper(ResumeBasicDAO.class);
@@ -251,7 +263,16 @@ public class ResumeService {
 		return soloawardDTO;
 	}
 	
-	/* @Method 설명 : **pick_code에 해당하는 자소서 항목내용, 자소서 글자수 뽑기*/
+	
+	/*	
+	    * @Method Name : getBasicResume~~~~
+	    * @작성일 : 2017. 12. 04.
+	    * @작성자 : 박현지
+	    * @변경이력 : 
+	    * @Method 설명 :  ** 지원이력서 페이지에서 보여지는 pick_code에 해당하는 자소서 항목내용, 자소서 글자수 뽑기
+	    * @param : String
+	    * @return : UserSoloDTO 
+	*/
 	public List<CompPickInfoDTO> getCompQuestion(int pick_code) throws ClassNotFoundException, SQLException{
 		ResumeBasicDAO resumebasicDAO = session.getMapper(ResumeBasicDAO.class);
 		List<CompPickInfoDTO> compPickinfoDTO = resumebasicDAO.getCompQuestion(pick_code);
@@ -264,8 +285,38 @@ public class ResumeService {
 		return compPickinfoDTO;
 	}
 
+	
+	
+	
 	/*	
-	    * @Method Name : getUsernamePerPickCode
+	    * @Method Name : deleteOriginResumeListForUpdatingBasicResume
+	    * @작성일 : 2017. 12. 09
+	    * @작성자 : 박현지
+	    * @변경이력 : 
+	    * @Method 설명 : **초기이력서 수정 처리 >> 기존의 초기 이력서 내용 전부 delete한다 
+	    * @param : String
+	    * @return : UserSoloDTO 
+	*/
+	public void deleteOriginResumeListForUpdatingBasicResume(String username) throws ClassNotFoundException, SQLException {
+		
+		ResumeBasicDAO resumebasicDAO = session.getMapper(ResumeBasicDAO.class);
+		// 파라미터 String으로 바꾸고!!!! 
+		System.out.println("controller에서 받아오는 username : "+ username);
+		//System.out.println("controller에서 받아오는 username : "+ userSoloDTO.getUsername());
+
+		//학력 list 삭제
+		resumebasicDAO.deleteBasicResume_edu(username);
+
+		
+		
+		 
+	}
+	
+	
+	
+	
+	/*	
+	    * @Method Name : getUsernamePerPickCode()
 	    * @작성일 : 2017. 12. 06.
 	    * @작성자 : 박현지
 	    * @변경이력 : 

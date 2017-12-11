@@ -27,11 +27,24 @@ public class UserSoloDTO {
 	private String portpolio_file;
 	
 	public String getPortpolio_file() {
-	return portpolio_file;
+		return portpolio_file;
 	}
+	
 	public void setPortpolio_file(String portpolio_file) {
-	this.portpolio_file = portpolio_file;
+		this.portpolio_file = portpolio_file;
 	}
+	
+	private String portpolio_update;
+	
+	public String getPortpolio_update() {
+		return portpolio_update;
+	}
+	public void setPortpolio_update(String portpolio_update) {
+		this.portpolio_update = portpolio_update;
+	}
+	
+//////////////////////////////////////////////////////////////////////////	
+	
 	public String getUsername() {
 		return username;
 	}
@@ -51,7 +64,7 @@ public class UserSoloDTO {
 		this.password = password;
 	}
 	public String getSolo_birth() {
-		return solo_birth.substring(0, 10);
+		return solo_birth;
 	}
 	public void setSolo_birth(String solo_birth) {
 		this.solo_birth = solo_birth;

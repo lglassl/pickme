@@ -54,10 +54,10 @@ public class ResumeController {
 	    * @return : String 
 	*/	
 	@RequestMapping(value="resume.htm")
-	public String resume(UserSoloDTO usersoloDTO, Model model) throws ClassNotFoundException, SQLException {     // 파라미터 username가져가야한다.
+	public String resume(UserSoloDTO usersoloDTO, Model model, Principal prin) throws ClassNotFoundException, SQLException {     // 파라미터 username가져가야한다.
 		System.out.println("resume.htm탄다");
-		usersoloDTO.setUsername("guswl4"); //임시로 username set 해주기 
-		System.out.println(usersoloDTO.getUsername());
+		usersoloDTO.setUsername(prin.getName()); //임시로 username set 해주기 
+		System.out.println("받아오는 username"+usersoloDTO.getUsername());
 		
 		/*username에 해당하는 인적사항 화면에 뿌리기*/
 		UserSoloDTO userDTO = resumeService.getUserSoloInfo(usersoloDTO.getUsername());
@@ -78,17 +78,17 @@ public class ResumeController {
 	    * @return : String 
 	*/
 	@RequestMapping(value="resume/insert.htm", method=RequestMethod.POST)
-	public String insertBasicResume(UserSoloDTO usersoloDTO, @RequestParam("file") MultipartFile file, Model model) throws ClassNotFoundException, SQLException, IOException {
+	public String insertBasicResume(UserSoloDTO usersoloDTO, @RequestParam("file") MultipartFile file, Model model,Principal prin) throws ClassNotFoundException, SQLException, IOException {
 		
-		System.out.println("resume_insert.htm탄다");
-		usersoloDTO.setUsername("guswl4"); //임시로 username set 해주기
-		System.out.println("set 해준 username : "+ usersoloDTO.getUsername());
+		System.out.println("resume/insert.htm탄다");
+		usersoloDTO.setUsername(prin.getName()); //임시로 username set 해주기
+		System.out.println("받아오는 username: "+ usersoloDTO.getUsername());
 		
 		//포트폴리오 파일 업로드
 		String savedName= resumeService.uploadFile(file.getOriginalFilename(), file.getBytes());//return originalname
 		System.out.println("파일이름  :" + savedName);
 		usersoloDTO.setPortpolio_file(savedName);
-		System.out.println("set되냐? "+ usersoloDTO.getPortpolio_file());
+		System.out.println("포트폴리오 set되냐? "+ usersoloDTO.getPortpolio_file());
 		
 		String url=resumeService.insertBasicResume(usersoloDTO);
 		
@@ -107,10 +107,9 @@ public class ResumeController {
 	    * @return : String 
 	*/
 	@RequestMapping(value="resume/update.htm", method=RequestMethod.GET)
-	public String updateBasicResume(UserSoloDTO userDTO, Model model) throws ClassNotFoundException, SQLException {
+	public String updateBasicResume(UserSoloDTO userDTO, Model model, Principal prin) throws ClassNotFoundException, SQLException {
 		System.out.println("apply.htm탄다");
-		//userDTO.setUsername(pc.getName());  principal쓸때 username쓰는 방법!!!
-		userDTO.setUsername("guswl2");  //임시로 username set!
+		userDTO.setUsername(prin.getName());  //임시로 username set!
 		System.out.println("받아오는 username : "+userDTO.getUsername());
 		
 		/*username에 해당하는 인적사항*/
@@ -150,6 +149,52 @@ public class ResumeController {
 	}
 	
 	
+	
+	/*	
+	    * @Method Name : updateBasicResume()
+	    * @작성일 : 2017. 12. 05.
+	    * @작성자 : 박현지
+	    * @변경이력 : 
+	    * @Method 설명 : ** 초기이력서 수정 완료 시, username이 가지고 있던 데이터 전부 delete, 새로 insert
+	    * @param : UserSoloDTO, MultipartFile
+	    * @return : String 
+	*/
+	@RequestMapping(value="resume/update.htm", method=RequestMethod.POST)
+	public String updateBasicResume(UserSoloDTO userSoloDTO, @RequestParam("file") MultipartFile file, Model model, Principal prin) throws IOException, ClassNotFoundException, SQLException {
+		
+		System.out.println("resume/update.htm=== 수정 처리 controller ");
+		userSoloDTO.setUsername(prin.getName()); //임시로 username set 해주기
+		System.out.println("set 해준 username : "+ userSoloDTO.getUsername());
+		
+		//포트폴리오 파일 업로드
+		if(file==null) {
+			userSoloDTO.setPortpolio_file(userSoloDTO.getPortpolio_update());
+		}else {
+			String savedName= resumeService.uploadFile(file.getOriginalFilename(), file.getBytes());//return originalname
+			System.out.println("파일이름  :" + savedName);
+			userSoloDTO.setPortpolio_file(savedName);
+			System.out.println("set되냐? "+ userSoloDTO.getPortpolio_file());
+		}
+		
+	
+		
+		// select해서 가져온 정보 delete
+		/*resumeService.deleteOriginResumeListForUpdatingBasicResume(pc.getName());     
+		   -> principal 이용해서  파라미터로 username보내주기    -> service는 파라미터를 String 으로 !!!! */
+		resumeService.deleteOriginResumeListForUpdatingBasicResume(prin.getName());
+		
+		// 새로 입력한 정보 insert
+		String url=resumeService.insertBasicResume(userSoloDTO);
+		
+		return null; // 수정한 페이지 유지
+	}
+	
+	
+	
+	
+	
+	
+	
 	/*	
 	    * @Method Name : applyCompany()
 	    * @작성일 : 2017. 12. 04.
@@ -160,9 +205,9 @@ public class ResumeController {
 	    * @return : String 
 	*/	
 	@RequestMapping(value="apply.htm", method=RequestMethod.GET)
-	public String applyCompany(int pick_code, UserSoloDTO userDTO, Model model) throws ClassNotFoundException, SQLException {
+	public String applyCompany(int pick_code, UserSoloDTO userDTO, Model model, Principal prin) throws ClassNotFoundException, SQLException {
 		System.out.println("apply.htm탄다");
-		userDTO.setUsername("guswl2");  //임시로 username set!
+		userDTO.setUsername(prin.getName());  //임시로 username set!
 		System.out.println("받아오는 pick_code : "+pick_code);
 		System.out.println("받아오는 username : "+userDTO.getUsername());
 		
@@ -210,14 +255,11 @@ public class ResumeController {
 		List<SoloAwardDTO> soloawardDTO = resumeService.getBasicResume_award(userDTO.getUsername());
 		model.addAttribute("awardList", soloawardDTO);
 		
+		
 		/*채용공고 code에 따른 자기소개서 질문 갯수와 항목 뽑는 service*/
 		List<CompPickInfoDTO> compPickinfoDTO = resumeService.getCompQuestion(pick_code);
 		System.out.println("채용공고 자소사 항목뽑을때 pick_code뽑냐?:"+compPickinfoDTO.get(0).getPick_code());
 		model.addAttribute("questionList", compPickinfoDTO);
-
-		
-		
-		
 		
 		return url;
 	}
@@ -233,12 +275,10 @@ public class ResumeController {
 	    * @return : String 
 	*/	
 	@RequestMapping(value="apply.htm", method=RequestMethod.POST)
-	public String applyinsertCompany(ResumeDTO resumeDTO, @RequestParam("file2") MultipartFile file, Model model) throws IOException, ClassNotFoundException, SQLException {
-									// principal 추가!!
+	public String applyinsertCompany(ResumeDTO resumeDTO, @RequestParam("file2") MultipartFile file, Model model, Principal prin) throws IOException, ClassNotFoundException, SQLException {
 		
 		System.out.println("apply.htm / POST");
-		// principal로 바꾸기  => username 설정 =>  resumeDTO.setUsername(pc.getName());
-		resumeDTO.setUsername("guswl2"); //임시로 username set
+		resumeDTO.setUsername(prin.getName()); 
 		System.out.println("controller에 pick_code 불러와?? : "+resumeDTO.getPick_code());
 		
 		/*username과 pick_code로 생기는 resume table에 insert*/

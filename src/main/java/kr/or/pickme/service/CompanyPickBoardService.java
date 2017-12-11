@@ -84,6 +84,7 @@ public class CompanyPickBoardService {
 					jsonobj.put("title", userComPpList.get(i).getComp_name()+ "("+compPickList.get(j).getJob_field()+")");
 					jsonobj.put("start", compPickList.get(j).getPick_start());
 					jsonobj.put("end", compPickList.get(j).getPick_end());
+					jsonobj.put("url", "comp_pick.htm?pick_code="+compPickList.get(i).getPick_code());
 					jsonarr.add(jsonobj);
 				}
 			}
