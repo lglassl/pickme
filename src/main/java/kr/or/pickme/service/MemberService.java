@@ -9,6 +9,7 @@ package kr.or.pickme.service;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.pickme.dao.MemberCompDAO;
 import kr.or.pickme.dao.MemberDAO;
@@ -157,6 +158,7 @@ public class MemberService {
 		MemberSoloDAO dao = sqlsession.getMapper(MemberSoloDAO.class);
 		
 		UserSoloDTO dto = dao.getSoloInfo(username);
+		System.out.println(dto);
 		
 		return dto;
 		
@@ -222,6 +224,7 @@ public class MemberService {
 	@Desc : int compUpdate(UserComPpDTO dto)
 	*/
 	/*개인회원 회원정보 수정-파일업로드 포함*/
+	@Transactional
 	public int compUpdate(UserComPpDTO dto) {
 		
 		int result = 0;
@@ -250,6 +253,7 @@ public class MemberService {
 	@Desc : int compUpdateNf(UserComPpDTO dto)
 	*/
 	/*개인회원 회원정보 수정-파일업로드 미포함*/
+	@Transactional
 	public int compUpdateNf(UserComPpDTO dto) {
 		
 		int result = 0;

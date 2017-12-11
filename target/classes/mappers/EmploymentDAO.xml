@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where job_field = #{job_field}
 	</select>
 	
-	<!-- 채용코드를 이용한 채용형태이름 뽑기 -->
+	<!-- 채용필드를 이용한 채용형태코드 뽑기 -->
 	<select id="hire_Code" resultType="Integer">
 		select hire_code
 		from hire_data
@@ -43,14 +43,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 채용정보 insert -->
 	<insert id="employmentInsert">
 		insert into comp_pick_info(pick_code, username, pick_start, pick_end, pick_ctmt, pick_num, pick_qulify, pick_apply_num, hire_code, job_code) 
-		values((select nvl(max(pick_code),1111110)+1 from comp_pick_info), 'abc', #{pick_start}, #{pick_end}, #{pick_ctmt}, #{pick_num}, #{pick_qulify}, 5, #{hire_code}, #{job_code})
+		values((select nvl(max(pick_code),1111110)+1 from comp_pick_info), #{username}, sysdate, #{pick_end}, #{pick_ctmt}, #{pick_num}, #{pick_qulify}, #{pick_apply_num}, #{hire_code}, #{job_code})
 	</insert>
 	
 	<!-- 자소서 항목 insert -->
 	<insert id="pickintro_Insert">
-		 insert into pick_intro(pick_no, pick_code, intro_no, intro_lim) 
-		 values((select nvl(max(pick_no),0)+1 from pick_intro), (select nvl(max(pick_code),1111110)+1 from comp_pick_info), #{intro_no}, #{intro_lim})
+		insert into pick_intro(pick_no, pick_code, intro_no, intro_lim) 
+		values((select nvl(max(pick_no),0)+1 from pick_intro), (select nvl(max(pick_code),1111110)+1 from comp_pick_info), #{intro_no}, #{intro_lim})
 	</insert>
+	
+	
+	<!-- 채용정보 수정 중 공고코드에 대한 자소서항목번호를 전부 다 delete -->
+	<update id="employmentUpdate">
+		update comp_pick_info 
+		set pick_start= #{pick_start}, pick_end= #{pick_end}, pick_ctmt= #{pick_ctmt}, pick_num= #{pick_num}, pick_qulify= #{pick_qulify},
+			hire_code= #{hire_code}, job_code= #{job_code}
+		where pick_code = #{pick_code}
+	</update>
+	
+	<!-- 자소서 항목 delete -->
+	<delete id="pickintro_Delete">
+		delete from pick_intro where pick_code=#{pick_code}
+	</delete>
+	
+	<!-- 채용정보 수정 중 공고코드에 대한 자소서항목과 글자수를 전부 다 insert -->
+	<!-- 자소서 항목 insert -->
+	<insert id="pickintro_Update_Insert">
+		insert into pick_intro(pick_no, pick_code, intro_no, intro_lim) 
+		values((select nvl(max(pick_no),0)+1 from pick_intro), #{pick_code}, #{intro_no}, #{intro_lim})
+	</insert>
+	
+	
+	
 	
 	<!-- 채용형태 리스트 출력 -->
 	<select id="hiredata_Print" resultType="kr.or.pickme.dto.CompPickInfoDTO">
@@ -64,6 +88,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from job_data
 	</select>
 	
+	
+	
+	
+	
 	<!-- pick_code를 통한 채용정보를 select -->
 	<select id="employment_UpdatePrint" resultType="kr.or.pickme.dto.CompPickInfoDTO">
 		select *
@@ -73,12 +101,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- pick_code를 통한 자소서 항목을 select -->
 	<select id="employment_Update_introPrint" resultType="kr.or.pickme.dto.CompPickInfoDTO">
-		select intro_lim, intro_no
+		select pick_no, intro_lim, intro_no
 		from pick_intro
 		where pick_code= #{pick_code}
+		order by pick_no asc
 	</select>
 	
 	
+	
+	
+	<!-- 기업 상세요강을 화면에 출력하기 위한 기업정보 select -->
+	<select id="employmentDetail_Compinfo" resultType="kr.or.pickme.dto.UserComPpDTO">
+		select *
+		from comp_info
+		where username = #{username}
+	</select>
+	
+	<!-- 기업 상세요강을 화면에 출력하기 위한 기업 회원정보 select -->
+	<select id="employmentDetail_UserComp" resultType="kr.or.pickme.dto.UserComPpDTO">
+		select *
+		from user_comp_pp
+		where username = #{username}
+	</select>
+	
+	<!-- 기업 상세요강을 화면에 출력하기 위해 기업회원 아이디와 공고코드로 select -->
+	<select id="employmentDetail_CompPick" resultType="kr.or.pickme.dto.CompPickInfoDTO">
+		select *
+		from comp_pick_info
+		where username= #{param1} and pick_code= #{param2}
+	</select>
 	
 </mapper>
 

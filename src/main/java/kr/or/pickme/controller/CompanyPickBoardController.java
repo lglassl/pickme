@@ -11,7 +11,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
 
 import kr.or.pickme.service.CompanyPickBoardService;
-
+/*
+@class : CompanyPickBoardController
+@Date : 2017-12-05
+@Author : 임혜성
+@Desc : 채용공고 관련 controller
+*/
 @Controller
 public class CompanyPickBoardController {
 	

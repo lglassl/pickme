@@ -71,8 +71,15 @@
 		<constructor-arg value="C:\\kosta166\\upload"></constructor-arg>
 	</bean>
 	
-<bean name="jsonview" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+	<!-- json view -->
+	<bean name="jsonview" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
 	 
+	
+	<!-- Transaction 만들기 -->
+   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+   		<property name="dataSource" ref="driverManagerDataSource" /> 
+   </bean>
+	
 	<!-- @Transactional 이 적용된 곳에 commit과 rollback을 관리하겠다 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	

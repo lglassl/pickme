@@ -58,12 +58,17 @@ public interface ResumeBasicDAO {
 	public List<SoloAwardDTO> getBasicResume_award(String username) throws ClassNotFoundException, SQLException;
 	//채용공고코드에 해당하는 자소서 질문/글자수 뽑기
 	public List<CompPickInfoDTO> getCompQuestion(int pick_code) throws ClassNotFoundException, SQLException;
-	
+//-------------------------------------------------------------------------------------/	
+		
+	//이력서 등록 및 수정을 위한 데이터 뽑아오기(학력)
+	public List <SoloEduDTO> checkExistResumeForThisUser(String username);
 	
 //-------------------------------------------------------------------------------------/	
 	
-	//초기 이력서 수정
-	public int updateBasicResume(UserSoloDTO usersoloDTO) throws ClassNotFoundException, SQLException;
+	/*초기이력서 수정을 위한 기존 데이터 delete*/
+	// 초기이력서에서 - 학력 삭제
+	public int deleteBasicResume_edu(String username) throws ClassNotFoundException, SQLException;
+	
 	
 	
 }

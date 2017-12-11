@@ -188,6 +188,9 @@ td,
 th {
   padding: 0;
 }
+
+.table1{border:1px solid #aaa}
+.table2{border:1px solid #aaa;border-top:2px solid #000}
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
 @media print {
   *,

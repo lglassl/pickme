@@ -3,7 +3,6 @@ package kr.or.pickme.controller;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -18,11 +17,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.or.pickme.dto.LetterDTO;
 import kr.or.pickme.dto.UserComPpDTO;
 import kr.or.pickme.dto.UserSoloDTO;
 import kr.or.pickme.service.HomeService;
+import kr.or.pickme.service.LetterService;
 import kr.or.pickme.service.MemberService;
 
 /*
@@ -43,6 +43,9 @@ public class HomeController {
 	@Autowired
 	private HomeService homeService;
 	
+	@Autowired
+	LetterService lService;
+	
 	@RequestMapping(value = "home.htm")
 	public String home(Locale locale, Model model, HttpServletRequest request) {
 		logger.info("Welcome home! The client locale is {}.", locale);
@@ -55,7 +58,8 @@ public class HomeController {
 		/*security로 로그인한 아이디 정보 - 2017-12-05*/
 		Authentication id = SecurityContextHolder.getContext().getAuthentication();
 		String username = id.getName();
-		
+		String solo_name = "";
+		System.out.println("username " + username);
 		HttpSession session = request.getSession();
 		
 		String auth = service.checkAuth(username);
@@ -63,20 +67,38 @@ public class HomeController {
 			if(auth.equals("ROLE_USER")) {
 				
 				UserSoloDTO solo = service.getSoloInfo(username);
-						
+				
+				//회원 아이디 session
+				session.setAttribute("username", username);
+				//회원 이름 session
 				session.setAttribute("sname", solo.getSolo_name());
+				solo_name = solo.getSolo_name();
+				
+			    /*본인에게 온 쪽지목록*/
+	            List<LetterDTO> list = lService.letterList(username);
+	            int letterCount = lService.letterCount(username);
+	            
+	            session.setAttribute("letterList", list);
+	            session.setAttribute("lCount", letterCount);
 				
 			}else if(auth.equals("ROLE_COMP")) {
 				
 				UserComPpDTO comp =service.getCompInfo(username);
-				
+				session.setAttribute("username", username);
 				session.setAttribute("cname", comp.getComp_name());
 				session.setAttribute("clogo", comp.getComp_logo());
 				
 			}
 		}
+		
+		/*쪽지보낼때 회원목록*/
+	      List<UserSoloDTO> memberList = new ArrayList<>();
+	      memberList = lService.memberList();
+	      
+	      session.setAttribute("memberList", memberList);
+		
 		//아이디 받아오기
-		return homeService.compList(model, locale, request, username);
+		return homeService.compList(model, locale, request, solo_name, username);
 	}
 	
 }

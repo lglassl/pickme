@@ -12,6 +12,13 @@
 
 <mapper namespace="kr.or.pickme.dao.ResumeDAO">
 
+<!-- username에 해당하는 pick_code가 존재하는지 확인 -> 존재하면 페이지 진입금지! -->
+	<select id="getUsernamePerPickCode" parameterType="kr.or.pickme.dto.UserSoloDTO" resultType="String">
+		select pick_code 
+		from resume 
+		where username=#{username}
+	</select>
+	
 <!-- 채용 공고에 지원// resume table에 resu_code 생기면서 insert -->
 	<insert id="insertResumeTable" parameterType="kr.or.pickme.dto.ResumeDTO">
 		insert into resume (resu_code, username, paper_status, edit_status, pick_code)
@@ -20,9 +27,49 @@
 
 <!-- 채용 공고에 지원//resu_code 얻어와서  각 이력서 항목2 table에   insert -->	
  	<insert id="insertResumeCoverletter_edu" parameterType="kr.or.pickme.dto.SoloEduDTO2">
-		insert into edu2(resu_code, username, edu_no, edu_institute, edu_start, edu_end, edu_category, edu_major, edu_grade)
-		values ((select resu_code from resume where username=#{username}), #{username}, (select nvl(max(edu_no),100000)+1 from edu2), #{edu_institute}, #{edu_start}, #{edu_end}, #{edu_category}, #{edu_major}, #{edu_grade} ); 
+		insert into edu2 (resu_code, username, edu_no, edu_institute, edu_start, edu_end, edu_category, edu_major, edu_grade)
+		values ((select resu_code from resume where username=#{username}), #{username}, (select nvl(max(edu_no),100000)+1 from edu2), #{edu_institute}, #{edu_start}, #{edu_end}, #{edu_category}, #{edu_major}, #{edu_grade} ) 
 	</insert>
+	<insert id="insertResumeCoverletter_career" parameterType="kr.or.pickme.dto.SoloCareerDTO2">
+		insert into career2 (resu_code, username, career_no, career_start, career_end, career_institute, career_task, career_activity)
+		values ((select resu_code from resume where username=#{username}), #{username}, (select nvl(max(career_no),600000)+1 from career2),#{career_start}, #{career_end}, #{career_institute}, #{career_task}, #{career_activity} )
+	</insert>
+	<insert id="insertResumeCoverletter_lang" parameterType="kr.or.pickme.dto.SoloLangDTO2">
+		insert into lang2 (resu_code, username, lang_no, lang_field, lang_testname, lang_grade, lang_getdate)
+		values ((select resu_code from resume where username=#{username}), #{username}, (select nvl(max(lang_no),500000)+1 from lang2), #{lang_field}, #{lang_testname}, #{lang_grade}, #{lang_getdate} )
+	</insert>
+	<insert id="insertResumeCoverletter_license" parameterType="kr.or.pickme.dto.SoloLicenseDTO2">
+		insert into license2 (resu_code, username, license_no, license_name, license_co, license_getdate)
+		values ((select resu_code from resume where username=#{username}),#{username}, (select nvl(max(license_no), 400000)+1 from license2), #{license_name}, #{license_co}, #{license_getdate})
+	</insert>
+	<insert id="insertResumeCoverletter_portpolio">
+		insert into portpolio2 (resu_code, username, portpolio_no, portpolio_file)
+		values ((select resu_code from resume where username=#{username}),#{username}, (select nvl(max(portpolio_no),200000)+1 from portpolio2), #{portpolio_file} )
+	</insert>
+	<insert id="insertResumeCoverletter_skill" parameterType="kr.or.pickme.dto.SoloSkillDTO2">
+		insert into skill2(resu_code, username, skill_no, skill_name)
+		values ((select resu_code from resume where username=#{username}), #{username}, (select nvl(max(skill_no),700000)+1 from skill2), #{skill_name} )
+	</insert>
+	<insert id="insertResumeCoverletter_award" parameterType="kr.or.pickme.dto.SoloAwardDTO2">
+		insert into award2 (resu_code, username, award_no, award_name, award_co, award_year, award_activity)
+		values ((select resu_code from resume where username=#{username}), #{username}, (select nvl(max(award_no),300000)+1 from award2), #{award_name}, #{award_co}, #{award_year}, #{award_activity})  
+	</insert>	
+	<insert id="insertCoverletter2Table" parameterType="kr.or.pickme.dto.CoverletterDTO2">
+		insert into coverletter2(cover_no, resu_code, username, pick_code, pick_no, intro_no, intro_lim, resu_ctmt)
+		values ( (select nvl(max(cover_no),0) +1 from coverletter2),
+				 (select resu_code from resume where username=#{username}), 
+				 #{username}, 
+				 #{pick_code}, 
+				 #{pick_no}, 
+				 #{intro_no}, 
+				 #{intro_lim}, 
+				 #{resu_ctmt}
+				 )
+	</insert>
+	
+	
+	
+	
 	
 
 </mapper>

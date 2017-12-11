@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.pickme.dao.LetterDAO">
+
+<!-- 
+@class : LetterDAO
+@Date : 2017-12-05
+@Author : 강희창
+@Desc : 
+ -->
+ 	
+	<!-- 
+	@class : LetterDAO
+	@Date : 2017-12-05
+	@Author : 강희창
+	@Desc : sendLetter
+	 -->
+	<!-- 쪽지보내기 -->
+	<insert id="sendLetter" parameterType="kr.or.pickme.dto.LetterDTO">
+		insert into letter(letter_no, letter_title, letter_ctmt, letter_senddate, solo_username, comp_username)
+		values(SEQUENCE_LETTER.nextval, #{letter_title}, #{letter_ctmt}, sysdate, #{solo_username}, #{comp_username})
+	</insert>
+	
+	<!-- 회원목록 -->
+	<select id="memberList" resultType="kr.or.pickme.dto.UserSoloDTO">
+		select us.username from 
+		user_solo us join user_roll_solo urs
+		on us.username=urs.username
+		where enabled=1 and role_name='ROLE_USER'
+	</select>
+	
+	<!-- 쪽지목록 -->
+	<select id="letterList" resultType="kr.or.pickme.dto.LetterDTO">
+		select letter_no, letter_title, letter_senddate, solo_username, comp_name as comp_username from letter lt join comp_info ci
+		on lt.comp_username=ci.username
+		where solo_username=#{solo_username}
+	</select>
+	
+	<!-- 쪽지갯수 -->
+	<select id="letterCount" resultType="Integer">
+	<![CDATA[
+		select count(*) from letter where solo_username=#{solo_username}
+		and letter_senddate > sysdate-7
+	]]>
+	</select>
+	
+	<!-- 쪽지보기 -->
+	<select id="showLetter" parameterType="Integer" resultType="kr.or.pickme.dto.LetterDTO">
+		select letter_no, letter_title, letter_senddate, letter_ctmt, solo_username, comp_name as comp_username from letter lt join comp_info ci
+		on lt.comp_username=ci.username
+		where letter_no=#{letter_no}
+	</select>
+		
+</mapper>

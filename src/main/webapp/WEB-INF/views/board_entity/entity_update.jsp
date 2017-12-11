@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>                                             
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 
-    <head>
-        <title>게시판</title>
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
-        <script src="//cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
         <script type="text/javascript">
      /*    $(document).ready(function(){
             
@@ -38,68 +34,48 @@
              
         }); */
     </script>
-       
-    </head>
     
 
  
- <div id="content">
+<div id="content">
+<div class="main_area">
 
         <!-- 좌우측의 공간 확보 -->
      
             <hr/>
         
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-lg-12">
                     <form action="entity_update.htm" method="post" name="n" >
-                    <table class="table table-condensed">
-                     
-                        <thead>
-                        <tr>
-                        <th><input type="hidden" id="entity_code" name="entity_code" value = "${entitydto.entity_code}">
+                     		<input type="hidden" id="entity_code" name="entity_code" value = "${entitydto.entity_code}">
                         	<input type="hidden" id="username" name="username" value = "${entitydto.username}">
                         	<input type="hidden" id="entity_date" name="entity_date" value = "${entitydto.entity_date}">
-                        	
-                        </th>
-                        </tr>
-                            <tr align="center">
-                                <th width=10%><div> 제목: <input type="text" id="entity_title" name="entity_title" style="width:20%;" value="${entitydto.entity_title }"/>
-                                작성자: <input type="text" id="username" name="username" style="width:170px;" maxlength="10" value="${entitydto.username}" readonly/></div>
-                                </th>
-                                <td></td>                   
-                            </tr>
-                        </thead>
-                        <tbody>
+           			 <table class="table table1 table-striped">
                             <tr>
-                                <td>
-                    	<input type = "text" name="entity_ctmt" id="entity_ctmt" value="${entitydto.entity_ctmt}" style="height: 500px; width: 400px">
-                    </td>
+                                <th style="width:20%">제목</th>
+                                <td><input type="text" id="entity_title" name="entity_title" style="width:50%;" value="${entitydto.entity_title }"/></td>
                             </tr>
-                            
-                        </tbody>
-                        
-                    </table>
-                     <table id="commentTable" class="table table-condensed"></table>
-                   
-                    <table class="table table-condensed">
-                        <thead>
-                            <tr style="width : 80%">
-                                <td>
-                                
-
-                                    <span>
-                                    	<input type="submit" id="saves" name="saves" >
-                                        <!-- <button type="button" id="save" class="btn btn-default">저장</button> -->
-                                        <button type="button" id="list" name="list" class="btn btn-default">목록</button>
-                                      
-                                    </span>
-                                </td>
+                            <tr>
+                                <th>작성자</th>
+                                <td><input type="text" id="username" name="username" style="width:50%;" maxlength="10" value="${entitydto.username}" readonly/></td>
                             </tr>
-                        </thead>
+                            <tr>
+                    			<th>내용</th>
+                                <td>
+                                	<input type = "text" name="entity_ctmt" id="entity_ctmt" value="${entitydto.entity_ctmt}" style="height: 500px; width: 400px">
+                    			</td>
+                            </tr>
                     </table>
+						<div style="text-align:center">
+							<input type="submit" id="saves" name="saves" >
+                            <!-- <button type="button" id="save" class="btn btn-default">저장</button> -->
+                            <button type="button" id="list" name="list" class="btn btn-default">목록</button>
+						</div>
+                                    
                   </form>
                 </div>
             </div>
           
             <hr/>
-        </div>    
+        </div>  
+</div>  

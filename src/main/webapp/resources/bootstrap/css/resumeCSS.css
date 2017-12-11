@@ -55,7 +55,11 @@
 	padding-bottom: 4px;
 }
 
-#addimg_btn{
+img#addimg_btn{
+	height: 20px;
+}
+
+img#rmvimg_btn{
 	height: 20px;
 }
 

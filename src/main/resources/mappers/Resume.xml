@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.pickme.dao.resumeDAO">
+
+<select id="resumeList" resultType="kr.or.pickme.dto.ResumeDTO">
+	select resu_code, username, pick_code, resu_ctmt, paper_status, edit_status from resume order by resu_code desc
+</select>
+
+<select id="resumeDetail" parameterType="String" resultType="kr.or.pickme.dto.ResumeDTO">
+  select * from resume where username=#{username}
+</select>
+<!-- ps 1 누르면 2로 바뀜 제출완료--> 
+
+<update id="psUpdate" parameterType="kr.or.pickme.dto.ResumeDTO">
+	update resume set paper_status=2 where username=#{username}
+</update>
+
+<!-- es 1 누르면 2로 바뀜 완료 첨삭진행중--> 
+
+<update id="esUpdate" parameterType="kr.or.pickme.dto.ResumeDTO">
+	update resume set edit_status=2 where username=#{username}
+</update>
+</mapper>

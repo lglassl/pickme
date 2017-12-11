@@ -1,4 +1,5 @@
 package kr.or.pickme.service;
+import java.security.Principal;
 /*
 @class : DoingBoardService
 @Date : 2017-12-01
@@ -21,19 +22,9 @@ public class DoingBoardService {
 	private SqlSession sqlsession;
 
 		//개인회원 작성중 이력서 자소서 리스트
-		public List<ResumeDTO> doingList(String ps, String cp){
-			int page = 20;
-			int cpage = 1;
-			
-			if(ps != null && ps.equals("")) {
-				page = Integer.parseInt(ps);
-			}
-			if(cp != null && cp.equals("")) {
-				cpage = Integer.parseInt(cp);
-			}
-			
+		public List<ResumeDTO> doingList(String username){
 			ResumeDoingBoardDAO doingdao = sqlsession.getMapper(ResumeDoingBoardDAO.class);
-			List<ResumeDTO> doinglist = doingdao.doingList(page, cpage);
+			List<ResumeDTO> doinglist = doingdao.doingList(username);
 			return doinglist;
 	}
 

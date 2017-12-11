@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
 import kr.or.pickme.dto.CompPickInfoDTO;
+import kr.or.pickme.dto.UserComPpDTO;
 import kr.or.pickme.service.EmploymentService;
 
 @Controller
@@ -33,38 +34,14 @@ public class CompanyPickController {
 	@RequestMapping(value = "employmentlist.htm", method = RequestMethod.GET)
 	public String employmentlist(String username, Model model) throws ClassNotFoundException, SQLException {
 		System.out.println("개인 공고 리스트  jsp 이동");
-		username = "abc";
+		/*username = "abc";*/
 		List<CompPickInfoDTO> list = service.employmentPrint(username);
 		model.addAttribute("employmentlist", list);
 		return "employment.employmentlist";
 	}
-
 	
 	
-	
-	// 채용정보 수정화면에 기존에 등록되있던 리스트를 modal에 출력
-	@RequestMapping(value = "employment_updateprint.htm", method = RequestMethod.POST)
-	public View employment_updateprint(String s_pick_code, Model model) throws ClassNotFoundException, SQLException {
-		System.out.println("채용정보수정 modal 이동");
-		int pick_code = Integer.parseInt(s_pick_code);
-		System.out.println("pick_code : " + pick_code);
-		
-		CompPickInfoDTO dto = service.employment_updatePrint(pick_code);
-		
-		model.addAttribute("pick_dtolist", dto);
-		
-		return JsonView;
-	}
-
-	// 채용정보 수정
-	@RequestMapping(value = "employmentupdate.htm", method = RequestMethod.POST)
-	public String employmentupdate(CompPickInfoDTO C_dto) throws Exception {
-		return null;
-	}
-	
-	
-	
-	
+	///////////////////////////////등록
 	
 	// 채용정보등록 jsp 이동
 	@RequestMapping(value = "employmentinsert.htm", method = RequestMethod.GET)
@@ -77,10 +54,39 @@ public class CompanyPickController {
 	@RequestMapping(value = "employmentinsert.htm", method = RequestMethod.POST)
 	public String employmentinsert(CompPickInfoDTO C_dto) throws Exception {
 		String result = service.employmentInsert(C_dto);
+		
 		return result;
 	}
 
+	//////////////////////////////////////////////////////////
 	
+	//---------------------------------------------수정
+	
+	// 채용정보 수정화면에 기존에 등록되있던 리스트를 modal에 출력
+	@RequestMapping(value = "employment_updateprint.htm", method = RequestMethod.POST)
+	public View employment_updateprint(String s_pick_code, Model model) throws ClassNotFoundException, SQLException {
+		System.out.println("채용정보수정 modal 이동");
+		int pick_code = Integer.parseInt(s_pick_code);
+		System.out.println("pick_code : " + pick_code);
+		
+		CompPickInfoDTO dto = service.employment_updatePrint(pick_code);
+		System.out.println("dto.pick_code : " + dto.getPick_code());
+		model.addAttribute("pick_dtolist", dto);
+		
+		return JsonView;
+	}
+
+	// 채용정보 수정
+	@RequestMapping(value = "employmentupdate.htm", method = RequestMethod.POST)
+	public String employmentupdate(CompPickInfoDTO C_dto) throws Exception {
+		System.out.println("----------employmentupdate.htm 컨트롤 탄다잉---------");
+		System.out.println(C_dto.toString());
+		
+		service.employmentupdate(C_dto);
+		
+		return "redirect:/employmentlist.htm";
+	}
+	//--------------------------------------------------------------------------
 	
 	
 	
@@ -90,20 +96,39 @@ public class CompanyPickController {
 
 		List<CompPickInfoDTO> hirelist = service.hiredata_print();
 		List<CompPickInfoDTO> joblist = service.jobdata_print();
-
+		
+		System.out.println("컨트롤오냐");
+		
 		model.addAttribute("hirelist", hirelist);
 		model.addAttribute("joblist", joblist);
 
 		return JsonView;
 	}
 
+	
+	
+	
 	// 기업 상세요강 페이지이동 부분
-	@RequestMapping(value = "employmentdetail.htm", method = RequestMethod.GET)
-	public String employmentdetail() {
+	@RequestMapping(value = "employmentdetail.htm", method = RequestMethod.POST)
+	public String employmentdetail(String username, int pick_code, Model model) throws ClassNotFoundException, SQLException {
 		System.out.println("get 방식 탄다.");
+		System.out.println("username : " + username + " pick_code : " + pick_code );
+	
+		List<UserComPpDTO> UserComp_list = service.employmentDetail_Compinfo(username);
+		List<CompPickInfoDTO> CompPick_list = service.employmentDetail_CompDetail(username, pick_code);
+		
+		model.addAttribute("Detail_Compinfo", UserComp_list.get(0)); //기업정보 객체 
+		model.addAttribute("Detail_UserComp", UserComp_list.get(1)); //기업 회원정보 객체
+		
+		
+		model.addAttribute("Detail_CompPick", CompPick_list.get(0)); //채용정보 객체 
+		
 		return "employment.employmentdetail";
 	}
 
+	
+	
+	
 	/*
 	 * //?????????미정
 	 * 

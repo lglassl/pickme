@@ -132,7 +132,7 @@ public class JoinController {
 				
 				String fpath = path + "\\" + file;
 				
-				dto.setComp_logo(file);
+				dto.setComp_logo("/resources/images/"+file);
 				
 				try {
 					FileOutputStream fs = new FileOutputStream(fpath);

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,9 +28,10 @@
 			"columnDefs" : [ //이건 수정이랑 삭제버튼은 정렬버튼 없애려고 한거임
 			{
 				"targets" : [ -1 ], //마지막 컬럼
-				"orderable" : true, //정렬하는거 없앰
+				"orderable" : false, //정렬하는거 없앰
 			}, ]
 		});
+
 	});	
 		
 	
@@ -49,10 +50,7 @@
   			}
   		});
      };
-
-	
-</script>
-
+     </script>
 <div id="content">
 	<div class="col-sm-12">
 			
@@ -85,13 +83,13 @@
 			
 		</div>
 </div>
+
 	<table class="table table-hover dt-responsive"
 		style="text-align: center; background-color: white; color: black;" id="userResume">
 		<thead>
 			<tr>
 
 				<td >번호</td>
-				<td >작성자</td>
 				<td>채용공고 번호</td>
 				<td >제출상태</td>
 				<td >첨삭상태</td>
@@ -99,42 +97,36 @@
 			</tr>
 		</thead>
 		<tbody>
-	
 			<c:forEach var="list" items="${list}" varStatus="status">
 					<tr>
 						<td style="text-align: center;">${list.resu_code}
         				<input type="hidden" id="${status.count}" value="${list.resu_code}">
 						</td>
-						<td style="text-align: center;">${list.username}
-						</td>
-						
 						<td style="text-align: center;">${list.pick_code}</td>
-   						<td style="text-align: center;">
+   						 <td style="text-align: center;">
 							<c:set var="ps" value="${list.paper_status}" />
 							<c:choose>
+    						
     						<c:when test ="${ps eq 0}">
-       						<span class="label label-default">작성 중(임시저장)</span>
+       						<span class="label label-default">작성 중</span>
     						</c:when>
-        					
-    					<%--제출 페이지는 수정에서?!
-    					    <c:when test ="${ps eq 1}">		
-        					<button type="button" id="pssub" onclick="goPaper(${status.count})">제출하기
-        					</button>
-    						</c:when> --%>
-        					
+    						
     						<c:when test ="${ps eq 1}">
        						<span class="label label-success">제출완료</span>
         					</c:when>
+        
+    						<c:otherwise>
+       						오류코드
+    						</c:otherwise>
 							</c:choose>
-					
 						</td>
-				
+	
 						<td style="text-align: center;">
 						<c:set var="es" value="${list.edit_status}" />
 						<c:choose>
     					
     					<c:when test ="${es eq 1}">
-        				<button id="edit1" type="button" class="btn btn-danger" onclick="goEdit(${status.count})">요청하기</button>
+        				<button id="edit1" type="button" class="btn btn-danger" onclick="goEdit(${status.count})">요청가능</button>
     					</c:when>
     					
     					<c:when test ="${es eq 2}">
@@ -142,11 +134,7 @@
     					</c:when>
     					
     					<c:when test ="${es eq 3}">
-        				<span class="label label-primary">첨삭O(제출완료)</span>
-        				</c:when>
-        				
-        				<c:when test ="${es eq 4}">
-        				<span class="label label-primary">첨삭X(제출완료)</span>
+        				<span class="label label-primary">첨삭완료</span>
         				</c:when>
     					
     					<c:otherwise>
@@ -155,9 +143,9 @@
 						</c:choose>
 				</td>
 			</tr>
-		</c:forEach>
-		
+			</c:forEach>
+
 		</tbody>
 
 	</table>
-	
+

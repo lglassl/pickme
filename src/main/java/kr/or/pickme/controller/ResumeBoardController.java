@@ -1,4 +1,4 @@
-package kr.or.pickme.controller;
+﻿package kr.or.pickme.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
@@ -44,8 +44,11 @@ public class ResumeBoardController {
 	*/
 	/*개인회원 이력서와 자소서 상태 게시판형태로 보는 페이지*/
 	@RequestMapping("/userResume.htm")
-	public String userResumeList(Principal prin, Model model, HttpServletRequest request) {
-		List<ResumeDTO> list = resumeservice.resumeList(prin.getName());
+	public String userResumeList(Model model, Principal prin, HttpServletRequest request) {
+		ResumeDTO dto = new ResumeDTO();
+		dto.setUsername(prin.getName());
+		List<ResumeDTO> list = resumeservice.resumeList(dto.getUsername());
+		
 		model.addAttribute("list", list);
 		return "resume.userResume";
 	}
@@ -61,7 +64,6 @@ public class ResumeBoardController {
 	public String resumeDetail(Principal prin, Model model) {
 			String username = prin.getName();
 			ResumeDTO resume = resumeservice.resumeDetail(username);
-			
 			model.addAttribute("resumedto", resume);
 		return "resume.userResumeDetail";
 	}
@@ -74,9 +76,9 @@ public class ResumeBoardController {
 	*/
 	/*개인회원 이력서와 자소서 작성중인 리스트 페이지*/
 	@RequestMapping("/userResumeDoing.htm")
-	public String resumeDoing(String ps, String cp, Model model, HttpServletRequest request) {
-		
-		List<ResumeDTO> doinglist = doingservice.doingList(ps, cp);
+	public String resumeDoing(Model model, Principal prin, HttpServletRequest request) {
+		String username = prin.getName();
+		List<ResumeDTO> doinglist = doingservice.doingList(username);
 		
 		model.addAttribute("doinglist", doinglist);
 	return "resume.userResumeDoing";

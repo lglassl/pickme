@@ -10,6 +10,7 @@ package kr.or.pickme.service;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,6 +26,7 @@ public class JoinService {
 	private SqlSession sqlsession;
 	
 	/*개인회원가입*/
+	@Transactional
 	public int insertMember(UserSoloDTO usersolo) {
 		
 		int result = 0;
@@ -54,6 +56,7 @@ public class JoinService {
 	}
 	
 	/*기업회원가입*/
+	@Transactional
 	public int insertComp(UserComPpDTO dto) {
 		
 		int result = 0;
@@ -87,7 +90,7 @@ public class JoinService {
 	}
 	
 	//페이스북 가입 
-	@RequestMapping("/fbsignup.htm")
+	@Transactional
 	public int fbsignup(UserSoloDTO dto) throws Exception {
 		int result = 0;
 		

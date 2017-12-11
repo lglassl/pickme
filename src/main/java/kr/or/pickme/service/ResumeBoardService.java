@@ -1,4 +1,5 @@
-package kr.or.pickme.service;
+﻿package kr.or.pickme.service;
+import java.security.Principal;
 /*
 @class : ResumeBoardService
 @Date : 2017-11-29
@@ -22,6 +23,7 @@ public class ResumeBoardService {
 	public List<ResumeDTO> resumeList(String username){
 		
 		ResumeBoardDAO resumeboarddao = sqlsession.getMapper(ResumeBoardDAO.class);
+
 		System.out.println(resumeboarddao + " / " + resumeboarddao.toString());
 		List<ResumeDTO> list = resumeboarddao.resumeList(username);
 		System.out.println(list.toString());
