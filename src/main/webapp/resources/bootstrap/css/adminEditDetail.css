@@ -1,1 +1,31 @@
 @charset "UTF-8";
+
+textarea{
+margin: 0px; 
+width: 58%; 
+height: 100px;
+ background-color: rgba(200,200,200,0.2);
+}
+.input input{
+color:red;
+}
+
+.floating { 
+position: fixed; 
+top: 550px;
+right: 55%; 
+margin-right: -60%; 
+text-align:center; 
+width: 120px;
+
+
+}
+
+#aa{
+border-top-left-radius: 20%;   
+border-top-right-radius: 20px;
+border-bottom-right-radius: 20px 10px;
+border-bottom-left-radius: 30px;
+border:2px solid #ff3535; 
+border-radius: 5px;
+}

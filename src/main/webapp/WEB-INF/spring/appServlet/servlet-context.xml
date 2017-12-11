@@ -26,7 +26,7 @@
 		
 	<!-- 메일발송 클래스 -->
 	<bean id="emailSend" class="kr.or.pickme.email.emailSend" />
-	<bean id="simpleNotifier" class="kr.or.pickme.controller.Comp_email" />
+	<bean id="simpleNotifier" class="kr.or.pickme.email.Comp_email" />
 	
  	<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
 		<property name="velocityProperties">

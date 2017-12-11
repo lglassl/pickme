@@ -11,7 +11,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.or.pickme.dao.AdminResumeEditBoardDAO;
 import kr.or.pickme.dao.ResumeEditBoardDAO;
+import kr.or.pickme.dto.CoverletterDTO2;
 import kr.or.pickme.dto.ResumeDTO;
 
 @Service
@@ -35,5 +37,15 @@ public class EditBoardService {
 		List<ResumeDTO> elist = editdao.editlist(page, cpage);
 		return elist;
 	}
+	
+	//개인회원 첨삭완료게시판
+	public List<CoverletterDTO2> userEditDetail(String username, int pick_code) {
+		ResumeEditBoardDAO edDAO2= sqlsession.getMapper(ResumeEditBoardDAO.class);
+		List<CoverletterDTO2> eddto2 = edDAO2.userEditDetail(username, pick_code);
+		System.out.println(eddto2.toString());
+		return eddto2;
+	}
+
+
 	
 }

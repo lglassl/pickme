@@ -17,7 +17,6 @@
   <div class="container" id="content">
 	  <div class="col-sm-2"></div>
 	  <div class="col-sm-8">
-		 <form action="editUpdate.htm" method="POST">  
 		         <c:forEach items="${Cover2List }" var="Cover2List" varStatus="status">   
 		         <input type="hidden" name="username" id="username" value="${Cover2List.username}">
 		         <input type="hidden" name="pick_code" id="pick_code" value="${Cover2List.pick_code }">
@@ -37,19 +36,15 @@
 		                        				value="${Cover2List.resu_ctmt}">${Cover2List.resu_ctmt}</textarea>      
 		                     </div>
 		                      <div class="form-group formprofile_detail input">
-		                        <textarea id="coverletterList2_resu_edit${status.index }" name="coverletterList2[${status.index }].resu_edit" rows="10" cols="92%" placeholder="첨삭내용을 입력하세요"></textarea>      
+		                        <textarea id="coverletterList2_resu_edit${status.index }" name="coverletterList2[${status.index }].resu_edit" value="${Cover2List.resu_edit}" rows="10" cols="92%" readonly>${Cover2List.resu_edit}</textarea>      
 		                     </div>
 		                  </div>
 		               </div>
 		               <hr color="#808080">
-		               <input type="hidden" id="cover_no" name="coverletterList2[${status.index }].cover_no" value="${Cover2List.cover_no }">
 		               <input type="hidden" id="username" name="coverletterList2[${status.index }].username" value="${Cover2List.username }">
 		               <input type="hidden" id="pick_no" name="coverletterList2[${status.index }].pick_no" value="${Cover2List.pick_no }">
 		               <input type="hidden" id="pick_code" name="coverletterList2[${status.index}].pick_code" value="${Cover2List.pick_code }">
 		         </c:forEach>
-	<div class="floating"> 
-	<input  type="submit" class="btn btn-warning" value="등록하기(첨삭완료)">
-	</div>
 		        </form> 
 		</div>
 		</div>

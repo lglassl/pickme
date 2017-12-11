@@ -3,11 +3,19 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.pickme.dao.ResumeEditBoardDAO">
+ <!-- 개인회원이 첨삭완료 게시판 보는 화면 -->
  <select id="editlist" resultType="kr.or.pickme.dto.ResumeDTO">
- select resu_code, username, pick_code, intro_no, resu_ctmt, resu_edit, edit_status from resume 
- where username=#{username} and edit_status=3 order by resu_code desc
+select resu_code, pick_code, username, edit_status from resume 
+where edit_status=3
  </select>
- <!--전문가 첨삭 게시판을 먼저 해서 첨삭완료시 등록시키는 방법으로 불러와야 한다. -여기는 개인용 첨삭완료게시판이기 때문에  -->
+ 
+  <!-- 개인회원이 첨삭완료 게시판에서 상세보기 들어가는 화면 -->
+ <select id="userEditDetail" resultType="kr.or.pickme.dto.CoverletterDTO2">
+	 select username, pick_code, pick_no, intro_no, resu_ctmt, resu_edit,intro_lim 
+	 from coverletter2
+	 where username=#{param1} and pick_code=#{param2}
+ </select>
+ 
  </mapper>
  
  

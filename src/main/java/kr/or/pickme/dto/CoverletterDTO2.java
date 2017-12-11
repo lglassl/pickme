@@ -1,7 +1,6 @@
 package kr.or.pickme.dto;
 
 import java.util.List;
-
 public class CoverletterDTO2 {
 	
 	private int cover_no;

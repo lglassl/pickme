@@ -1,4 +1,4 @@
-package kr.or.pickme.controller;
+package kr.or.pickme.email;
 
 
 import java.util.HashMap;

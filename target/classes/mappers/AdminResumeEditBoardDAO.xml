@@ -2,7 +2,11 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 첨삭 전문가 전용 기능 -->
+
 <mapper namespace="kr.or.pickme.dao.AdminResumeEditBoardDAO">
+ 
+ <!-- 전문가 첨삭게시판 화면 -->
  <select id="aelist" resultType="kr.or.pickme.dto.ResumeDTO">
  select resu_code, username, pick_code, edit_status from resume where
  paper_status=0 and edit_status=2 
@@ -11,12 +15,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
  <!-- 첨삭게시판에서 상세보기 들어가는 화면 -->
  <select id="editDetail" resultType="kr.or.pickme.dto.CoverletterDTO2">
-	 select username, pick_code, pick_no, intro_no, resu_ctmt, resu_edit,intro_lim 
+	 select cover_no, username, pick_code, pick_no, intro_no, resu_ctmt, resu_edit,intro_lim 
 	 from coverletter2
 	 where username=#{param1} and pick_code=#{param2}
  </select>
  
+ <!--첨삭내용 업데이트  -->
+<update id="editUpdate">
+ 	update coverletter2 
+ 	set resu_edit=#{resu_edit} 
+ 	where username=#{username} and pick_code=#{pick_code} and cover_no = #{cover_no}
+</update>
  
- 
- 
+ <!-- 첨삭상태 업데이트 -->
+ <update id="statusUpdate">
+ 	update resume 
+ 	set edit_status=3 
+ 	where username=#{param1} and pick_code=#{param2}
+</update>
+
  </mapper>

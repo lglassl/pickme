@@ -16,14 +16,13 @@ import kr.or.pickme.dto.ResumeDTO;
 import kr.or.pickme.service.AdminEditBoardService;
 import kr.or.pickme.service.EditBoardService;
 
+////////////////////////////////////////개인회원용 첨삭 컨트롤러
+
 @Controller
 public class EditBoardController {
 
 	@Autowired
 	private EditBoardService editservice;
-	
-	@Autowired
-	private AdminEditBoardService aeservice;
 	
 	
 	/*
@@ -32,35 +31,31 @@ public class EditBoardController {
 	@Author : 정수민
 	*/
 	/*개인회원이 첨삭요청하면 이동하는 페이지*/
+	
 	@RequestMapping("/userEditBoard.htm")
 	public String userEditBoard(String ps, String cp, Model model, HttpServletRequest request) {
 		List<ResumeDTO> elist = editservice.editlist(ps, cp);
 		
 		model.addAttribute("elist", elist);
+		
 		return "edit.userEditBoard";
 	}
-	
+
 	/*
 	@class : EditBoardController 
-	@Date : 2017-12-06
+	@Date : 2017-12-08
 	@Author : 정수민
 	*/
-	/*첨삭전문가가  첨삭작업하는 페이지*/
-	@RequestMapping("/adminEditBoard.htm")
-	public String adminEditBoard(String ps, String cp, Model model, HttpServletRequest request) {
-		List<ResumeDTO> aelist = aeservice.aelist(ps, cp);
+	/*개인회원이 첨삭완료된 게시물을 확인하는 상세페이지*/
+	
+	@RequestMapping(value = "/userEditDetail.htm" , method= RequestMethod.GET)
+	public String userEditDetail(String username, int pick_code, Model model) {
 		
-		model.addAttribute("aelist", aelist);
-		return "edit.adminEditBoard";
+		List<CoverletterDTO2> cover2 = editservice.userEditDetail(username, pick_code);
+		
+		model.addAttribute("Cover2List", cover2);
+		
+		return "edit.userEditDetail";
 	}
 	
-	@RequestMapping(value = "/adminEditDetail.htm" , method= RequestMethod.GET)
-	public String adminEditDetail(String username, int pick_code, Model model) {
-		
-		List<CoverletterDTO2> cover2List = aeservice.editDetail(username, pick_code);
-		
-		model.addAttribute("Cover2List", cover2List);
-		
-		return "edit.adminEditDetail";
-	}
 }

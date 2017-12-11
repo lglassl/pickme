@@ -11,11 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import kr.or.pickme.controller.Comp_email;
 import kr.or.pickme.dto.BoardEntityDTO;
 import kr.or.pickme.dto.ResumeDTO;
 import kr.or.pickme.dto.UserComPpDTO;
 import kr.or.pickme.dto.UserSoloDTO;
+import kr.or.pickme.email.Comp_email;
 import kr.or.pickme.service.DoingBoardService;
 import kr.or.pickme.service.MailService;
 import kr.or.pickme.service.ResumeBoardService;
@@ -44,12 +44,8 @@ public class ResumeBoardController {
 	/*개인회원 이력서와 자소서 상태 게시판형태로 보는 페이지*/
 	@RequestMapping("/userResume.htm")
 	public String userResumeList(String ps, String cp, Model model, HttpServletRequest request) {
-		System.out.println("1");
 		List<ResumeDTO> list = resumeservice.resumeList(ps, cp);
-		System.out.println("2 "  +  list);
-		
 		model.addAttribute("list", list);
-		System.out.println("3");
 		return "resume.userResume";
 	}
 	
@@ -141,9 +137,7 @@ public class ResumeBoardController {
 	/*기업회원이 지원자 리스트 보는 페이지에서 합불결정하면 메일 발송*/
 	@RequestMapping("/MailSend.htm" )
 	public String mailSend() {
-		System.out.println("ce 직전입니다");
 		ce.sendMail();
-		System.out.println("ce 직후입니다");
 	return "redirect:compResume.htm";
 	}
 }

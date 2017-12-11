@@ -46,9 +46,8 @@ text-align:center;
 		<thead>
 			<tr>
 				<td >번호</td>
+				<td >채용 공고 번호</td>
 				<td >작성자</td>
-				<td>자소서항목</td>
-				<td>첨삭내용</td>
 				<td >첨삭상태</td>
 			</tr>
 		</thead>
@@ -56,13 +55,13 @@ text-align:center;
 			<c:forEach var="elist" items="${elist}">
 					<tr>
 						<td style="text-align: center;">${elist.resu_code}</td>
-						<td style="text-align: center;">${elist.username}</td>
-						<td style="text-align: center;">${elist.resu_ctmt}</td>
-						<td style="text-align: center;">${elist.resu_edit}</td>
+						<td style="text-align: center;">${elist.pick_code}</td>
+						<td style="text-align: center;">
+						<a id="edit" href="userEditDetail.htm?username=${elist.username}&pick_code=${elist.pick_code}">${elist.username}</a></td>
 						<td style="text-align: center;">
 						<c:set var="es" value="${elist.edit_status}" />
 						<c:if test = "${es eq 3}">
-						<button type="button" class="btn btn-info">첨삭완료</button>
+						<button type="button" class="btn btn-info">첨삭0제출완료</button>
 						</c:if>
 						</td>
 					</tr>
