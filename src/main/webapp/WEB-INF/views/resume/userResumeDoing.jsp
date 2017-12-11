@@ -40,7 +40,7 @@
 		<thead>
 			<tr>
 				<td >채용 공고 번호</td>
-				<td >작성자</td>
+				<td >제목</td>
 				<td >제출상태</td>
 
 			</tr>
@@ -50,9 +50,17 @@
 					<tr>
 					
 						<td style="text-align: center;">${doinglist.pick_code}</td>
-						<td style="text-align: center;"><a href="#">${doinglist.username}</a></td>
+						<td style="text-align: center;"><a href="#">${doinglist.resu_ctmt}</a></td>
 						<td style="text-align: center;">
-       					<span id="${doinglist.paper_status}" class="label label-default">작성 중</span>
+								<c:set var="ps" value="${doinglist.paper_status}" />
+								<c:choose>
+								<c:when test ="${ps eq 0}">
+       							<span id="doing0" class="label label-default">작성 중</span>
+    							</c:when>
+    							<c:when test ="${ps eq 1}">
+    							<span id="doing1" class="label label-default">작성 중</span>
+    							</c:when>
+    							</c:choose>
 						</td>
 					</tr>
 			</c:forEach>
