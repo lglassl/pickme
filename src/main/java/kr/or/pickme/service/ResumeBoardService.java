@@ -1,4 +1,5 @@
 package kr.or.pickme.service;
+import java.security.Principal;
 /*
 @class : ResumeBoardService
 @Date : 2017-11-29
@@ -19,25 +20,16 @@ public class ResumeBoardService {
 	@Autowired
 	private SqlSession sqlsession;
 	//개인회원 이력서 자소서 리스트
-	public List<ResumeDTO> resumeList(String ps, String cp){
-		int page = 20;
-		int cpage = 1;
-		
-		if(ps != null && ps.equals("")) {
-			page = Integer.parseInt(ps);
-		}
-		if(cp != null && cp.equals("")) {
-			cpage = Integer.parseInt(cp);
-		}
+	public List<ResumeDTO> resumeList(String username){
 		
 		ResumeBoardDAO resumeboarddao = sqlsession.getMapper(ResumeBoardDAO.class);
-		System.out.println(resumeboarddao + " / " + resumeboarddao.toString());
-		List<ResumeDTO> list = resumeboarddao.resumeList(page, cpage);
-		System.out.println(list.toString());
+		System.out.println("서비스탔음");
+		List<ResumeDTO> list = resumeboarddao.resumeList(username);
+		System.out.println("레쥬코드 + " + list.get(0).getResu_code());
 		return list;
 	}
 	//개인회원 이력서 자소서 상세보기
-	public ResumeDTO resumeDetail(ResumeDTO username) {
+	public ResumeDTO resumeDetail(String username) {
 		
 		ResumeBoardDAO resumeboarddao = sqlsession.getMapper(ResumeBoardDAO.class);
 		ResumeDTO resumedto = resumeboarddao.resumeDetail(username);

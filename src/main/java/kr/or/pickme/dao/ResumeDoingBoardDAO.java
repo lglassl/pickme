@@ -11,7 +11,7 @@ import kr.or.pickme.dto.ResumeDTO;
 
 public interface ResumeDoingBoardDAO {
 	//작성중인 리스트를 게시판형태로
-	List<ResumeDTO> doingList(int page, int cpage);
+	public List<ResumeDTO> doingList(String username);
 	//username에 따라 작성중인 것만 가지고 온다 ... 서류작성
 	public ResumeDTO resumeDoing(String username);
 

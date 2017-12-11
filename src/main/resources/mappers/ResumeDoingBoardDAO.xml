@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kr.or.pickme.dao.ResumeDoingBoardDAO">
 <!-- 진행중 게시판 -->
 <select id="doingList" resultType="kr.or.pickme.dto.ResumeDTO">
-select pick_code, username, paper_status from resume 
-	where paper_status= 0 
+select pick_code, paper_status from resume 
+	where username=#{username} and paper_status= 0 
  </select>
 <!-- 진행중 게시판에서 수정 삭제 -->
   <select id="doingDetail" parameterType="String" resultType="kr.or.pickme.dto.ResumeDTO">

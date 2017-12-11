@@ -117,9 +117,7 @@ border:0.1px;
 			<tr>
 
 				<td >번호</td>
-				<td >작성자</td>
 				<td>채용공고 번호</td>
-				<td>자소서내용</td>
 				<td >제출상태</td>
 				<td >첨삭상태</td>
 
@@ -127,14 +125,12 @@ border:0.1px;
 		</thead>
 		<tbody>
 			<c:forEach var="list" items="${list}">
+			<input type="hidden" name="${list.username}">
 					<tr>
 					
 						<td style="text-align: center;">${list.resu_code}</td>
-						<td style="text-align: center;">${list.username}
-						</td>
 						
 						<td style="text-align: center;">${list.pick_code}</td>
-						<td style="text-align: center;">${list.resu_ctmt}</td>
    						 <td style="text-align: center;">
 							<c:set var="ps" value="${list.paper_status}" />
 							<c:choose>
@@ -143,17 +139,7 @@ border:0.1px;
        						<span class="label label-default">작성 중</span>
     						</c:when>
     						
-    						<c:when test ="${ps eq 1}">		
-        					<button id="paper1" type="button" class="btn btn-warning">
-        					<form action="/psUpdate.htm">
-     				<!-- 넘어갈때 그 버튼의 유저네임 값을 어떻게 가져가는가? -->
-        					
-        					<input type="submit" value="제출하기">
-        					</form>
-							</button>
-    						</c:when>
-    						
-    						<c:when test ="${ps eq 2}">
+    						<c:when test ="${ps eq 1}">
        						<span class="label label-success">제출완료</span>
         					</c:when>
         
