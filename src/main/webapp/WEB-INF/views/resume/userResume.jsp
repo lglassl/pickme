@@ -33,21 +33,6 @@
 		});
 	});	
 		
-	//제출하기 버튼 온클릭	
-	function goPaper(sc){
-	 	$.ajax({
-			type: "post",
-			url:  "psUpdate.htm",
-			cache: false,				
-			data:'username=' + $('#'+sc).val(),
-			 success:function(data){
-  		    	location.href = "userResume.htm"; 
-  		     },
-  			error: function(){						
-  				alert('Error while request..');
-  			}
-  		});
-     };
 	
      //요청하기 버튼 온클릭
  	function goEdit(sc){
@@ -55,7 +40,7 @@
 			type: "post",
 			url:  "esUpdate.htm",
 			cache: false,				
-			data:'username=' + $('#'+sc).val(),
+			data:'resu_code=' + $('#'+sc).val(),
 			 success:function(data){
   		    	location.href = "userResume.htm"; 
   		     },
@@ -117,10 +102,10 @@
 	
 			<c:forEach var="list" items="${list}" varStatus="status">
 					<tr>
-						<td style="text-align: center;">${list.resu_code}</td>
-						
+						<td style="text-align: center;">${list.resu_code}
+        				<input type="hidden" id="${status.count}" value="${list.resu_code}">
+						</td>
 						<td style="text-align: center;">${list.username}
-        				<input type="hidden" id="${status.count}" value="${list.username}">
 						</td>
 						
 						<td style="text-align: center;">${list.pick_code}</td>

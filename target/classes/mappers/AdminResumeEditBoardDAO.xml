@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <select id="editDetail" resultType="kr.or.pickme.dto.CoverletterDTO2">
 	 select cover_no, username, pick_code, pick_no, intro_no, resu_ctmt, resu_edit,intro_lim 
 	 from coverletter2
-	 where username=#{param1} and pick_code=#{param2}
+	 where username=#{param1} and resu_code=#{param2}
  </select>
  
  <!--첨삭내용 업데이트  -->

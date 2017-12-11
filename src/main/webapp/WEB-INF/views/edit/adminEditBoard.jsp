@@ -57,7 +57,7 @@
 						<td style="text-align: center;">${status.count}</td>
 						<td style="text-align: center;">${ae.resu_code}</td>
 						<td style="text-align: center;">
-						<a id ="detail" href="adminEditDetail.htm?username=${ae.username}&pick_code=10001">
+						<a id ="detail" href="adminEditDetail.htm?username=${ae.username}&resu_code=${ae.resu_code}">
 						${ae.username}</a></td>
 						<td style="text-align: center;">
         				<span id="${ae.edit_status}" class="label label-default">진행 중</span>

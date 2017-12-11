@@ -1,6 +1,7 @@
 package kr.or.pickme.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,8 +44,8 @@ public class ResumeBoardController {
 	*/
 	/*개인회원 이력서와 자소서 상태 게시판형태로 보는 페이지*/
 	@RequestMapping("/userResume.htm")
-	public String userResumeList(String ps, String cp, Model model, HttpServletRequest request) {
-		List<ResumeDTO> list = resumeservice.resumeList(ps, cp);
+	public String userResumeList(Principal prin, Model model, HttpServletRequest request) {
+		List<ResumeDTO> list = resumeservice.resumeList(prin.getName());
 		model.addAttribute("list", list);
 		return "resume.userResume";
 	}
@@ -57,8 +58,8 @@ public class ResumeBoardController {
 	*/
 	/*개인회원 이력서와 자소서 상세히 보는 페이지*/
 	@RequestMapping("/userResumeDetail.htm")
-	public String resumeDetail(ResumeDTO username, Model model) {
-			
+	public String resumeDetail(Principal prin, Model model) {
+			String username = prin.getName();
 			ResumeDTO resume = resumeservice.resumeDetail(username);
 			
 			model.addAttribute("resumedto", resume);
@@ -89,8 +90,8 @@ public class ResumeBoardController {
 	*/
 	/*첨삭요청을 통해 첨삭상태 변경*/
 	@RequestMapping(value="/esUpdate.htm", method = RequestMethod.POST)
-	public String esUpdate(HttpServletRequest request , ResumeDTO dto) {
-		resumeservice.esUpdate(dto);
+	public String esUpdate(HttpServletRequest request , int resu_code) {
+		resumeservice.esUpdate(resu_code);
 		return "redirect:userResume.htm";
 	}
 	

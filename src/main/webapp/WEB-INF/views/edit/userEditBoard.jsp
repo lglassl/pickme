@@ -61,7 +61,7 @@ text-align:center;
 						<td style="text-align: center;">
 						<c:set var="es" value="${elist.edit_status}" />
 						<c:if test = "${es eq 3}">
-						<button type="button" class="btn btn-info">첨삭0제출완료</button>
+						<button type="button" class="btn btn-info">첨삭완료</button>
 						</c:if>
 						</td>
 					</tr>

@@ -39,18 +39,18 @@ public class AdminEditBoardService {
 		return aelist;
 	}
 	//전문가 첨삭 게시판
-	public List<CoverletterDTO2> editDetail(String username, int pick_code) {
+	public List<CoverletterDTO2> editDetail(String username, int resu_code) {
 		
 		AdminResumeEditBoardDAO edDAO= sqlsession.getMapper(AdminResumeEditBoardDAO.class);
-		List<CoverletterDTO2> eddto = edDAO.editDetail(username, pick_code);
+		List<CoverletterDTO2> eddto = edDAO.editDetail(username, resu_code);
 		System.out.println(eddto.toString());
 		return eddto;
 	}
-	public void esUpdate(ResumeDTO dto) {
+	public void esUpdate(int resu_code) {
 		ResumeBoardDAO resumeboarddao = sqlsession.getMapper(ResumeBoardDAO.class);
-		resumeboarddao.esUpdate(dto);
+		resumeboarddao.esUpdate(resu_code);
 		
-		System.out.println("서비스" + dto);
+		System.out.println("서비스" + resu_code);
 		
 	}
 	

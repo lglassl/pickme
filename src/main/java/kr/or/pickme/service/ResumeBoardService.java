@@ -19,25 +19,16 @@ public class ResumeBoardService {
 	@Autowired
 	private SqlSession sqlsession;
 	//개인회원 이력서 자소서 리스트
-	public List<ResumeDTO> resumeList(String ps, String cp){
-		int page = 20;
-		int cpage = 1;
-		
-		if(ps != null && ps.equals("")) {
-			page = Integer.parseInt(ps);
-		}
-		if(cp != null && cp.equals("")) {
-			cpage = Integer.parseInt(cp);
-		}
+	public List<ResumeDTO> resumeList(String username){
 		
 		ResumeBoardDAO resumeboarddao = sqlsession.getMapper(ResumeBoardDAO.class);
 		System.out.println(resumeboarddao + " / " + resumeboarddao.toString());
-		List<ResumeDTO> list = resumeboarddao.resumeList(page, cpage);
+		List<ResumeDTO> list = resumeboarddao.resumeList(username);
 		System.out.println(list.toString());
 		return list;
 	}
 	//개인회원 이력서 자소서 상세보기
-	public ResumeDTO resumeDetail(ResumeDTO username) {
+	public ResumeDTO resumeDetail(String username) {
 		
 		ResumeBoardDAO resumeboarddao = sqlsession.getMapper(ResumeBoardDAO.class);
 		ResumeDTO resumedto = resumeboarddao.resumeDetail(username);
@@ -45,11 +36,11 @@ public class ResumeBoardService {
 		return resumedto;
 	}
 	//이력서 자소서 첨삭상태
-	public void esUpdate(ResumeDTO dto) {
+	public void esUpdate(int resu_code) {
 		ResumeBoardDAO resumeboarddao = sqlsession.getMapper(ResumeBoardDAO.class);
-		resumeboarddao.esUpdate(dto);
+		resumeboarddao.esUpdate(resu_code);
 		
-		System.out.println("서비스" + dto);
+		System.out.println("서비스" + resu_code);
 		
 	}
 	

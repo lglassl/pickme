@@ -43,10 +43,9 @@ public class AdminEditBoardController {
 	*/
 	/*첨삭전문가가  첨삭상세 페이지에서 실제 첨삭내용 입력하는 페이지*/
 	@RequestMapping(value = "/adminEditDetail.htm" , method= RequestMethod.GET)
-	public String adminEditDetail(String username, int pick_code, Model model) {
-		System.out.println("첨삭게시물의 username:" +username+"pick_code:"+ pick_code);
+	public String adminEditDetail(String username, int resu_code, Model model) {
 		
-		List<CoverletterDTO2> cover2List = aeservice.editDetail(username, pick_code);
+		List<CoverletterDTO2> cover2List = aeservice.editDetail(username, resu_code);
 		for(int i = 0; i<cover2List.size(); i++) {
 			System.out.println("covercode 뭐뭐있냐 "+cover2List.get(i).getCover_no());
 		}
